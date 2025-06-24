@@ -10,9 +10,7 @@
             <button><a href="index.html"><i class="ai-home-alt1"></i></a></button>
             <button><i class="ai-chat-dots"></i></button>
             <div>
-              
               <button><i class="ai-gear"></i></button>
-              
               <button><a href="login3.html"><i class="ai-link-out"></i></a></button>
             </div>
           </div>
