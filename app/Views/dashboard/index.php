@@ -1,6 +1,5 @@
 <?= $this->extend('plantilla/layout_das'); ?>
 <?= $this->section('contenido'); ?>
-
   <body>
     <main>
       <section id="Secmenu">
