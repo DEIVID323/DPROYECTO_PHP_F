@@ -15,7 +15,6 @@
               
               <button><a href="login3.html"><i class="ai-link-out"></i></a></button>
             </div>
-            
           </div>
             <div class="right">
             <div class="right-inner">
