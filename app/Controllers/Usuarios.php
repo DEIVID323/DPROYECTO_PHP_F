@@ -57,11 +57,19 @@ class Usuarios extends BaseController
         return redirect()->to('/usuarios');
     }
 
-    public function eliminar($id)
-    {
-        $this->usuarioModel->delete($id);
+public function eliminar($id)
+{
+    try {
+        if (!$this->usuarioModel->delete($id)) {
+            throw new \Exception('Error al eliminar el usuario');
+        }
+
         return redirect()->to('/usuarios');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');
     }
+}
+
 }
 
 
