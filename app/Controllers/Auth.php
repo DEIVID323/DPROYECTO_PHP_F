@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\UsuarioModel;
+use App\Models\LoginModel;
 
 class Auth extends BaseController
 {
@@ -10,7 +10,7 @@ class Auth extends BaseController
 
     public function __construct()
     {
-        $this->usuarioModel = new UsuarioModel();
+        $this->usuarioModel = new LoginModel();
     }
 
     public function login()

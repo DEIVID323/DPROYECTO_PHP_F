@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UsuarioModel extends Model
+class LoginModel extends Model
 {
     protected $table      = 'usuario';
     protected $primaryKey = 'idUsuario';
