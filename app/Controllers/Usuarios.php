@@ -14,7 +14,7 @@ class Usuarios extends BaseController
     public function index()
     {
         $data['usuarios'] = $this->usuarioModel->findAll();
-        return view('usuarios/usuarios', $data);
+        return view('usuarios/index', $data);
     }
 
     public function crear()

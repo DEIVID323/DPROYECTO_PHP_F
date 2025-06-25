@@ -23,18 +23,18 @@
         <tbody style="font-size: 1.1rem;">
         <?php foreach ($usuarios as $usuario): ?>
             <tr>
-                <td class="fw-bold"><?= $usuario['id'] ?></td>
-                <td><?= $usuario['nombre'] ?></td>
-                <td><?= $usuario['apellido'] ?></td>
-                <td><?= $usuario['correo'] ?></td>
-                <td><span class="badge bg-warning text-dark"><?= $usuario['contraseña'] ?></span></td>
-                <td><?= $usuario['direccion'] ?></td>
-                <td><?= $usuario['telefono'] ?></td>
-                <td><?= $usuario['fecha_registro'] ?></td>
+                <td class="fw-bold"><?= $usuario['idUsuario'] ?></td>
+                <td><?= $usuario['Nombre'] ?></td>
+                <td><?= $usuario['Apellido'] ?></td>
+                <td><?= $usuario['Correo'] ?></td>
+                <td><span class="badge bg-warning text-dark"><?= $usuario['Contrasena'] ?></span></td>
+                <td><?= $usuario['Direccion'] ?></td>
+                <td><?= $usuario['Telefono'] ?></td>
+                <td><?= $usuario['Fecha_registro'] ?></td>
                 <td><span class="badge bg-secondary"><?= $usuario['Rol_idRol'] ?></span></td>
                 <td>
-                    <a href="<?= base_url('usuarios/editar/' . $usuario['id']) ?>" class="btn btn-warning btn-sm me-2">Editar</a>
-                    <a href="<?= base_url('usuarios/eliminar/' . $usuario['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">Eliminar</a>
+                    <a href="<?= base_url('usuarios/editar/' . $usuario['idUsuario']) ?>" class="btn btn-warning btn-sm me-2">Editar</a>
+                    <a href="<?= base_url('usuarios/eliminar/' . $usuario['idUsuario']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">Eliminar</a>
                 </td>
             </tr>
         <?php endforeach; ?>
