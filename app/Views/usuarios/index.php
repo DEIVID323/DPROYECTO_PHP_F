@@ -6,50 +6,56 @@
 
 <div class="w-full flex flex-col  items-center justify-center space-y-3">
 
-    <table class="table table-hover table-bordered align-middle shadow-lg rounded-4" style="background: #f8f9fa;">
-    <thead style="background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%); color: #fff; font-size: 1.2rem;">
-        <tr>
+<!-- Asegúrate de tener estas líneas en tu <head> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Tabla con diseño mejorado -->
+<table class="table table-hover table-bordered align-middle shadow-lg rounded-4 overflow-hidden" style="background: #f8f9fa;">
+    <thead style="background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%); color: #fff; font-size: 1.1rem;">
+        <tr class="text-center">
             <th>ID</th>
-            <th class="py-3">Nombre</th>
-            <th class="py-3">Apellido</th>
-            <th class="py-3">Correo</th>
-            <th class="py-3">Contraseña</th>
-            <th class="py-3">Dirección</th>
-            <th class="py-3">Teléfono</th>
-            <th class="py-3">Fecha de Registro</th>
-            <th class="py-3">Rol</th>
-            <th class="py-3 text-center">Acciones</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Contraseña</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Fecha de Registro</th>
+            <th>Rol</th>
+            <th>Acciones</th>
         </tr>
     </thead>
-    <tbody style="font-size: 1.1rem;">
+    <tbody style="font-size: 1.05rem;">
         <?php foreach ($usuarios as $usuario): ?>
         <tr>
-            <td class="fw-bold"><?= $usuario['idUsuario'] ?></td>
+            <td class="fw-semibold text-center"><?= $usuario['idUsuario'] ?></td>
             <td><?= $usuario['Nombre'] ?></td>
             <td><?= $usuario['Apellido'] ?></td>
             <td><?= $usuario['Correo'] ?></td>
-            <td><span class="badge bg-warning text-dark"><?= $usuario['Contrasena'] ?></span></td>
+            <td><span class="badge bg-warning text-dark shadow-sm"><?= $usuario['Contrasena'] ?></span></td>
             <td><?= $usuario['Direccion'] ?></td>
             <td><?= $usuario['Telefono'] ?></td>
-            <td><?= $usuario['Fecha_registro'] ?></td>
-            <td><span class="badge bg-secondary"><?= $usuario['Rol_idRol'] ?></span></td>
+            <td><span class="badge bg-light text-dark border"><?= $usuario['Fecha_registro'] ?></span></td>
+            <td><span class="badge bg-info text-dark"><?= $usuario['Rol_idRol'] ?></span></td>
             <td class="text-center">
                 <a href="<?= base_url('usuarios/editar/' . $usuario['idUsuario']) ?>" 
-                   class="btn btn-sm btn-outline-primary me-1" 
+                   class="btn btn-outline-primary btn-sm me-2" 
                    title="Editar">
-                    <i class="bi bi-pencil-square"></i>
+                    <i class="bi bi-pencil-fill"></i>
                 </a>
                 <a href="<?= base_url('usuarios/eliminar/' . $usuario['idUsuario']) ?>" 
-                   class="btn btn-sm btn-outline-danger" 
-                   title="Eliminar" 
+                   class="btn btn-outline-danger btn-sm" 
+                   title="Eliminar"
                    onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">
-                    <i class="bi bi-trash3-fill"></i>
+                    <i class="bi bi-trash-fill"></i>
                 </a>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
 
     
 </div>
