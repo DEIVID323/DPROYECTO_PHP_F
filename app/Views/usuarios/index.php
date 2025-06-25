@@ -6,10 +6,6 @@
 
 <div class="w-full flex flex-col  items-center justify-center space-y-3">
 
-<!-- Asegúrate de tener estas líneas en tu <head> -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
 <!-- Tabla con diseño mejorado -->
 <table class="table table-hover table-bordered align-middle shadow-lg rounded-4 overflow-hidden" style="background: #f8f9fa;">
     <thead style="background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%); color: #fff; font-size: 1.1rem;">

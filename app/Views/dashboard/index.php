@@ -27,8 +27,7 @@
                     <i class="ai-shipping-box-v1"></i>
                     <span>Productos</span>
                 </button>
-
-              <button onclick="cargarContenido('error500.html')">
+                <button onclick="cargarContenido('<?= base_url('usuarios/') ?>')">
                 <i class="ai-person"></i>
                 <span>Usuarios</span>
               </button>
