@@ -7,7 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-    <p>dgdgxddg</p>
     <?php echo $this->renderSection('contenido'); ?>
 </body>
 </html>

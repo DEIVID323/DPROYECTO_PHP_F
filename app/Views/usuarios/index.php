@@ -4,7 +4,7 @@
 <h2 class="mb-4 text-center text-primary fw-bold display-4">Lista de usuarios</h2>
 <a href="<?= base_url('usuarios/crear') ?>" class="btn btn-success mb-4 shadow-lg px-4 py-2 fs-5">Crear Usuario</a>
 
-<div class="table-responsive">
+<div class="w-full flex flex-col items-center justify-center">
     <table class="table table-hover table-bordered align-middle shadow-lg rounded-4" style="background: #f8f9fa;">
         <thead style="background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%); color: #fff; font-size: 1.2rem;">
             <tr>
