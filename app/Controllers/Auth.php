@@ -41,7 +41,7 @@ session()->set([
 ]);
 
 // Redirigir dependiendo del rol
-if ($usuario['Rol_idRol'] ==   1) { // 4 = Cliente (según tu base de datos)
+if ($usuario['Rol_idRol'] ==   4) { // 4 = Cliente (según tu base de datos)
     return redirect()->to(base_url('/inicio'));
 } else {
     return redirect()->to(base_url('/dashboard'));
