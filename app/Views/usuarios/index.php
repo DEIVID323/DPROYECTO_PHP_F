@@ -1,4 +1,4 @@
-<?php echo $this->extend('plantilla/layout'); ?>
+<?php echo $this->extend('plantilla/layout_usuario'); ?>
 <?php echo $this->section('contenido'); ?>
 
 <h2 class="mb-4 text-center text-primary fw-bold display-4">Lista de usuarios</h2>
@@ -8,7 +8,7 @@
     <table class="table table-hover table-bordered align-middle shadow-lg rounded-4" style="background: #f8f9fa;">
         <thead style="background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%); color: #fff; font-size: 1.2rem;">
             <tr>
-                <th class="py-3">ID</th>
+                <th class="bg-red-200">ID</th>
                 <th class="py-3">Nombre</th>
                 <th class="py-3">Apellido</th>
                 <th class="py-3">Correo</th>
