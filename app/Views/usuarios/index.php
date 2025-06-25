@@ -41,7 +41,7 @@
                    title="Editar">
                     <i class="bi bi-pencil-fill"></i>
                 </a>
-                <a href="<?= base_url('usuarios/' . $usuario['idUsuario']) ?>" 
+                <a href="<?= base_url('usuarios/eliminar/' . $usuario['idUsuario']) ?>" 
                    class="btn btn-outline-danger btn-sm" 
                    title="Eliminar"
                    onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">
@@ -52,7 +52,6 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-
 <?php if (session()->has('error')): ?>
     <div class="alert alert-danger">
         <?= session('error') ?>
