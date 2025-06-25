@@ -29,6 +29,9 @@
                 </button>
                 <button onclick="cargarContenido('<?= base_url('usuarios/') ?>')">
                 <i class="ai-person"></i>
+                <span>Rol</span>
+                <button onclick="cargarContenido('<?= base_url('usuarios/') ?>')">
+                <i class="ai-person"></i>
                 <span>Usuarios</span>
               </button>
               <button onclick="cargarContenido('error500.html')">
