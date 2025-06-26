@@ -21,7 +21,6 @@
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Correo</th>
-            <th>Contraseña</th>
             <th>Dirección</th>
             <th>Teléfono</th>
             <th>Fecha de Registro</th>
@@ -36,7 +35,6 @@
             <td><?= $usuario['Nombre'] ?></td>
             <td><?= $usuario['Apellido'] ?></td>
             <td><?= $usuario['Correo'] ?></td>
-            <td><span class="badge bg-warning text-dark shadow-sm"><?= $usuario['Contrasena'] ?></span></td>
             <td><?= $usuario['Direccion'] ?></td>
             <td><?= $usuario['Telefono'] ?></td>
             <td><span class="badge bg-light text-dark border"><?= $usuario['Fecha_registro'] ?></span></td>
@@ -144,34 +142,6 @@
         color: #212529 !important;
     }
 </style>
-
-
-<script>
-function eliminarUsuario(id) {
-    if (confirm('¿Seguro que deseas eliminar este usuario?')) {
-        fetch(`<?= base_url('usuarios/eliminar/') ?>${id}`, {
-            method: 'GET',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                // Recargar solo la vista de usuarios sin afectar el dashboard
-                cargarContenido('<?= base_url('dashboard/usuarios/') ?>');
-            } else {
-                alert(data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al eliminar el usuario');
-        });
-    }
-}
-</script>
 
 
 <?php echo $this->endSection(); ?>
