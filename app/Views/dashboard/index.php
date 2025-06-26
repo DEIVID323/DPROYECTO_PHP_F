@@ -30,7 +30,7 @@
                 <button onclick="cargarContenido('<?= base_url('usuarios/') ?>')">
                 <i class="ai-person"></i>
                 <span>Rol</span>
-                <button onclick="cargarContenido('<?= base_url('usuarios/') ?>')">
+                <button onclick="cargarContenido('<?= base_url('dashboard/usuarios/') ?>')">
                 <i class="ai-person"></i>
                 <span>Usuarios</span>
               </button>
@@ -50,6 +50,31 @@
       </section>
       <section id="Seccontenido">
         <!-- Aquí se carga el contenido dinámico -->
+        <div class="text-center mt-5">
+          <h2>Bienvenido al Dashboard</h2>
+          <p>Selecciona una opción del menú para comenzar</p>
+        </div>
       </section>
     </main>
+
+
+<script>
+// Función para resaltar el botón activo
+function setActiveButton(activeButton) {
+    const buttons = document.querySelectorAll('nav button');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+    activeButton.classList.add('active');
+}
+
+
+// Mejorar la función cargarContenido para el dashboard
+function cargarContenidoDashboard(url, button) {
+    setActiveButton(button);
+    cargarContenido(url);
+}
+</script>
+
+
  <?= $this->endSection(); ?>
