@@ -67,8 +67,12 @@ public function eliminar($id)
         return redirect()->to(base_url('usuarios/'));
 
     } catch (\Exception $e) {
+         $data['usuarios'] = $this->usuarioModel->findAll();
+        return view('/dashboard', $data);
+
+
         //return redirect()->back()->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');//
-        return redirect()->to(base_url('usuarios/'))->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');
+       // return redirect()->to(base_url('/dashboard'))->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');
 
     }
 }
