@@ -29,7 +29,7 @@ $routes->get('/productos/eliminar/(:num)', 'Productos::eliminar/$1');
 $routes->get('/dashboard', 'Dashboard::index');
 
 
-$routes->get('/usuarios', 'Usuarios::index');
+$routes->get('/dashboard/usuarios/', 'Usuarios::index');
 $routes->get('/usuarios/crear', 'Usuarios::crear');
 $routes->post('/usuarios/guardar', 'Usuarios::guardar');
 $routes->get('/usuarios/editar/(:num)', 'Usuarios::editar/$1');
