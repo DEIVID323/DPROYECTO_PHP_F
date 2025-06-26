@@ -2,6 +2,7 @@
 <?php echo $this->section('contenido'); ?>
 
 
+
 <h2 class="mb-4 text-center text-primary fw-bold display-4">Lista de usuarios</h2>
 <a href="<?= base_url('usuarios/crear') ?>" class="m-4 btn btn-success mb-4 shadow-lg px-4 py-2 fs-5">Crear Usuario</a>
 
