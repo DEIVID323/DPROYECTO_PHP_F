@@ -27,7 +27,7 @@ $routes->get('/productos/eliminar/(:num)', 'Productos::eliminar/$1');
 
 
 $routes->get('/dashboard', 'Dashboard::index');
-//$routes->get('/dashboard/usuarios/', 'Usuarios::index');
+$routes->get('/dashboard/usuarios/', 'Usuarios::index');
 
 
 $routes->get('/usuarios', 'Usuarios::index');
