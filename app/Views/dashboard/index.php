@@ -30,7 +30,7 @@
                 <button onclick="cargarContenido('<?= base_url('usuarios/') ?>')">
                 <i class="ai-person"></i>
                 <span>Rol</span>
-                <button onclick="cargarContenido('<?= base_url('dashboard/usuarios/') ?>')">
+                <button onclick="cargarContenido('<?= base_url('usuarios/') ?>')">
                 <i class="ai-person"></i>
                 <span>Usuarios</span>
               </button>
