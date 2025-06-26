@@ -47,11 +47,14 @@
                    title="Editar">
                     <i class="bi bi-pencil-fill"></i>
                 </a>
-                <button onclick="eliminarUsuario(<?= $usuario['idUsuario'] ?>)"
+                <a href="<?= base_url('usuarios/eliminar/' . $usuario['idUsuario']) ?>"
                    class="btn btn-outline-danger btn-sm"
-                   title="Eliminar">
+                   title="Eliminar"
+                   onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">
                     <i class="bi bi-trash-fill"></i>
-                </button>
+                </a>
+
+
             </td>
         </tr>
         <?php endforeach; ?>
