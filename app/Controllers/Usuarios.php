@@ -2,14 +2,17 @@
 namespace App\Controllers;
 use App\Models\UsuarioModel;
 
+
 class Usuarios extends BaseController  
 {
     protected $usuarioModel;
+
 
     public function __construct()
     {
         $this->usuarioModel = new UsuarioModel();
     }
+
 
     public function index()
     {
@@ -17,10 +20,12 @@ class Usuarios extends BaseController
         return view('usuarios/index', $data);
     }
 
+
     public function crear()
     {
         return view('usuarios/crear');
     }
+
 
     public function guardar()
     {
@@ -30,16 +35,18 @@ class Usuarios extends BaseController
             'Contrasena' => password_hash($this->request->getPost('contrasena'), PASSWORD_DEFAULT),
             'Rol_idRol' => $this->request->getPost('rol')
         ];
-        
+       
         $this->usuarioModel->insert($data);
         return redirect()->to('/usuarios');
     }
+
 
     public function editar($id)
     {
         $data['usuario'] = $this->usuarioModel->find($id);
         return view('usuarios/editar', $data);
     }
+
 
     public function actualizar($id)
     {
@@ -49,13 +56,16 @@ class Usuarios extends BaseController
             'Rol_idRol' => $this->request->getPost('rol')
         ];
 
+
         if ($this->request->getPost('contrasena')) {
             $data['Contrasena'] = password_hash($this->request->getPost('contrasena'), PASSWORD_DEFAULT);
         }
 
+
         $this->usuarioModel->update($id, $data);
         return redirect()->to('/usuarios');
     }
+
 
 public function eliminar($id)
 {
@@ -64,17 +74,37 @@ public function eliminar($id)
             throw new \Exception('Error al eliminar el usuario');
         }
 
-        return redirect()->to(base_url('/dashboard'));
+
+        // Si es una solicitud AJAX, devolver JSON
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Usuario eliminado correctamente'
+            ]);
+        }
+
+
+        return redirect()->to('/dashboard/usuarios/');
+
 
     } catch (\Exception $e) {
-        return redirect('dashboard/usuarios', 'refresh');
-        //return redirect()->back()->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');//
-        //return redirect()->to(base_url('/dashboard'))->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');
+        // Si es una solicitud AJAX, devolver error JSON
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.'
+            ]);
+        }
 
+
+        return redirect()->to('/dashboard/usuarios/')->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');
     }
 }
 
+
 }
+
+
 
 
 ?>
