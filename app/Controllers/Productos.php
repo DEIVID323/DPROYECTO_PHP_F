@@ -41,7 +41,7 @@ class Productos extends BaseController
         $model = new ProductoModel();
         $model->delete($id);
 
-        return redirect()->to('/dashboard');
+        return redirect()->to('/productos');
 
     }
 
