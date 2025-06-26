@@ -18,14 +18,6 @@ $routes->get('/cerrarSesion', 'Inicio::cerrarSesion');
 $routes->get('/admin', 'Inicio::admin');
 
 
-
-
-
-
-
-
-
-
 $routes->get('/productos', 'Productos::index');
 $routes->get('/productos/crear', 'Productos::crear');
 $routes->post('/productos/guardar', 'Productos::guardar');
@@ -35,7 +27,7 @@ $routes->get('/productos/eliminar/(:num)', 'Productos::eliminar/$1');
 
 
 $routes->get('/dashboard', 'Dashboard::index');
-$routes->get('/dashboard/usuarios/', 'Usuarios::index');
+//$routes->get('/dashboard/usuarios/', 'Usuarios::index');
 
 
 $routes->get('/usuarios', 'Usuarios::index');
