@@ -387,16 +387,16 @@
     </div>
 </div>
 
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+<!-- Delete Confirmation Modal - VERSIÓN CORREGIDA -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0 bg-danger text-white">
-                <h5 class="modal-title">
+                <h5 class="modal-title" id="deleteModalLabel">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     Confirmar Eliminación
                 </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <div class="modal-body text-center py-4">
                 <div class="mb-3">
@@ -410,14 +410,13 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle me-1"></i>Cancelar
                 </button>
-                <a id="confirmDeleteBtn" href="<?= base_url('usuarios/eliminar/' . $usuario['idUsuario']) ?>" class="btn btn-danger">
+                <a id="confirmDeleteBtn" href="#" class="btn btn-danger">
                     <i class="bi bi-trash me-1"></i>Eliminar Usuario
                 </a>
             </div>
         </div>
     </div>
 </div>
-
 <style>
 .bg-gradient-primary {
     background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%) !important;
@@ -469,6 +468,37 @@
     .btn-group {
         justify-content: center;
     }
+}
+/* Solución para modal desbordado */
+#deleteModal .modal-dialog {
+    max-width: 90vw;
+    width: 500px;
+    margin: 1rem auto;
+}
+
+#deleteModal .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Responsive para móviles */
+@media (max-width: 576px) {
+    #deleteModal .modal-dialog {
+        width: 95vw;
+        margin: 0.5rem auto;
+    }
+    
+    #deleteModal .modal-header,
+    #deleteModal .modal-body,
+    #deleteModal .modal-footer {
+        padding: 1rem;
+    }
+}
+
+/* Prevenir scroll del body */
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0 !important;
 }
 </style>
 
@@ -547,12 +577,16 @@ function clearFilters() {
     });
 }
 
-// Delete confirmation
+// Función mejorada para manejar el modal
 function confirmDelete(userId, userName) {
     document.getElementById('deleteUserName').textContent = userName;
     document.getElementById('confirmDeleteBtn').href = '<?= base_url('usuarios/eliminar/') ?>' + userId;
     
-    const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    const modalElement = document.getElementById('deleteModal');
+    const modal = new bootstrap.Modal(modalElement, {
+        backdrop: 'static', // Previene cerrar al hacer clic fuera
+        keyboard: true      // Permite cerrar con ESC
+    });
     modal.show();
 }
 
