@@ -76,13 +76,12 @@ function clearFilters() {
 // Delete confirmation
 function confirmDelete(userId, userName) {
     document.getElementById('deleteUserName').textContent = userName;
-document.getElementById('confirmDeleteBtn').href = BASE_URL + 'usuarios/eliminar/' + userId;
+    document.getElementById('confirmDeleteBtn').setAttribute('href', BASE_URL + 'usuarios/eliminar/' + userId);
 
-
-    
     const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
     modal.show();
 }
+
 
 // Bulk delete
 function bulkDelete() {

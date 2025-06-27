@@ -389,33 +389,25 @@
 </div>
 
 <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header border-0 bg-danger text-white">
-                <h5 class="modal-title">
-                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                    Confirmar Eliminación
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-center py-4">
-                <div class="mb-3">
-                    <i class="bi bi-person-x text-danger" style="font-size: 3rem;"></i>
-                </div>
-                <h6 class="mb-2">¿Estás seguro de eliminar este usuario?</h6>
-                <p class="text-muted mb-0" id="deleteUserName"></p>
-                <small class="text-muted">Esta acción no se puede deshacer.</small>
-            </div>
-            <div class="modal-footer border-0 justify-content-center">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    <i class="bi bi-x-circle me-1"></i>Cancelar
-                </button>
-                <a id="confirmDeleteBtn" href="#" class="btn btn-danger">
-                    <i class="bi bi-trash me-1"></i>Eliminar Usuario
-                </a>
-            </div>
-        </div>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body text-center">
+        <i class="bi bi-person-x fs-1 text-danger"></i>
+        <p class="mt-3">¿Estás seguro de eliminar este usuario?</p>
+        <h5 id="deleteUserName"></h5>
+        <small class="text-muted">Esta acción no se puede deshacer.</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <a id="confirmDeleteBtn" class="btn btn-danger">Eliminar Usuario</a>
+      </div>
     </div>
+  </div>
 </div>
+
 <?php echo $this->endSection(); ?>
