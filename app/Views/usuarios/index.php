@@ -410,6 +410,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle me-1"></i>Cancelar
                 </button>
+
                 <a id="confirmDeleteBtn" href="#" class="btn btn-danger">
                     <i class="bi bi-trash me-1"></i>Eliminar Usuario
                 </a>
@@ -569,3 +570,4 @@ function bulkDelete() {
 </script>
 
 <?php echo $this->endSection(); ?>
+
