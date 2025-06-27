@@ -362,62 +362,36 @@
         </div>
     </div>
 
-    <!-- Bulk Actions (Hidden by default) -->
-    <div id="bulkActions" class="row mt-3 d-none">
-        <div class="col-12">
-            <div class="card border-warning bg-warning bg-opacity-10">
-                <div class="card-body py-2">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-warning fw-semibold">
-                            <i class="bi bi-info-circle me-1"></i>
-                            <span id="selectedCount">0</span> usuarios seleccionados
-                        </span>
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-outline-warning btn-sm">
-                                <i class="bi bi-download me-1"></i>Exportar
-                            </button>
-                            <button class="btn btn-outline-danger btn-sm" onclick="bulkDelete()">
-                                <i class="bi bi-trash me-1"></i>Eliminar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
+<!-- Modal Corregido -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0 bg-danger text-white">
-                <h5 class="modal-title">
+                <h5 class="modal-title" id="deleteModalLabel">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     Confirmar Eliminación
                 </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center py-4">
                 <div class="mb-3">
                     <i class="bi bi-person-x text-danger" style="font-size: 3rem;"></i>
                 </div>
                 <h6 class="mb-2">¿Estás seguro de eliminar este usuario?</h6>
-                <p class="text-muted mb-0" id="deleteUserName"></p>
+                <p class="text-muted mb-0 fw-bold" id="deleteUserName">Nombre del Usuario</p>
                 <small class="text-muted">Esta acción no se puede deshacer.</small>
             </div>
-            <div class="modal-footer border-0 justify-content-center">
+            <div class="modal-footer border-0 justify-content-center gap-2">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle me-1"></i>Cancelar
                 </button>
-                <a id="confirmDeleteBtn" href="<?= base_url('usuarios/eliminar/' . $usuario['idUsuario']) ?>"" class="btn btn-danger">
+                <a id="confirmDeleteBtn" href="#" class="btn btn-danger">
                     <i class="bi bi-trash me-1"></i>Eliminar Usuario
                 </a>
             </div>
         </div>
     </div>
 </div>
-
 <style>
 .bg-gradient-primary {
     background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%) !important;
@@ -547,7 +521,6 @@ function clearFilters() {
     });
 }
 
-// Delete confirmation
 function confirmDelete(userId, userName) {
     document.getElementById('deleteUserName').textContent = userName;
     document.getElementById('confirmDeleteBtn').href = '<?= base_url('usuarios/eliminar/') ?>' + userId;
