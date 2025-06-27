@@ -551,7 +551,8 @@ function clearFilters() {
 // Delete confirmation
 function confirmDelete(userId, userName) {
     document.getElementById('deleteUserName').textContent = userName;
-    document.getElementById('confirmDeleteBtn').href = '<?= base_url('usuarios/eliminar/') ?>' + userId;
+document.getElementById('confirmDeleteBtn').href = '<?= base_url('usuarios/eliminar/') ?>' + userId;
+
     
     const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
     modal.show();
