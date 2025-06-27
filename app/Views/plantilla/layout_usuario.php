@@ -9,12 +9,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('css/usuarios.css') ?>">
     <script src="<?php echo base_url('js/usuarios.js'); ?>" defer></script>
+    <!-- Bootstrap JS (solo una vez y al final) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    const BASE_URL = '<?= base_url() ?>';
+</script>
+
 
 </head>
 <body>
     <?php echo $this->renderSection('contenido'); ?>
 </body>
-
-<!-- Bootstrap JS (solo una vez y al final) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
