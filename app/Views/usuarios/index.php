@@ -387,16 +387,16 @@
     </div>
 </div>
 
-<!-- Delete Confirmation Modal - VERSIÓN CORREGIDA -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0 bg-danger text-white">
-                <h5 class="modal-title" id="deleteModalLabel">
+                <h5 class="modal-title">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     Confirmar Eliminación
                 </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center py-4">
                 <div class="mb-3">
@@ -417,6 +417,7 @@
         </div>
     </div>
 </div>
+
 <style>
 .bg-gradient-primary {
     background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%) !important;
@@ -468,47 +469,6 @@
     .btn-group {
         justify-content: center;
     }
-}
-/* Solución para modal desbordado */
-#deleteModal .modal-dialog {
-    max-width: 90vw;
-    width: 500px;
-    margin: 1rem auto;
-}
-
-#deleteModal .modal-content {
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-/* Responsive para móviles */
-@media (max-width: 576px) {
-    #deleteModal .modal-dialog {
-        width: 95vw;
-        margin: 0.5rem auto;
-    }
-    
-    #deleteModal .modal-header,
-    #deleteModal .modal-body,
-    #deleteModal .modal-footer {
-        padding: 1rem;
-    }
-}
-
-/* Prevenir scroll del body */
-body.modal-open {
-    overflow: hidden;
-    padding-right: 0 !important;
-}
-.modal {
-    z-index: 1055 !important;
-}
-.modal-dialog {
-    z-index: 1060 !important;
-}
-.modal-content {
-    z-index: 1065 !important;
-    pointer-events: auto !important;
 }
 </style>
 
