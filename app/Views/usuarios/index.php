@@ -317,10 +317,11 @@
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
                                                 <button class="btn btn-outline-danger btn-sm"
-                                                        onclick="confirmDelete(<?= $usuario['idUsuario'] ?>, '<?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>')"
-                                                        title="Eliminar">
+                                                    onclick="confirmDelete(<?= $usuario['idUsuario'] ?>, '<?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>')"
+                                                    title="Eliminar">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
+
                                             </div>
                                         </div>
                                     </div>
