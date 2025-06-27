@@ -84,7 +84,7 @@ public function eliminar($id)
         }
 
 
-        return redirect()->to('/dashboard/usuarios/');
+        return redirect()->to('/dashboard');
 
 
     } catch (\Exception $e) {
