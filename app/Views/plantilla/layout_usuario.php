@@ -7,6 +7,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('css/usuarios.css') ?>">
+    <script src="<?php echo base_url('js/usuarios.js'); ?>" defer></script>
+
 </head>
 <body>
     <?php echo $this->renderSection('contenido'); ?>
