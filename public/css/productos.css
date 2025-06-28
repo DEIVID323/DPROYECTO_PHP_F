@@ -67,7 +67,4 @@ body.modal-open {
 .modal-dialog {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
-.bg-gradient-primary {
-    background: linear-gradient(90deg, #0062E6 0%, #33AEFF 100%);
-}
 
