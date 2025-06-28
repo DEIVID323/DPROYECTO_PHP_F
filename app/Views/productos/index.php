@@ -440,10 +440,7 @@
 
 <script>
 // Verificar que Bootstrap esté disponible
-if (typeof bootstrap === 'undefined') {
-    console.error('Bootstrap no está cargado!');
-    alert('Error: Bootstrap no está cargado. El modal no funcionará.');
-}
+
 
 // JavaScript functions
 function confirmDelete(productId, productName) {
