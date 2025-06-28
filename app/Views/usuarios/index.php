@@ -411,41 +411,46 @@
 </div>
 
 
+
 <!-- JavaScript for Delete Confirmation and UI Actions -->
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Delete confirmation modal logic
-    window.confirmDelete = function(userId, userName) {
-        document.getElementById('deleteUserName').textContent = userName;
-        document.getElementById('confirmDeleteBtn').href = "<?= base_url('usuarios/eliminar/') ?>" + "/" + userId;
-        var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+// Confirmar eliminación de usuario
+function confirmUserDelete(userId, userName) {
+    console.log('confirmUserDelete llamado con:', userId, userName);
+    
+    const deleteUserNameEl = document.getElementById('deleteUserName');
+    if (!deleteUserNameEl) {
+        console.error('Elemento deleteUserName no encontrado');
+        return;
+    }
+    deleteUserNameEl.textContent = userName;
+
+    const confirmBtn = document.getElementById('confirmDeleteBtn');
+    if (!confirmBtn) {
+        console.error('Elemento confirmDeleteBtn no encontrado');
+        return;
+    }
+    confirmBtn.href = '<?= base_url('usuarios/eliminar/') ?>' + userId;
+
+    const modalElement = document.getElementById('deleteModal');
+    if (!modalElement) {
+        console.error('Modal deleteModal no encontrado');
+        return;
+    }
+
+    try {
+        const deleteModal = new bootstrap.Modal(modalElement, {
+            backdrop: 'static',  // que no se cierre al hacer clic fuera
+            keyboard: false
+        });
         deleteModal.show();
-    };
+        console.log('Modal de usuario mostrado correctamente');
+    } catch (error) {
+        console.error('Error al mostrar modal usuario:', error);
+        alert('Error al mostrar el modal: ' + error.message);
+    }
+}
 
-    // Optional: Tooltip initialization
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-        new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-
-    // Optional: Table/Grid view toggle
-    document.getElementById('viewTable').addEventListener('click', function() {
-        document.getElementById('tableView').classList.remove('d-none');
-        document.getElementById('gridView').classList.add('d-none');
-    });
-    document.getElementById('viewGrid').addEventListener('click', function() {
-        document.getElementById('tableView').classList.add('d-none');
-        document.getElementById('gridView').classList.remove('d-none');
-    });
-
-    // Optional: Clear filters function
-    window.clearFilters = function() {
-        document.getElementById('searchInput').value = '';
-        document.getElementById('roleFilter').selectedIndex = 0;
-        document.getElementById('statusFilter').selectedIndex = 0;
-        // Optionally, trigger a filter/search update here
-    };
-});
 </script>
 
 <?php echo $this->endSection(); ?>
