@@ -15,12 +15,11 @@
 <body>
     <?php echo $this->renderSection('contenido'); ?>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url('js/usuarios.js') ?>"></script>
     <script>
     const BASE_URL = '<?= base_url() ?>';
     </script>
-
-
+<!-- Bootstrap JS Bundle (incluye Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>
