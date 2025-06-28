@@ -382,7 +382,8 @@
 </div>
 
 <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<!-- Modal de confirmación de eliminación corregido -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
             <div class="modal-header bg-danger text-white border-0">
@@ -405,10 +406,10 @@
                     <i class="bi bi-x-circle me-1"></i>
                     Cancelar
                 </button>
-                <a id="confirmDeleteBtn" class="btn btn-danger px-4">
+                <button type="button" id="confirmDeleteBtn" class="btn btn-danger px-4">
                     <i class="bi bi-trash me-1"></i>
                     Eliminar Producto
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -528,6 +529,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 });
+function emergencyUnlock() {
+    clearModalState();
+    console.log("Página desbloqueada");
+}
 </script>
 
 <style>
@@ -568,6 +573,24 @@ document.addEventListener('DOMContentLoaded', function() {
     .btn-group .btn {
         padding: 0.25rem 0.5rem;
     }
+}
+.modal-backdrop {
+    z-index: 1040;
+}
+
+.modal {
+    z-index: 1050;
+}
+
+/* Asegurar que no haya elementos bloqueando */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Estilo para botón deshabilitado */
+.btn.disabled {
+    pointer-events: none;
+    opacity: 0.65;
 }
 </style>
 
