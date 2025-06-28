@@ -503,6 +503,7 @@ function viewProduct(productId) {
     `;
 }
 
+
 function clearFilters() {
     document.getElementById('searchInput').value = '';
     document.getElementById('categoryFilter').value = '';
