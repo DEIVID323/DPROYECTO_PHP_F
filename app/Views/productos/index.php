@@ -5,18 +5,18 @@
 <div class="container-fluid">
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card border-0 shadow-sm bg-gradient-primary text-black">
+            <div class="card border-0 shadow-sm bg-gradient-primary text-white">
                 <div class="card-body py-4">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="mb-3 mb-md-0">
+                        <div>
                             <h1 class="h2 mb-1 fw-bold">
                                 <i class="bi bi-box-seam me-2"></i>
                                 Gestión de Productos
                             </h1>
                             <p class="mb-0 opacity-75">Administra todos los productos del sistema</p>
                         </div>
-                        <div class="d-flex align-items-center flex-wrap gap-2">
-                            <span class="badge bg-light text-primary fs-6">
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-light text-primary fs-6 me-3">
                                 <i class="bi bi-box me-1"></i>
                                 <?= count($productos) ?> productos
                             </span>
@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <!-- Alerts Section -->
     <?php if (session()->has('error')): ?>
