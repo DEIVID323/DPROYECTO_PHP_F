@@ -1,4 +1,4 @@
-<?php echo $this->extend('plantilla/layout_pro'); ?>
+<?php echo $this->extend('plantilla/layout_crear'); ?>
 <?php echo $this->section('contenido'); ?>
 
 <div class="container-fluid">
@@ -441,64 +441,6 @@ document.getElementById('Nombre').addEventListener('blur', function() {
 });
 </script>
 
-<style>
-.avatar-lg {
-    width: 60px;
-    height: 60px;
-}
 
-.form-control:focus,
-.form-select:focus {
-    border-color: #198754;
-    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
-}
-
-.input-group-text {
-    border-color: #dee2e6;
-}
-
-.form-text {
-    font-size: 0.875rem;
-}
-
-@media (max-width: 768px) {
-    .card-body {
-        padding: 1.5rem;
-    }
-    
-    .btn-group .btn {
-        padding: 0.375rem 0.75rem;
-    }
-}
-
-/* Custom validation styles */
-.was-validated .form-control:valid,
-.was-validated .form-select:valid {
-    border-color: #198754;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='m2.3 6.73.94-.94 2.94 2.94L3.23 5.7z'/%3e%3c/svg%3e");
-}
-
-.was-validated .form-control:invalid,
-.was-validated .form-select:invalid {
-    border-color: #dc3545;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 5.8 2.4 2.4M8.2 5.8l-2.4 2.4'/%3e%3c/svg%3e");
-}
-
-/* Responsive improvements */
-@media (max-width: 576px) {
-    .input-group-text {
-        min-width: 45px;
-        justify-content: center;
-    }
-    
-    .d-flex.gap-2 {
-        gap: 0.5rem !important;
-    }
-    
-    .btn {
-        font-size: 0.875rem;
-    }
-}
-</style>
 
 <?= $this->endSection(); ?>
