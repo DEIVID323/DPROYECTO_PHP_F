@@ -1,13 +1,13 @@
 <?php echo $this->extend('plantilla/layout_pro'); ?>
 <?php echo $this->section('contenido'); ?>
 
+
 <div class="container-fluid">
-    <!-- Page Header -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card border-0 shadow-sm bg-gradient-primary text-red">
+            <div class="card border-0 shadow-sm bg-gradient-primary text-black">
                 <div class="card-body py-4">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="d-flex justify-content-between align-items-center">
                         <div class="mb-3 mb-md-0">
                             <h1 class="h2 mb-1 fw-bold">
                                 <i class="bi bi-box-seam me-2"></i>
