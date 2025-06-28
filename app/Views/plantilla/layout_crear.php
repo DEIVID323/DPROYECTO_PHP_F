@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="<?= base_url('css/crear_pro.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/crear_po.css') ?>">
 
 
 </head>
@@ -15,6 +15,7 @@
     <?php echo $this->renderSection('contenido'); ?>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url('js/crear_pro.js') ?>"></script>
 
 
 </html>

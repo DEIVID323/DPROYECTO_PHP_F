@@ -6,12 +6,12 @@
 
 .form-control:focus,
 .form-select:focus {
-    border-color: #198754;
+    border-color: #dd02ff;
     box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
 }
 
 .input-group-text {
-    border-color: #dee2e6;
+    border-color: #ff08da;
 }
 
 .form-text {
@@ -31,7 +31,7 @@
 /* Custom validation styles */
 .was-validated .form-control:valid,
 .was-validated .form-select:valid {
-    border-color: #198754;
+    border-color: #ff15c1;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='m2.3 6.73.94-.94 2.94 2.94L3.23 5.7z'/%3e%3c/svg%3e");
 }
 
