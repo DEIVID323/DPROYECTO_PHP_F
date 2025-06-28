@@ -404,10 +404,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <a id="confirmDeleteBtn" class="btn btn-danger">Eliminar Usuario</a>
+        <a id="confirmDeleteBtn" class="btn btn-danger" href="#">Eliminar Usuario</a>
       </div>
     </div>
   </div>
 </div>
+
 
 <?php echo $this->endSection(); ?>
