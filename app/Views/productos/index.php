@@ -1,4 +1,4 @@
-<?php echo $this->extend('plantilla/layout_usuario'); ?>
+<?php echo $this->extend('plantilla/layout_pro'); ?>
 <?php echo $this->section('contenido'); ?>
 
 
