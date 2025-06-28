@@ -75,11 +75,19 @@ function clearFilters() {
 
 // Delete confirmation
 function confirmDelete(userId, userName) {
-    document.getElementById('deleteUserName').textContent = userName;
-    document.getElementById('confirmDeleteBtn').setAttribute('href', BASE_URL + 'usuarios/eliminar/' + userId);
+  document.getElementById('deleteUserName').textContent = userName;
+// Set the base URL in a data attribute or variable in your HTML, e.g.:
+// <button id="confirmDeleteBtn" data-base-url="/usuarios/eliminar/"></button>
+const baseUrl = document.getElementById('confirmDeleteBtn').getAttribute('data-base-url');
+document.getElementById('confirmDeleteBtn').href = baseUrl + userId;
 
-    const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-    modal.show();
+  const modalElement = document.getElementById('deleteModal');
+  modalElement.removeAttribute('aria-hidden'); // limpia cualquier valor heredado
+  const deleteModal = new bootstrap.Modal(modalElement, {
+    backdrop: 'static',
+    keyboard: false
+  });
+  deleteModal.show();
 }
 
 
