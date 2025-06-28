@@ -16,10 +16,8 @@
     <!-- TU script DESPUÉS -->
     <script src="<?= base_url('js/usuarios.js') ?>"></script>
     
-    <!-- Variables globales al final -->
-    <script>
-        const BASE_URL = '<?= base_url() ?>';
-    </script>
+
+ 
 </body>
 </html>
 

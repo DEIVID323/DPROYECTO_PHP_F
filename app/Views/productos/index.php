@@ -1,6 +1,7 @@
 <?php echo $this->extend('plantilla/layout_usuario'); ?>
 <?php echo $this->section('contenido'); ?>
 
+
 <div class="container-fluid">
     <div class="row mb-4">
         <div class="col-12">

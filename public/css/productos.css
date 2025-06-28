@@ -68,3 +68,46 @@ body.modal-open {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
+.hover-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+}
+
+.avatar-lg {
+    width: 50px;
+    height: 50px;
+}
+
+/* Eliminar backdrop y efectos de oscurecimiento */
+.modal-backdrop {
+    display: none !important;
+}
+
+.modal {
+    z-index: 1050;
+}
+
+/* Eliminar efectos de oscurecimiento del body */
+body.modal-open {
+    overflow: auto !important;
+    padding-right: 0 !important;
+}
+
+/* Asegurar que los modales no tengan backdrop */
+.modal.show {
+    background: transparent !important;
+}
+
+.modal-dialog {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
