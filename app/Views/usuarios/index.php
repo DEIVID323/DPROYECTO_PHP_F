@@ -411,4 +411,41 @@
 </div>
 
 
+<!-- JavaScript for Delete Confirmation and UI Actions -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Delete confirmation modal logic
+    window.confirmDelete = function(userId, userName) {
+        document.getElementById('deleteUserName').textContent = userName;
+        document.getElementById('confirmDeleteBtn').href = "<?= base_url('usuarios/eliminar/') ?>" + "/" + userId;
+        var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        deleteModal.show();
+    };
+
+    // Optional: Tooltip initialization
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Optional: Table/Grid view toggle
+    document.getElementById('viewTable').addEventListener('click', function() {
+        document.getElementById('tableView').classList.remove('d-none');
+        document.getElementById('gridView').classList.add('d-none');
+    });
+    document.getElementById('viewGrid').addEventListener('click', function() {
+        document.getElementById('tableView').classList.add('d-none');
+        document.getElementById('gridView').classList.remove('d-none');
+    });
+
+    // Optional: Clear filters function
+    window.clearFilters = function() {
+        document.getElementById('searchInput').value = '';
+        document.getElementById('roleFilter').selectedIndex = 0;
+        document.getElementById('statusFilter').selectedIndex = 0;
+        // Optionally, trigger a filter/search update here
+    };
+});
+</script>
+
 <?php echo $this->endSection(); ?>
