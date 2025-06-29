@@ -1,7 +1,6 @@
 <?php  echo $this->extend('plantilla/layout'); ?>
 <?php echo $this->section('contenido'); ?>
 
- <body>
     <header>
         <div>
             <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8dGV4dCB4PSI1MCIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZjU3MjIiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRNQyBWSVNWQVJEPC90ZXh0Pgo8L3N2Zz4K" alt="DMC VISVARD Logo" class="logo">
@@ -69,10 +68,7 @@
                 </div>
                 
                 <div class="product-card">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDMwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjZjVmNWY1Ii8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyNSIgcj0iNDAiIGZpbGw9IiNmZjU3MjIiLz4KPHRleHQgeD0iMTUwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9
-                    <!-- Continuación del código que falta después de la línea truncada -->
-="mid">Líquido Limpiador</text>
-</svg>" alt="Líquido Limpiador">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDMwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjZjVmNWY1Ii8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyNSIgcj0iNDAiIGZpbGw9IiNmZjU3MjIiLz4KPHRleHQgeD0iMTUwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9=mid">Líquido Limpiador</text></svg>" alt="Líquido Limpiador">
                     <div class="info">
                         <h3>Líquido Limpiador Premium</h3>
                         <p>Líquido especial para limpieza de lentes.</p>
@@ -298,3 +294,4 @@
             </form>
         </div>
     </div>
+<?php echo $this->endSection(); ?> 
