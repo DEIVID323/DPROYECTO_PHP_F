@@ -10,7 +10,6 @@
         <div class="shape shape-4"></div>
         <div class="shape shape-5"></div>
     </div>
-
     <!-- Header Section -->
     <div class="row mb-4">
         <div class="col-12">
@@ -408,6 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
+});
 
     // Form preview update
     const nombreInput = document.getElementById('Nombre');
@@ -421,6 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const referencia = referenciaInput.value || 'REF-000';
         const precio = precioInput.value || '0.00';
         const categoria = categoriaInput.options[categoriaInput.selectedIndex].text || 'Sin categoría';
+    }
 
         previewContent.innerHTML = `
             <h6 class="mb-1 text-dark fw-bold">${nombre}</h6>
@@ -438,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${categoria}
                 </span>
             </div>
-    }
+        `;
     
 
     // Add event listeners for real-time preview
@@ -463,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add floating animation to shapes
     animateShapes();
-});
+
 
 function resetForm() {
     if (confirm('¿Está seguro de que desea restablecer todos los campos a sus valores originales?')) {
