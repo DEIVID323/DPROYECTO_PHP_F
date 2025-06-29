@@ -16,7 +16,7 @@
 <div class="cart-icon">
     <a href="<?php echo base_url ('public/carrito.html'); ?>">
         <i class="fa-solid fa-cart-shopping"></i>
-        <span class="cart-count">0</span>
+        <span class="cart-count" id="cartCount">0</span>
     </a>
 </div>
 
@@ -67,6 +67,15 @@
                         <h3>Producto 1</h3>
                         <p>Estuche folding.</p>
                         <div class="price">$15.000</div>
+                        <button class="add-to-cart-btn" 
+                                data-id="1" 
+                                data-name="Producto 1" 
+                                data-price="15000" 
+                                data-description="Estuche folding"
+                                data-image="<?php echo base_url('imagenes/Estuche 1.png'); ?>">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Agregar al carrito
+                        </button>
                     </div>
                     <div class="price-badge">Nuevo</div>
                 </div>
@@ -77,6 +86,15 @@
                         <h3>Producto 2</h3>
                         <p>Cordón elástico.</p>
                         <div class="price">$8.000</div>
+                        <button class="add-to-cart-btn" 
+                                data-id="2" 
+                                data-name="Producto 2" 
+                                data-price="8000" 
+                                data-description="Cordón elástico"
+                                data-image="<?php echo base_url('imagenes/C Rojo_.png'); ?>">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Agregar al carrito
+                        </button>
                         <div class="price-badge">Nuevo</div>
                     </div>
                 </div>
@@ -87,6 +105,15 @@
                         <h3>Producto 3</h3>
                         <p>Estuche cofre.</p>
                         <div class="price">$6.000</div>
+                        <button class="add-to-cart-btn" 
+                                data-id="3" 
+                                data-name="Producto 3" 
+                                data-price="6000" 
+                                data-description="Estuche cofre"
+                                data-image="<?php echo base_url('imagenes/Estuche Cafe C.png'); ?>">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Agregar al carrito
+                        </button>
                         <div class="price-badge">Nuevo</div>
                     </div>
                 </div>
@@ -97,6 +124,15 @@
                         <h3>Producto 4</h3>
                         <p>Montura sol Wandwerth.</p>
                         <div class="price">$180.000</div>
+                        <button class="add-to-cart-btn" 
+                                data-id="4" 
+                                data-name="Producto 4" 
+                                data-price="180000" 
+                                data-description="Montura sol Wandwerth"
+                                data-image="<?php echo base_url('imagenes/Montura sol.png'); ?>">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Agregar al carrito
+                        </button>
                         <div class="price-badge">Nuevo</div>
                     </div>
                 </div>
@@ -113,6 +149,15 @@
                         <h3>Promoción 1</h3>
                         <p>Oferta especial Promoción 1.</p>
                         <div class="price">$12.000</div>
+                        <button class="add-to-cart-btn" 
+                                data-id="5" 
+                                data-name="Promoción 1" 
+                                data-price="12000" 
+                                data-description="Oferta especial Promoción 1"
+                                data-image="<?php echo base_url('imagenes/Estuche F Negro_.png'); ?>">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Agregar al carrito
+                        </button>
                     </div>
                     <div class="price-badge">Especial</div>
                 </div>
@@ -123,6 +168,15 @@
                         <h3>Promoción 2</h3>
                         <p>Oferta especial Promoción 2.</p>
                         <div class="price">$5.000</div>
+                        <button class="add-to-cart-btn" 
+                                data-id="6" 
+                                data-name="Promoción 2" 
+                                data-price="5000" 
+                                data-description="Oferta especial Promoción 2"
+                                data-image="<?php echo base_url('imagenes/Estuche Rojo C.png'); ?>">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Agregar al carrito
+                        </button>
                     </div>
                     <div class="price-badge">Especial</div>
                 </div>
@@ -187,6 +241,37 @@
             <div class="faq-item">
                 <h3><i class="fa-solid fa-magnifying-glass-location"></i> ¿Cómo puedo rastrear mi pedido?</h3>
                 <p>Una vez enviado su pedido, recibirá una guía por correo electrónico. Use este número para rastrear su envío de productos ópticos.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para agregar al carrito -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <span class="cart-modal-close">&times;</span>
+            <div class="cart-modal-header">
+                <i class="fa-solid fa-check-circle"></i>
+                <h3>¡Producto agregado al carrito!</h3>
+            </div>
+            <div class="cart-modal-body">
+                <div class="added-product-info">
+                    <img id="modalProductImage" src="" alt="">
+                    <div class="product-details">
+                        <h4 id="modalProductName"></h4>
+                        <p id="modalProductDescription"></p>
+                        <span class="modal-price" id="modalProductPrice"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-modal-footer">
+                <button class="continue-shopping-btn" onclick="closeCartModal()">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Seguir comprando
+                </button>
+                <a href="<?php echo base_url('public/carrito.html'); ?>" class="go-to-cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Ver carrito
+                </a>
             </div>
         </div>
     </div>
