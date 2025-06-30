@@ -40,7 +40,7 @@
         <ul>
             <li><a href="#"><i class="fa-solid fa-house nav-icon"></i>Inicio</a></li>
             <li><a href="<?php echo base_url('productos/index'); ?>"><i class="fa-solid fa-glasses nav-icon"></i>Catálogo De Productos</a></li>
-            <li><a href="<?php echo base_url('productos/index'); ?>"><i class="fa-solid fa-eye nav-icon"></i>Servicios Ópticos</a></li>
+            <li><a href="<?php echo base_url('/productos/index'); ?>"><i class="fa-solid fa-eye nav-icon"></i>Servicios Ópticos</a></li>
             <li><a href="<?php echo base_url('public/error404.html'); ?>"><i class="fa-solid fa-building nav-icon"></i>Acerca De Distribuciones JV</a></li>
             <li><a href="#Contactenos"><i class="fa-solid fa-phone nav-icon"></i>Contáctenos</a></li>
         </ul>
