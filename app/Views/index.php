@@ -50,8 +50,8 @@
             <source src="<?php echo base_url('imagenes/gafas.mp4'); ?>" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h1>BIENVENIDO A LA TIENDA DMC VISVARD</h1>
-            <p>Tu tienda única de productos ópticos!</p>
+            <h1>BIENVENIDO A LA TIENDA DISTRIBUCIONES JV </h1>
+            <p>Tu distribuidora única en productos ópticos!</p>
             <a href="<?php echo base_url('public/productos.html'); ?>" class="cpr-button">Comprar ahora</a>
         </div>
     </div>
