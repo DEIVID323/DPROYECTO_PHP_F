@@ -10,18 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
        });
    }
 
-   // Funcionalidad del menú hamburguesa
-   const menuToggle = document.querySelector('.menu-toggle');
-   const navMenu = document.querySelector('.nav-menu');
 
-   if (menuToggle && navMenu) {
-       menuToggle.addEventListener('click', function() {
-           navMenu.classList.toggle('active');
-           menuToggle.classList.toggle('active');
-           console.log('Menú hamburguesa clickeado');
-       });
-   }
-   
    // Cerrar el menú cuando se hace clic en un enlace
    const navLinks = document.querySelectorAll('.nav-menu li a');
    navLinks.forEach(link => {
