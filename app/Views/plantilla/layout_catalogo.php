@@ -11,6 +11,7 @@
 </head>
 <body>
     <?php echo $this->renderSection('contenido'); ?>
+    
 </body>
  <script src="js/catalogo.js"defer></script>
 </html>
