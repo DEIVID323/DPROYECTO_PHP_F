@@ -37,6 +37,8 @@ $routes->get('/usuarios/editar/(:num)', 'Usuarios::editar/$1');
 $routes->post('/usuarios/actualizar/(:num)', 'Usuarios::actualizar/$1');
 $routes->get('/usuarios/eliminar/(:num)', 'Usuarios::eliminar/$1');
 
+$routes->get('/catalogo', 'Catalogo::index');
+
 
 
 
