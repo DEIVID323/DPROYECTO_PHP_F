@@ -26,7 +26,9 @@
             z-index: 1000;
             padding: 1rem 0;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
+        } 
+         
+        
         
         .nav-container {
             max-width: 1200px;
@@ -43,6 +45,8 @@
             color: #7CB686;
             text-decoration: none;
         }
+
+        
         
         .nav-menu {
             display: flex;
@@ -64,7 +68,7 @@
         .cart-icon {
             position: relative;
             font-size: 1.5rem;
-            color: #7CB686;
+            color: #ff9100dc;
             cursor: pointer;
             transition: transform 0.3s;
         }
