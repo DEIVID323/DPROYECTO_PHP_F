@@ -22,7 +22,7 @@
         <button class="cta-button">Iniciar Sesión</button>
     </a>
 <?php endif; ?>
-            </a>
+        </a>
         </div>
         <div class="menu-toggle">
         <i class="fas fa-bars"></i>
@@ -36,7 +36,7 @@
             <li><a href="#contacto" class="nav-link">Contacto</a></li>
         </ul>
                <div class="cart-icon" onclick="toggleCart()">
-                <i class="fas fa-shopping-cart"></i>
+                <i class="fa-solid fa-cart-shopping"></i>
                 <span class="cart-count" id="cartCount">0</span>
             </div>
         </div>
