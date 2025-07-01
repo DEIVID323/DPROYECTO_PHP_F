@@ -1,24 +1,48 @@
 <?php  echo $this->extend('plantilla/layout_catalogo'); ?>
 <?php echo $this->section('contenido'); ?>
-    <body>
- <header class="header">
-        <div class="nav-container">
-            <a href="#" class="logo">DMC VISVARD</a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                    <li><a href="#categorias" class="nav-link">Categorías</a></li>
-                    <li><a href="#productos" class="nav-link">Productos</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-            </nav>
-            <div class="cart-icon" onclick="toggleCart()">
+<header>
+        <div>
+            <img src="<?php echo base_url('imagenes/LOGO.png'); ?>" alt="image"
+            class="logo">
+        </div>
+        <div class="header-content">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar..." />
+                <button id="searchButton" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+<?php if (session()->get('logged_in')): ?>
+    <span>Bienvenido, <?= session()->get('Nombre'); ?></span>
+    <a href="<?= base_url('/cerrarSesion') ?>">
+        <button class="cta-button">Cerrar sesión</button>
+    </a>
+<?php else: ?>
+    <a href="<?= base_url('login'); ?>">
+        <button class="cta-button">Iniciar Sesión</button>
+    </a>
+<?php endif; ?>
+            </a>
+        </div>
+        <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="#inicio" class="nav-link">Inicio</a></li>
+            <li><a href="#categorias" class="nav-link">Categorías</a></li>
+            <li><a href="#productos" class="nav-link">Productos</a></li>
+            <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+               <div class="cart-icon" onclick="toggleCart()">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count" id="cartCount">0</span>
             </div>
         </div>
-    </header>
 
+    </nav>
+  
     <!-- Hero Section -->
     <section id="inicio" class="hero-section">
         <div id="backgrounds">
