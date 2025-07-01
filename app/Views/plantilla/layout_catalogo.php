@@ -5,7 +5,7 @@
     <meta name="theme-color" content="#1bb566">
     <link rel="stylesheet" href="css/catalogo.css">
    
-    <title>Productos</title>
+    <title>Catalogo</title>
 </head>
 <body>
     <?php echo $this->renderSection('contenido'); ?>
