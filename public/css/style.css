@@ -202,20 +202,22 @@ header {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
-
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
   background: linear-gradient(135deg, #4aa8b5, #b18e8e);
   backdrop-filter: blur(15px);
   display: flex;
   align-items: center;
   justify-content: center;
   height: 90px;
-  position: sticky;
-  top: 0;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  z-index: 1001;
   transition: all 0.3s ease;
 }
+
 
 nav ul {
   display: flex;
