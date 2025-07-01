@@ -30,7 +30,7 @@
     </header>
     <nav>
         <ul class="nav-menu">
-            <li><a href="#inicio" class="nav-link">Inicio</a></li>
+            <li><a href="<?= base_url('index'); ?>"> class="nav-link">Inicio</a></li>
             <li><a href="#categorias" class="nav-link">Categorías</a></li>
             <li><a href="#productos" class="nav-link">Productos</a></li>
             <li><a href="#contacto" class="nav-link">Contacto</a></li>

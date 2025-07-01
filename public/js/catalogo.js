@@ -529,5 +529,6 @@ function lazyLoadImages() {
     images.forEach(img => imageObserver.observe(img));
 }
 
+
 // Call lazy loading
 document.addEventListener('DOMContentLoaded', lazyLoadImages);
