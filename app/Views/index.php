@@ -52,7 +52,7 @@
         <div class="hero-content">
             <h1>BIENVENIDO A LA TIENDA DISTRIBUCIONES JV </h1>
             <p>Tu distribuidora única en productos ópticos!</p>
-            <a href="<?php echo base_url('public/productos.html'); ?>" class="cpr-button">Comprar ahora</a>
+            <a href="<?php echo base_url('/catalogo'); ?>" class="cpr-button">Comprar ahora</a>
         </div>
     </div>
 

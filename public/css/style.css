@@ -212,7 +212,7 @@ nav {
   width: 100%;
   z-index: 1001;
   background: linear-gradient(135deg, #4aa8b5, #b18e8e);
-  height: 100px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
