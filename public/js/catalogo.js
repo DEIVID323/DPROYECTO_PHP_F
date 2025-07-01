@@ -330,7 +330,7 @@ function checkout() {
     
     // Simulate WhatsApp message
     const message = `¡Hola! Quiero realizar un pedido:\n\n${itemsList}\n\nTotal: $${total.toLocaleString()}\n\n¡Gracias!`;
-    const whatsappUrl = `https://wa.me/573001234567?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/573025269668?text=${encodeURIComponent(message)}`;
     
     window.open(whatsappUrl, '_blank');
 }
