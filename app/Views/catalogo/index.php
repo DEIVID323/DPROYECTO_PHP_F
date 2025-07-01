@@ -1,23 +1,44 @@
 <?php  echo $this->extend('plantilla/layout_catalogo'); ?>
 <?php echo $this->section('contenido'); ?>
     <body>
- <header class="header">
-        <div class="nav-container">
-            <a href="#" class="logo">DMC VISVARD</a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                    <li><a href="#categorias" class="nav-link">Categorías</a></li>
-                    <li><a href="#productos" class="nav-link">Productos</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-            </nav>
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-        </div>
-    </header>
+ <header>
+  <div>
+    <img src="<?php echo base_url('imagenes/LOGO.png'); ?>" alt="logo" class="logo">
+  </div>
+
+  <div class="header-content">
+    <!-- Buscador -->
+    <div class="search-container">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar...">
+      <button id="searchButton" class="search-button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+
+    <!-- Carrito -->
+    <div class="cart-icon">
+      <a href="<?php echo base_url('public/carrito.html'); ?>">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Menú hamburguesa -->
+  <div class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#inicio"><i class="fa-solid fa-house nav-icon"></i>Inicio</a></li>
+    <li><a href="#categorias"><i class="fa-solid fa-list nav-icon"></i>Categorías</a></li>
+    <li><a href="#productos"><i class="fa-solid fa-box-open nav-icon"></i>Productos</a></li>
+    <li><a href="#contacto"><i class="fa-solid fa-phone nav-icon"></i>Contacto</a></li>
+  </ul>
+</nav>
+
 
     <!-- Hero Section -->
     <section id="inicio" class="hero-section">
