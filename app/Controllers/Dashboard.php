@@ -6,26 +6,13 @@ class Dashboard extends BaseController
 {
     public function index()
     {
-        // Si ya está logueado, redirigir según su rol
-        if (session()->has('logged_in') && session()->get('logged_in')) {
-            return $this->redirectByRole();
+        // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
+        if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
+            return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
         }
-        
-        return view('login');
-    }
 
-    // Redirige al usuario según su rol almacenado en la sesión
-    private function redirectByRole()
-    {
-        $role = session()->get('role');
-        switch ($role) {
-            case 'admin':
-                return redirect()->to('/admin/dashboard');
-            case 'user':
-                return redirect()->to('/user/dashboard');
-            default:
-                return redirect()->to('/login');
-        }
+        // Si todo bien, carga la vista del dashboard
+        return view('dashboard/index');
     }
 }
 
