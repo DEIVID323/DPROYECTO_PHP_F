@@ -15,56 +15,89 @@ class Auth extends BaseController
 
     public function login()
     {
+        // Si ya está logueado, redirigir según su rol
+        if (session()->has('logged_in') && session()->get('logged_in')) {
+            return $this->redirectByRole();
+        }
+        
         return view('login');
     }
 
     public function validarLogin()
     {
-        $correo     = $this->request->getPost('correo');
+        $correo = $this->request->getPost('correo');
         $contrasena = $this->request->getPost('contrasena');
 
         $usuario = $this->usuarioModel->where('Correo', $correo)->first();
 
-if (!$usuario) {
-    return redirect()->back()->with('error', 'Usuario no encontrado.');
-}
+        if (!$usuario || !password_verify($contrasena, $usuario['Contrasena'])) {
+            return redirect()->back()->with('error', 'Credenciales incorrectas.');
+        }
 
-if (!password_verify($contrasena, $usuario['Contrasena'])) {
-    return redirect()->back()->with('error', 'Contraseña incorrecta.');
-}
+        // Establecer sesión
+        session()->set([
+            'idUsuario' => $usuario['idUsuario'],
+            'Nombre' => $usuario['Nombre'],
+            'Correo' => $usuario['Correo'],
+            'Rol_idRol' => $usuario['Rol_idRol'],
+            'logged_in' => true,
+            'usuario' => $usuario['idUsuario'], // Para compatibilidad
+            'perfil' => $usuario['Rol_idRol'] // Para compatibilidad
+        ]);
 
-session()->set([
-    'idUsuario' => $usuario['idUsuario'],
-    'Nombre'    => $usuario['Nombre'],
-    'Rol_idRol' => $usuario['Rol_idRol'],
-    'logged_in' => true
-]);
-
-// Redirigir dependiendo del rol
-if ($usuario['Rol_idRol'] ==   1) { // 4 = Cliente (según tu base de datos)
-    return redirect()->to(base_url('/inicio'));
-} else {
-    return redirect()->to(base_url('/dashboard'));
-}
-}
-
-
+        return $this->redirectByRole();
+    }
 
     public function registrar()
     {
         $data = [
-            'Nombre'     => $this->request->getPost('nombre'),
-            'Correo'     => $this->request->getPost('correo'),
+            'Nombre' => $this->request->getPost('nombre'),
+            'Correo' => $this->request->getPost('correo'),
             'Contrasena' => password_hash($this->request->getPost('contrasena'), PASSWORD_DEFAULT),
-            'Rol_idRol'  => 4
+            'Rol_idRol' => 4
         ];
 
-        // 👉 Aquí podrías añadir más campos si quieres diferenciar empleados o admins
-        // $data['Rol_idRol'] = 2; // ejemplo: 2 para cliente, 1 para admin
-
         $this->usuarioModel->insert($data);
-
         return redirect()->to('/login')->with('success', 'Registro exitoso.');
     }
 
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/login');
+    }
+
+    // Métodos auxiliares
+    public function isLoggedIn()
+    {
+        return session()->has('logged_in') && session()->get('logged_in') === true;
+    }
+
+    public function hasRole($roleId)
+    {
+        return $this->isLoggedIn() && session()->get('Rol_idRol') == $roleId;
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRole(1);
+    }
+
+    public function isDashboardUser()
+    {
+        return $this->hasRole(1) || $this->hasRole(2); // Admin o Empleado
+    }
+
+    private function redirectByRole()
+    {
+        $rol = session()->get('Rol_idRol');
+        
+        if ($rol == 1 || $rol == 2) { // Admin o Empleado
+            return redirect()->to('/dashboard');
+        } elseif ($rol == 4) { // Cliente
+            return redirect()->to('/inicio');
+        }
+        
+        return redirect()->to('/login');
+    }
 }
