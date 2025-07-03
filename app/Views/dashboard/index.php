@@ -10,7 +10,7 @@
             <button><i class="ai-chat-dots"></i></button>
             <div>
               <button><i class="ai-gear"></i></button>
-              <button><a href="login3.html"><i class="ai-link-out"></i></a></button>
+              <button><a onclick="cargarContenido('<?= base_url('productos/') ?>')"><i class="ai-link-out"></i></a></button>
             </div>
           </div>
             <div class="right">
