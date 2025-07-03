@@ -8,10 +8,23 @@ class Productos extends BaseController
     { 
         $model = new ProductoModel ();
         $data['productos'] = $model->findAll();
+                // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
+        if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
+            return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
+        }
+
+        // Si todo bien, carga la vista del dashboard
+
         return view('productos/index', $data);
     }
     public function crear() 
     {
+        // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
+        if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
+            return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
+        }
+
+        // Si todo bien, carga la vista del dashboard
         return view('productos/crear');
     }
 
@@ -40,6 +53,7 @@ class Productos extends BaseController
     {
         $model = new ProductoModel();
         $model->delete($id);
+        
 
         return redirect()->to('/dashboard');
 
