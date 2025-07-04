@@ -74,37 +74,24 @@ function clearFilters() {
 }
 
 // Delete confirmation
-function deleteUser(userId) {
-    fetch(BASE_URL + 'usuarios/eliminar/' + userId, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Si usas CSRF en Laravel
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Eliminar al usuario de la vista (actualiza la interfaz)
-            document.getElementById('userRow-' + userId).remove(); // Elimina el row de la tabla o el elemento correspondiente
-            // Cerrar el modal
-            const modalElement = document.getElementById('deleteModal');
-            const deleteModal = bootstrap.Modal.getInstance(modalElement);
-            deleteModal.hide();
-            alert('Usuario eliminado con éxito');
-        } else {
-            alert('Hubo un error al eliminar al usuario');
-        }
-    })
-    .catch(error => {
-        c
-console.error('Error:', error);
-        alert('Hubo un error al intentar eliminar el usuario');
+function confirmDelete(userId, userName) {
+    // Mostrar el nombre del usuario a eliminar
+    document.getElementById('deleteUserName').textContent = userName;
+    
+    // Mostrar el modal de confirmación
+    const modalElement = document.getElementById('deleteModal');
+    const deleteModal = new bootstrap.Modal(modalElement, {
+        backdrop: false,
+        keyboard: true
     });
+    deleteModal.show();
+
+    // Asignar el evento de eliminación al botón de confirmación
+    document.getElementById('confirmDeleteBtn').onclick = function() {
+        // Realizar la solicitud AJAX para eliminar el usuario
+        deleteUser(userId);
+    };
 }
-            
-
-
 
 // Bulk delete
 function bulkDelete() {
