@@ -103,15 +103,18 @@ function deleteUser(userId) {
     .then(data => { 
         if (data.success) {
             alert("hola")
-// Eliminar al usuario de la vista (actualiza la interfaz)
+            // Eliminar al usuario de la vista (actualiza la interfaz)
             document.getElementById('userRow-' + userId).remove(); // Elimina el row de la tabla o el elemento correspondiente
             // Cerrar el modal
             const modalElement = document.getElementById('deleteModal');
             const deleteModal = bootstrap.Modal.getInstance(modalElement);
-            deleteModal.hide();
+
             alert('Usuario eliminado con éxito');
+            deleteModal.hide();
+
         } else {
             alert('Hubo un error al intentar eliminar el usuario');
+            deleteModal.hide();
         }
     });
 }
