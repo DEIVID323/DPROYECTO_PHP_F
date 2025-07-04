@@ -101,8 +101,9 @@ function deleteUser(userId) {
         }
     })
     .then(response => response.json())
-    .then(data => {
+    .then(data => { 
         if (data.success) {
+            alert("hola")
 // Eliminar al usuario de la vista (actualiza la interfaz)
             document.getElementById('userRow-' + userId).remove(); // Elimina el row de la tabla o el elemento correspondiente
             // Cerrar el modal
