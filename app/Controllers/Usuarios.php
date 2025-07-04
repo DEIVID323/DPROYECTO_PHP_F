@@ -88,21 +88,22 @@ public function eliminar($id)
                 'message' => 'Usuario eliminado correctamente'
             ]);
         }
-
-
-        return redirect()->to('/dashboard');
+           return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Usuario eliminado correctamente'
+            ]);
 
 
     } catch (\Exception $e) {
         // Si es una solicitud AJAX, devolver error JSON
-        if ($this->request->isAJAX()) {
+     
             return $this->response->setJSON([
                 'success' => false,
                 'message' => 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.'
             ]);
-        }
+        
 
-        return redirect()->to('/dashboard')->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');
+
 
 
 
