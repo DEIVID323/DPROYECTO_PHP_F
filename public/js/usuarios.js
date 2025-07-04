@@ -109,7 +109,7 @@ function deleteUser(userId) {
         } else {
             cargarContenido(window.location.href + '/usuarios');
 
-            alert('Hubo un error al intentar eliminar el usuario');
+        Swal.fire({icon: 'error',title: 'Error De Eliminacion',text: 'Hubo un error al intentar eliminar el usuario.',confirmButtonColor: '#0dcaf0',background: '#000',color: '#fff'});
         }
     });
 }
