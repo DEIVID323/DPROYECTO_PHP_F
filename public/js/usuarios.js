@@ -1,4 +1,3 @@
-
 // Initialize tooltips
 document.addEventListener('DOMContentLoaded', function() {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -73,15 +72,15 @@ function clearFilters() {
     });
 }
 
-// Delete confirmation
+// Delete confirmation - VERSIÓN CORREGIDA
 function confirmDelete(userId, userName) {
     // Mostrar el nombre del usuario a eliminar
     document.getElementById('deleteUserName').textContent = userName;
     
-    // Mostrar el modal de confirmación
+    // Mostrar el modal de confirmación con backdrop habilitado
     const modalElement = document.getElementById('deleteModal');
     const deleteModal = new bootstrap.Modal(modalElement, {
-        backdrop: false,
+        backdrop: true,  // Cambiar a true para mostrar el fondo oscuro
         keyboard: true
     });
     deleteModal.show();
@@ -90,8 +89,28 @@ function confirmDelete(userId, userName) {
     document.getElementById('confirmDeleteBtn').onclick = function() {
         // Realizar la solicitud AJAX para eliminar el usuario
         deleteUser(userId);
+        // Cerrar el modal después de la eliminación
+        deleteModal.hide();
     };
 }
+
+// Función alternativa más simple (recomendada)
+function confirmDeleteSimple(userId, userName) {
+    // Mostrar el nombre del usuario a eliminar
+    document.getElementById('deleteUserName').textContent = userName;
+    
+    // Mostrar el modal usando el atributo data-bs-toggle (más simple)
+    const modalElement = document.getElementById('deleteModal');
+    const deleteModal = new bootstrap.Modal(modalElement);
+    deleteModal.show();
+
+    // Asignar el evento de eliminación al botón de confirmación
+    document.getElementById('confirmDeleteBtn').onclick = function() {
+        deleteUser(userId);
+        deleteModal.hide();
+    };
+}
+
 function deleteUser(userId) {
     fetch(BASE_URL + 'usuarios/eliminar/' + userId, {
         method: 'GET',
@@ -102,13 +121,29 @@ function deleteUser(userId) {
     .then(response => response.json())
     .then(data => { 
         if (data.success) {
-        Swal.fire({toast: true,icon: 'success',position: 'top-end',iconColor: '#0dcaf0',title: 'Usuario eliminado',showConfirmButton: false,timer: 9000,timerProgressBar: true,background: '#000',color: '#fff'});
+            Swal.fire({
+                toast: true,
+                icon: 'success',
+                position: 'top-end',
+                iconColor: '#0dcaf0',
+                title: 'Usuario eliminado',
+                showConfirmButton: false,
+                timer: 9000,
+                timerProgressBar: true,
+                background: '#000',
+                color: '#fff'
+            });
 
-        cargarContenido(window.location.href + '/usuarios');
-    
+            cargarContenido(window.location.href + '/usuarios');
         } else {
-
-        Swal.fire({icon: 'error',title: 'Error De Eliminacion',text: 'Hubo un error al intentar eliminar el usuario.',confirmButtonColor: '#0dcaf0',background: '#000',color: '#fff'});
+            Swal.fire({
+                icon: 'error',
+                title: 'Error De Eliminacion',
+                text: 'Hubo un error al intentar eliminar el usuario.',
+                confirmButtonColor: '#0dcaf0',
+                background: '#000',
+                color: '#fff'
+            });
         }
     });
 }
