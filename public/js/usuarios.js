@@ -102,12 +102,11 @@ function deleteUser(userId) {
     .then(response => response.json())
     .then(data => { 
         if (data.success) {
-            cargarContenido(window.location.href + '/usuarios');
+        Swal.fire({toast: true,icon: 'success',position: 'top-end',iconColor: '#0dcaf0',title: 'Usuario eliminado',showConfirmButton: false,timer: 9000,timerProgressBar: true,background: '#000',color: '#fff'});
 
-            deleteModal.hide();
-            alert('Usuario eliminado con éxito');
+        cargarContenido(window.location.href + '/usuarios');
+    
         } else {
-            cargarContenido(window.location.href + '/usuarios');
 
         Swal.fire({icon: 'error',title: 'Error De Eliminacion',text: 'Hubo un error al intentar eliminar el usuario.',confirmButtonColor: '#0dcaf0',background: '#000',color: '#fff'});
         }
