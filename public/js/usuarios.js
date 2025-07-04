@@ -1,3 +1,4 @@
+
 // Initialize tooltips
 document.addEventListener('DOMContentLoaded', function() {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -72,15 +73,15 @@ function clearFilters() {
     });
 }
 
-// Delete confirmation - VERSIÓN CORREGIDA
+// Delete confirmation
 function confirmDelete(userId, userName) {
     // Mostrar el nombre del usuario a eliminar
     document.getElementById('deleteUserName').textContent = userName;
     
-    // Mostrar el modal de confirmación con backdrop habilitado
+    // Mostrar el modal de confirmación
     const modalElement = document.getElementById('deleteModal');
     const deleteModal = new bootstrap.Modal(modalElement, {
-        backdrop: true,  // Cambiar a true para mostrar el fondo oscuro
+        backdrop: false,
         keyboard: true
     });
     deleteModal.show();
@@ -89,29 +90,16 @@ function confirmDelete(userId, userName) {
     document.getElementById('confirmDeleteBtn').onclick = function() {
         // Realizar la solicitud AJAX para eliminar el usuario
         deleteUser(userId);
-        // Cerrar el modal después de la eliminación
-        deleteModal.hide();
     };
 }
-
-// Función alternativa más simple (recomendada)
-function confirmDeleteSimple(userId, userName) {
-    // Mostrar el nombre del usuario a eliminar
-    document.getElementById('deleteUserName').textContent = userName;
-    
-    // Mostrar el modal usando el atributo data-bs-toggle (más simple)
-    const modalElement = document.getElementById('deleteModal');
-    const deleteModal = new bootstrap.Modal(modalElement);
-    deleteModal.show();
-
-    // Asignar el evento de eliminación al botón de confirmación
-    document.getElementById('confirmDeleteBtn').onclick = function() {
-        deleteUser(userId);
-        deleteModal.hide();
-    };
-}
-
 function deleteUser(userId) {
+    // Cerrar el modal ANTES de hacer el fetch
+    const modalElement = document.getElementById('deleteModal');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    if (modal) {
+        modal.hide();
+    }
+    
     fetch(BASE_URL + 'usuarios/eliminar/' + userId, {
         method: 'GET',
         headers: {
@@ -147,7 +135,6 @@ function deleteUser(userId) {
         }
     });
 }
-
 // Bulk delete
 function bulkDelete() {
     const selectedCheckboxes = document.querySelectorAll('.user-checkbox:checked');
