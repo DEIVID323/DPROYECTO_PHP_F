@@ -92,6 +92,29 @@ function confirmDelete(userId, userName) {
         deleteUser(userId);
     };
 }
+function deleteUser(userId) {
+    fetch(BASE_URL + 'usuarios/eliminar/' + userId, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Si usas CSRF en Laravel
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+// Eliminar al usuario de la vista (actualiza la interfaz)
+            document.getElementById('userRow-' + userId).remove(); // Elimina el row de la tabla o el elemento correspondiente
+            // Cerrar el modal
+            const modalElement = document.getElementById('deleteModal');
+            const deleteModal = bootstrap.Modal.getInstance(modalElement);
+            deleteModal.hide();
+            alert('Usuario eliminado con éxito');
+        } else {
+            alert('Hubo un error al intentar eliminar el usuario');
+        }
+    });
+}
 
 // Bulk delete
 function bulkDelete() {
