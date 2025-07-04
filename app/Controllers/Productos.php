@@ -32,6 +32,11 @@ class Productos extends BaseController
     {
         $model = new ProductoModel();
         $model->insert($this->request->getPost());
+                        // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
+        if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
+            return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
+        }
+
         return redirect()->to('/productos');
     }
 
@@ -39,6 +44,12 @@ class Productos extends BaseController
     {
         $model = new ProductoModel();
         $data['producto'] = $model->find($id);
+                // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
+        if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
+            return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
+        }
+
+        // Si todo bien, carga la vista del dashboard
         return view ('/productos/editar', $data);
     }
 
@@ -46,6 +57,10 @@ class Productos extends BaseController
     {
         $model = new ProductoModel();
         $model->update($id, $this->request->getPost());
+                        // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
+        if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
+            return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
+        }
         
         return redirect()->to('/productos');
     }
@@ -53,6 +68,11 @@ class Productos extends BaseController
     {
         $model = new ProductoModel();
         $model->delete($id);
+                        // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
+        if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
+            return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
+        }
+
         
 
         return redirect()->to('/dashboard');
