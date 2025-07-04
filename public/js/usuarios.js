@@ -102,12 +102,13 @@ function deleteUser(userId) {
     .then(response => response.json())
     .then(data => { 
         if (data.success) {
-          cargarContenido('http://localhost/PAGINA_WEB/public/dashboard/usuarios/')
+            cargarContenido(window.location.href + '/usuarios');
 
             deleteModal.hide();
             alert('Usuario eliminado con éxito');
         } else {
-            cargarContenido('http://localhost/PAGINA_WEB/public/dashboard/usuarios/')
+            cargarContenido(window.location.href + '/usuarios');
+
             alert('Hubo un error al intentar eliminar el usuario');
         }
     });
