@@ -94,10 +94,9 @@ function confirmDelete(userId, userName) {
 }
 function deleteUser(userId) {
     fetch(BASE_URL + 'usuarios/eliminar/' + userId, {
-        method: 'DELETE',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Si usas CSRF en Laravel
         }
     })
     .then(response => response.json())

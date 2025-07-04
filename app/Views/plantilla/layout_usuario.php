@@ -19,7 +19,6 @@
     const BASE_URL = "<?= base_url() ?>";
 </script>
 
-<script src="<?= base_url('js/usuarios.js') ?>"></script>
-
+<script src="<?= base_url('js/usuarios.js?v=' . time()) ?>"></script>
 
 </html>
