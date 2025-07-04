@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-box register">
-            <form action="#" method="post">
+              <form action="<?= base_url('auth/registrar') ?>" method="post">
                 <h1>REGISTRO</h1>
                 <div class="input-box">
                     <input type="text" name="nombre" placeholder="NOMBRE DE USUARIO" required>
