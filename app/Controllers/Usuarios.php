@@ -90,9 +90,6 @@ public function eliminar($id)
         }
 
 
-        return redirect()->to('/dashboard');
-
-
     } catch (\Exception $e) {
         // Si es una solicitud AJAX, devolver error JSON
         if ($this->request->isAJAX()) {

@@ -6,11 +6,11 @@
         <aside class="sidebar">
           <div class="left">
             <img src="<?php echo base_url ('imagenes/LOGO.png') ?>" />
-            <button><a href="index.html"><i class="ai-home-alt1"></i></a></button>
+            <button><a href=<?= base_url('/') ?>><i class="ai-home-alt1"></i></a></button>
             <button><i class="ai-chat-dots"></i></button>
             <div>
               <button><i class="ai-gear"></i></button>
-              <button><a href="index.php"><i class="ai-link-out"></i></a></button>
+              <button><a href=<?= base_url('/') ?>><i class="ai-link-out"></i></a></button>
             </div>
           </div>
             <div class="right">
