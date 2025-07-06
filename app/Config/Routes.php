@@ -10,6 +10,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Inicio::index');
 $routes->get('/login', 'Inicio::login');
 $routes->get('/login', 'Auth::login');
+
 $routes->post('/auth/validarLogin', 'Auth::validarLogin');
 $routes->post('/auth/registrar', 'Auth::registrar');
 $routes->post('inicio/validarLogin', 'Auth::validarLogin');
