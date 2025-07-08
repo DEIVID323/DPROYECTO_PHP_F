@@ -66,16 +66,10 @@ public function editar($id)
 
     public function actualizar($id)
     {
-        $data = [
-            'Nombre' => $this->request->getPost('nombre'),
-            'Correo' => $this->request->getPost('correo'),
-            'Rol_idRol' => $this->request->getPost('rol')
-        ];
 
-
-        if ($this->request->getPost('contrasena')) {
-            $data['Contrasena'] = password_hash($this->request->getPost('contrasena'), PASSWORD_DEFAULT);
-        }
+    $model = new UsuarioModel();
+    $model->update($id, $this->request->getPost());
+    return redirect()->to('/usuarios');
 
 
         $this->usuarioModel->update($id, $data);
