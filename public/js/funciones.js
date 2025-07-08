@@ -41,6 +41,6 @@ function cargarContenido(url) {
                 <div class="alert alert-danger text-center mt-5">
                     <h4>Error al cargar el contenido</h4>
                     <p>Por favor, intenta nuevamente o contacta al administrador.</p>
-                </div>;
+                </div>
         });
 }
