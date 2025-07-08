@@ -116,7 +116,7 @@
                                     <input type="text" 
                                            class="form-control border-start-0" 
                                            id="apellido" 
-                                           name="apellido" 
+                                           name="Apellido" 
                                            placeholder="Ingrese el apellido"
                                            required>
                                 </div>
@@ -147,7 +147,7 @@
                                     <input type="email" 
                                            class="form-control border-start-0" 
                                            id="correo" 
-                                           name="correo" 
+                                           name="Correo" 
                                            placeholder="ejemplo@correo.com"
                                            required>
                                 </div>
@@ -165,7 +165,7 @@
                                     <input type="tel" 
                                            class="form-control border-start-0" 
                                            id="telefono" 
-                                           name="telefono" 
+                                           name="Telefono" 
                                            placeholder="(+57) 300 123 4567">
                                 </div>
                                 <small class="text-muted">Número de teléfono (opcional)</small>
@@ -184,7 +184,7 @@
                                     <input type="text" 
                                            class="form-control border-start-0" 
                                            id="direccion" 
-                                           name="direccion" 
+                                           name="Direccion" 
                                            placeholder="Ingrese la dirección completa">
                                 </div>
                                 <small class="text-muted">Dirección completa del usuario (opcional)</small>
@@ -214,7 +214,7 @@
                                     <input type="password" 
                                            class="form-control border-start-0" 
                                            id="password" 
-                                           name="password" 
+                                           name="Controsena" 
                                            placeholder="Ingrese la contraseña"
                                            required>
                                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
@@ -235,7 +235,7 @@
                                     <input type="password" 
                                            class="form-control border-start-0" 
                                            id="confirm_password" 
-                                           name="confirm_password" 
+                                           name="Contrasena" 
                                            placeholder="Confirme la contraseña"
                                            required>
                                     <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
@@ -255,7 +255,7 @@
                                     <span class="input-group-text bg-light border-end-0">
                                         <i class="bi bi-shield"></i>
                                     </span>
-                                    <select class="form-select border-start-0" id="rol" name="rol" required>
+                                    <select class="form-select border-start-0" id="rol" name="Rol_idRol" required>
                                         <option value="">Seleccione un rol</option>
                                         <option value="1">Administrador</option>
                                         <option value="2">Usuario</option>
