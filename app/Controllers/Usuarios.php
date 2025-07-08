@@ -35,14 +35,10 @@ class Usuarios extends BaseController
 
     public function guardar()
     {
-        $data = [
-            'Nombre' => $this->request->getPost('nombre'),
-            'Correo' => $this->request->getPost('correo'),
-            'Contrasena' => password_hash($this->request->getPost('contrasena'), PASSWORD_DEFAULT),
-            'Rol_idRol' => $this->request->getPost('rol')
-        ];
+        $model = new UsuarioModel();
+        $model->insert($this->request->getPost());
        
-        $this->usuarioModel->insert($data);
+
         return redirect()->to('/usuarios');
     }
 
