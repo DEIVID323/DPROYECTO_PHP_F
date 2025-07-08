@@ -1,4 +1,4 @@
-<?php echo $this->extend('plantilla/layout_usuario'); ?>
+ <?php echo $this->extend('plantilla/layout_usuario'); ?>
 <?php echo $this->section('contenido'); ?>
 
 <!-- Page Header -->
@@ -20,8 +20,7 @@
                                 <i class="bi bi-hash me-1"></i>
                                 ID: <?= $usuario['idUsuario'] ?>
                             </span>
-                            <a href="<?= base_url('usuarios') ?>" 
-                               class="btn btn-light btn-lg shadow-sm">
+                            <a href="<?= base_url('usuarios') ?>" class="btn btn-light btn-lg shadow-sm">
                                 <i class="bi bi-arrow-left me-2"></i>
                                 Volver a Usuarios
                             </a>
@@ -81,36 +80,33 @@
                             </div>
                         </div>
                         <div class="col-md-4 text-end">
-                            <div class="d-flex align-items-center justify-content-end gap-2">
-                                <?php
-                                $roleClass = match($usuario['Rol_idRol']) {
-                                    '1' => 'bg-danger',
-                                    '2' => 'bg-primary',
-                                    '3' => 'bg-warning text-dark',
-                                    default => 'bg-secondary'
-                                };
-                                $roleName = match($usuario['Rol_idRol']) {
-                                    '1' => 'Administrador',
-                                    '2' => 'Usuario',
-                                    '3' => 'Moderador',
-                                    default => 'Sin rol'
-                                };
-                                ?>
-                                <span class="badge <?= $roleClass ?> px-3 py-2">
-                                    <i class="bi bi-shield-fill me-1"></i>
-                                    <?= $roleName ?>
-                                </span>
-                                <span class="badge <?= ($usuario['Estado'] ?? 1) == 1 ? 'bg-success' : 'bg-secondary' ?> px-3 py-2">
-    <i class="bi bi-<?= ($usuario['Estado'] ?? 1) == 1 ? 'check-circle' : 'x-circle' ?>-fill me-1"></i>
-    <?= ($usuario['Estado'] ?? 1) == 1 ? 'Activo' : 'Inactivo' ?>
-</span>
-                            </div>
+                            <?php
+                            $roleClass = match($usuario['Rol_idRol']) {
+                                '1' => 'bg-danger',
+                                '2' => 'bg-primary',
+                                '3' => 'bg-warning text-dark',
+                                default => 'bg-secondary'
+                            };
+                            $roleName = match($usuario['Rol_idRol']) {
+                                '1' => 'Administrador',
+                                '2' => 'Usuario',
+                                '3' => 'Moderador',
+                                default => 'Sin rol'
+                            };
+                            ?>
+                            <span class="badge <?= $roleClass ?> px-3 py-2">
+                                <i class="bi bi-shield-fill me-1"></i>
+                                <?= $roleName ?>
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+<!-- resto de tu formulario igual... -->
+
 
     <!-- Edit Form -->
     <div class="row">

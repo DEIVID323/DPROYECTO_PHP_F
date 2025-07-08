@@ -42,40 +42,17 @@ class Usuarios extends BaseController
         return redirect()->to('/usuarios');
     }
 
+public function editar($id)
+{
+    $usuario = $this->usuarioModel->find($id);
 
-  public function editar($id) 
-    {
-        // Verificar si hay sesión iniciada
-        if (!session()->has('logged_in')) {
-            return redirect()->to('/login')->with('error', 'Debes iniciar sesión.');
-        }
-
-        // Obtener el usuario a editar
-        $data['usuario'] = $this->usuarioModel->find($id);
-        
-        // Verificar que el usuario existe
-        if (!$data['usuario']) {
-            return redirect()->to('/usuarios')->with('error', 'Usuario no encontrado.');
-        }
-
-        // Verificar si el usuario logueado puede editar este usuario
-        // Opción 1: Solo puede editar su propio perfil
-        if (session()->get('idUsuario') != $id) {
-            return redirect()->to('/usuarios')->with('error', 'Solo puedes editar tu propio perfil.');
-        }
-
-        /* Opción 2: Administrador puede editar cualquier usuario, usuarios normales solo su propio perfil
-        $usuarioLogueado = session()->get('idUsuario');
-        $rolLogueado = session()->get('Rol_idRol');
-        
-        if ($rolLogueado != 1 && $usuarioLogueado != $id) {
-            return redirect()->to('/usuarios')->with('error', 'No tienes permisos para editar este usuario.');
-        }
-        */
-
-        // Si todo bien, carga la vista de edición
-        return view('usuarios/editar', $data);
+    if (!$usuario) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException('Usuario no encontrado');
     }
+
+    return view('usuarios/editar', ['usuario' => $usuario]);
+}
+
     public function actualizar($id)
     {
         $data = [
