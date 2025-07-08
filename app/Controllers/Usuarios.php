@@ -43,24 +43,39 @@ class Usuarios extends BaseController
     }
 
 
- public function editar($id)
-{
-    $data['usuario'] = $this->usuarioModel->find($id);
-    
-    // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
-    if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
-        return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
-    }
-    
-    // Verificar que el usuario existe
-    if (!$data['usuario']) {
-        return redirect()->to('/usuarios')->with('error', 'Usuario no encontrado.');
-    }
-    
-    // Si todo bien, carga la vista del dashboard
-    return view('usuarios/editar', $data);
-}
+  public function editar($id) 
+    {
+        // Verificar si hay sesión iniciada
+        if (!session()->has('logged_in')) {
+            return redirect()->to('/login')->with('error', 'Debes iniciar sesión.');
+        }
 
+        // Obtener el usuario a editar
+        $data['usuario'] = $this->usuarioModel->find($id);
+        
+        // Verificar que el usuario existe
+        if (!$data['usuario']) {
+            return redirect()->to('/usuarios')->with('error', 'Usuario no encontrado.');
+        }
+
+        // Verificar si el usuario logueado puede editar este usuario
+        // Opción 1: Solo puede editar su propio perfil
+        if (session()->get('idUsuario') != $id) {
+            return redirect()->to('/usuarios')->with('error', 'Solo puedes editar tu propio perfil.');
+        }
+
+        /* Opción 2: Administrador puede editar cualquier usuario, usuarios normales solo su propio perfil
+        $usuarioLogueado = session()->get('idUsuario');
+        $rolLogueado = session()->get('Rol_idRol');
+        
+        if ($rolLogueado != 1 && $usuarioLogueado != $id) {
+            return redirect()->to('/usuarios')->with('error', 'No tienes permisos para editar este usuario.');
+        }
+        */
+
+        // Si todo bien, carga la vista de edición
+        return view('usuarios/editar', $data);
+    }
     public function actualizar($id)
     {
         $data = [
