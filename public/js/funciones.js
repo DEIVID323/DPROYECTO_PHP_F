@@ -37,10 +37,10 @@ function cargarContenido(url) {
         })
         .catch(error => {
             console.error('Error al cargar contenido:', error);
-            contenedor.innerHTML = 
+            contenedor.innerHTML = `
                 <div class="alert alert-danger text-center mt-5">
                     <h4>Error al cargar el contenido</h4>
                     <p>Por favor, intenta nuevamente o contacta al administrador.</p>
-                </div>
+                </div>`;
         });
 }
