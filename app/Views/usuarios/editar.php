@@ -100,10 +100,10 @@
                                     <i class="bi bi-shield-fill me-1"></i>
                                     <?= $roleName ?>
                                 </span>
-                                <span class="badge <?= $usuario['Estado'] == 1 ? 'bg-success' : 'bg-secondary' ?> px-3 py-2">
-                                    <i class="bi bi-<?= $usuario['Estado'] == 1 ? 'check-circle' : 'x-circle' ?>-fill me-1"></i>
-                                    <?= $usuario['Estado'] == 1 ? 'Activo' : 'Inactivo' ?>
-                                </span>
+                                <span class="badge <?= ($usuario['Estado'] ?? 1) == 1 ? 'bg-success' : 'bg-secondary' ?> px-3 py-2">
+    <i class="bi bi-<?= ($usuario['Estado'] ?? 1) == 1 ? 'check-circle' : 'x-circle' ?>-fill me-1"></i>
+    <?= ($usuario['Estado'] ?? 1) == 1 ? 'Activo' : 'Inactivo' ?>
+</span>
                             </div>
                         </div>
                     </div>
