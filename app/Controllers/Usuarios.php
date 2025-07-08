@@ -43,12 +43,23 @@ class Usuarios extends BaseController
     }
 
 
-    public function editar($id)
-    {
-        $data['usuario'] = $this->usuarioModel->find($id);
-        return view('usuarios/editar', $data);
+ public function editar($id)
+{
+    $data['usuario'] = $this->usuarioModel->find($id);
+    
+    // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
+    if (!session()->has('logged_in') || session()->get('Rol_idRol') != 1) {
+        return redirect()->to('/login')->with('error', 'Debes iniciar sesión como administrador.');
     }
-
+    
+    // Verificar que el usuario existe
+    if (!$data['usuario']) {
+        return redirect()->to('/usuarios')->with('error', 'Usuario no encontrado.');
+    }
+    
+    // Si todo bien, carga la vista del dashboard
+    return view('usuarios/editar', $data);
+}
 
     public function actualizar($id)
     {
