@@ -65,7 +65,7 @@
         <div class="row g-3 mb-4">
             <div class="col-md-6">
                 <label for="nombre" class="form-label fw-semibold">Nombre *</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $usuario['Nombre'] ?>" required>
+                <input type="text" class="form-control" id="nombre" name="Nombre" value="<?= $usuario['Nombre'] ?>" required>
             </div>
 
             <div class="col-md-6">
@@ -212,27 +212,6 @@
         });
     });
 
-    // Reset form function
-    window.resetForm = function() {
-        // Reset to original values
-        document.getElementById('nombre').value = originalValues.nombre;
-        document.getElementById('apellido').value = originalValues.apellido;
-        document.getElementById('correo').value = originalValues.correo;
-        document.getElementById('telefono').value = originalValues.telefono;
-        document.getElementById('direccion').value = originalValues.direccion;
-        document.getElementById('rol').value = originalValues.rol;
-        document.getElementById('estado').value = originalValues.estado;
-        
-        // Clear password fields
-        document.getElementById('password').value = '';
-        document.getElementById('confirm_password').value = '';
-        
-        // Remove validation classes
-        form.classList.remove('was-validated');
-        inputs.forEach(input => {
-            input.classList.remove('is-valid', 'is-invalid');
-        });
-    };
 
     // Check for changes and show warning
     let hasChanges = false;
