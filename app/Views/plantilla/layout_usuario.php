@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.19/dist/sweetalert2.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="<?= base_url('css/usuarios.css') ?>">
+     <link rel="stylesheet" href="<?= base_url('css/crear_pro.css') ?>">
 
 
 
