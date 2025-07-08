@@ -44,14 +44,25 @@ class Usuarios extends BaseController
 
 public function editar($id)
 {
-    $usuario = $this->usuarioModel->find($id);
+    $model = new UsuarioModel();
+    $data['usuario'] = $model->find($id);
 
-    if (!$usuario) {
-        throw new \CodeIgniter\Exceptions\PageNotFoundException('Usuario no encontrado');
+    if (!$data['usuario']) {
+        return redirect()->to('/usuarios')->with('error', 'Usuario no encontrado.');
     }
 
-    return view('usuarios/editar', ['usuario' => $usuario]);
+    if (!session()->has('logged_in')) {
+        return redirect()->to('/login')->with('error', 'Debes iniciar sesión.');
+    }
+
+    // Permitir solo editar su propio perfil o si es administrador
+    if (session()->get('idUsuario') != $id && session()->get('Rol_idRol') != 1) {
+        return redirect()->to('/usuarios')->with('error', 'Solo puedes editar tu propio perfil.');
+    }
+
+    return view('/usuarios/editar', $data);
 }
+
 
     public function actualizar($id)
     {
