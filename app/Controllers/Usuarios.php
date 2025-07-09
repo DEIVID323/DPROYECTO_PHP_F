@@ -1,7 +1,8 @@
 <?php
 namespace App\Controllers;
 use App\Models\UsuarioModel;
-
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Usuarios extends BaseController  
 {
