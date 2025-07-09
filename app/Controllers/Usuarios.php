@@ -124,21 +124,25 @@ public function exportarExcel()
         $sheet  = $excel->getActiveSheet();
 
         //Encabezados del excel
-        $sheet->setCellValue('A1', 'Cedula');
-        $sheet->setCellValue('B1', 'Nombre');
-        $sheet->setCellValue('C1', 'Apellido');
-        $sheet->setCellValue('E1', 'Correo');
+        $sheet->setCellValue('A1', 'Nombre');
+        $sheet->setCellValue('B1', 'Apellido');
+        $sheet->setCellValue('C1', 'Correo');
+        $sheet->setCellValue('E1', 'Contraseña');
         $sheet->setCellValue('F1', 'Direccion');
         $sheet->setCellValue('D1', 'Telefono');
+        $sheet->setCellValue('D1', 'Fecha de registro');
+        $sheet->setCellValue('D1', 'Rol_idRol');
 
         $fila = 2; // Comienza en la fila 2 para los datos
         foreach ($usuario as $usuario) {
-            $sheet->setCellValue('A' . $fila, $empleado['ced_empleado']);
-            $sheet->setCellValue('B' . $fila, $empleado['nombre_emp']);
-            $sheet->setCellValue('C' . $fila, $empleado['apellido_emp']);
-            $sheet->setCellValue('E' . $fila, $empleado['email_emp']);
-            $sheet->setCellValue('F' . $fila, $empleado['direccion_emp']);
-            $sheet->setCellValue('D' . $fila, $empleado['telefono_emp']);
+            $sheet->setCellValue('A' . $fila, $usuario['Nombre']);
+            $sheet->setCellValue('B' . $fila, $usuario['Apellido']);
+            $sheet->setCellValue('C' . $fila, $usuario['Correo']);
+            $sheet->setCellValue('E' . $fila, $usuario['Contraseña']);
+            $sheet->setCellValue('F' . $fila, $usuario['Direccion']);
+            $sheet->setCellValue('D' . $fila, $usuario['Telefono']);
+            $sheet->setCellValue('D' . $fila, $usuario['Fecha de registro']);
+            $sheet->setCellValue('D' . $fila, $usuario['Rol_idRol']);
             $fila++;
         }
 
