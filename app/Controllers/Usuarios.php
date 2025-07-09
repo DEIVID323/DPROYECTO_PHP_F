@@ -114,5 +114,46 @@ public function eliminar($id)
     //return redirect()->to('/dashboard/usuarios/')->with('error', 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.');
     }
 }
+public function exportarExcel()
+    {
+        $model = new UsuarioModel();
+        $usuario =$model->findAll();
+
+        $excel = new  Spreadsheet();
+        $sheet  = $excel->getActiveSheet();
+
+        //Encabezados del excel
+        $sheet->setCellValue('A1', 'Cedula');
+        $sheet->setCellValue('B1', 'Nombre');
+        $sheet->setCellValue('C1', 'Apellido');
+        $sheet->setCellValue('E1', 'Correo');
+        $sheet->setCellValue('F1', 'Direccion');
+        $sheet->setCellValue('D1', 'Telefono');
+
+        $fila = 2; // Comienza en la fila 2 para los datos
+        foreach ($usuario as $usuario) {
+            $sheet->setCellValue('A' . $fila, $empleado['ced_empleado']);
+            $sheet->setCellValue('B' . $fila, $empleado['nombre_emp']);
+            $sheet->setCellValue('C' . $fila, $empleado['apellido_emp']);
+            $sheet->setCellValue('E' . $fila, $empleado['email_emp']);
+            $sheet->setCellValue('F' . $fila, $empleado['direccion_emp']);
+            $sheet->setCellValue('D' . $fila, $empleado['telefono_emp']);
+            $fila++;
+        }
+
+        if (ob_get_length()) {
+        ob_end_clean();
+    }
+
+        $writer = new Xlsx($excel);
+        $filename = 'empleados_' . date('Ymd_His') . '.xlsx';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+        exit; // Asegúrate de salir después de enviar el archivo
+  }
 }
 ?>
