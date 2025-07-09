@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+            <a href="<?php echo base_url('usuarios/exportar'); ?>" class="btn btn-primary float-end">Exportar a excel</a>
 
     <!-- Alerts Section -->
     <?php if (session()->has('error')): ?>
@@ -405,6 +406,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <a id="confirmDeleteBtn" class="btn btn-danger">Eliminar Usuario</a>
+        <a href="<?php echo base_url('usuarios/exportar'); ?>" class="btn btn-primary float-end">Exportar a excel</a>
       </div>
     </div>
   </div>

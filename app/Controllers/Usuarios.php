@@ -127,22 +127,22 @@ public function exportarExcel()
         $sheet->setCellValue('A1', 'Nombre');
         $sheet->setCellValue('B1', 'Apellido');
         $sheet->setCellValue('C1', 'Correo');
-        $sheet->setCellValue('E1', 'Contraseña');
+        $sheet->setCellValue('E1', 'Contrasena');
         $sheet->setCellValue('F1', 'Direccion');
         $sheet->setCellValue('D1', 'Telefono');
-        $sheet->setCellValue('D1', 'Fecha de registro');
-        $sheet->setCellValue('D1', 'Rol_idRol');
+      
+        $sheet->setCellValue('E1', 'Rol_idRol');
 
         $fila = 2; // Comienza en la fila 2 para los datos
         foreach ($usuario as $usuario) {
             $sheet->setCellValue('A' . $fila, $usuario['Nombre']);
             $sheet->setCellValue('B' . $fila, $usuario['Apellido']);
             $sheet->setCellValue('C' . $fila, $usuario['Correo']);
-            $sheet->setCellValue('E' . $fila, $usuario['Contraseña']);
+            $sheet->setCellValue('E' . $fila, $usuario['Contrasena']);
             $sheet->setCellValue('F' . $fila, $usuario['Direccion']);
             $sheet->setCellValue('D' . $fila, $usuario['Telefono']);
-            $sheet->setCellValue('D' . $fila, $usuario['Fecha de registro']);
-            $sheet->setCellValue('D' . $fila, $usuario['Rol_idRol']);
+
+            $sheet->setCellValue('E' . $fila, $usuario['Rol_idRol']);
             $fila++;
         }
 

@@ -40,6 +40,8 @@ $routes->get('/usuarios/eliminar/(:num)', 'Usuarios::eliminar/$1');
 
 $routes->get('/catalogo', 'Catalogo::index');
 
+$routes->get('/usuarios/exportar', 'Usuarios::exportarExcel');
+
 
 
 
