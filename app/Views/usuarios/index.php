@@ -20,16 +20,12 @@
                                 <i class="bi bi-person-check me-1"></i>
                                 <?= count($usuarios) ?> usuarios
                             </span>
-                            <button class="btn btn-light btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#createUserModal">
-    <i class="bi bi-person-plus-fill me-2"></i>
-    Nuevo Usuario
-</button>
                             
-                           <!-- <a href="<?= base_url('usuarios/crear') ?>" 
+                            <a href="<?= base_url('usuarios/crear') ?>" 
                                class="btn btn-light btn-lg shadow-sm">
                                 <i class="bi bi-person-plus-fill me-2"></i>
                                 Nuevo Usuario
-                            </a> -->
+                            </a>
                         </div>
                     </div>
                 </div>

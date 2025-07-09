@@ -338,30 +338,7 @@
         </div>
     </div>
 </div>
-<!-- Modal para Crear Usuario -->
-<div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="createUserModalLabel">
-                    <i class="bi bi-person-plus-fill me-2"></i>
-                    Crear Nuevo Usuario
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body">
-                <div id="createUserContent">
-                    <!-- Aquí se cargará el contenido del formulario -->
-                    <div class="text-center">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">Cargando...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- JavaScript for Form Interactions -->
 <script>

@@ -30,7 +30,8 @@ class Usuarios extends BaseController
 
     public function crear()
     {
-        return view('usuarios/crear');
+        return redirect()->to('usuarios/crear');
+        //return view('usuarios/crear');
     }
 
 
