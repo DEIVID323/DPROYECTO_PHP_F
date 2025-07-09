@@ -30,7 +30,18 @@ class Usuarios extends BaseController
 
     public function crear()
     {
-        return view('usuarios/crear');
+        
+        // Si es una solicitud AJAX, devolver JSON
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Usuario eliminado correctamente'
+            ]);
+        }
+           return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Usuario eliminado correctamente'
+            ]);
     }
 
 
