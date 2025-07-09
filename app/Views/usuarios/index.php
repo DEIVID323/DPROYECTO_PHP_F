@@ -20,7 +20,6 @@
                                 <i class="bi bi-person-check me-1"></i>
                                 <?= count($usuarios) ?> usuarios
                             </span>
-                            
                             <a href="<?= base_url('usuarios/crear') ?>" 
                                class="btn btn-light btn-lg shadow-sm">
                                 <i class="bi bi-person-plus-fill me-2"></i>

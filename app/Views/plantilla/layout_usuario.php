@@ -10,9 +10,6 @@
 
     <link rel="stylesheet" href="<?= base_url('css/usuarios.css') ?>">
      <link rel="stylesheet" href="<?= base_url('css/crear_pro.css') ?>">
-
-
-
 </head>
 <body>
     <?php echo $this->renderSection('contenido'); ?>
