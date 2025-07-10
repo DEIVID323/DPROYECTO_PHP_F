@@ -84,7 +84,7 @@
             </div>
             
             <div class="slider-images">
-                <img class="slider-image" src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=500&fit=crop" alt="Líquido limpiador verde">
+                <img class="slider-image" src="<?php echo base_url ('imagenes/Líquido Verde.png') ?>"  alt="Líquido limpiador verde">
                 <img class="slider-image" src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=500&fit=crop" alt="Cordón azul">
                 <img class="slider-image" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=500&fit=crop" alt="Montura de sol">
                 <img class="slider-image" src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=500&fit=crop" alt="Estuche rojo">
