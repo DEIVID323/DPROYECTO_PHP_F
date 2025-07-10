@@ -65,7 +65,37 @@ class Productos extends BaseController
         return redirect()->to('/productos');
     }
     public function eliminar($id)
-    {
+     {
+    try {
+        $model = new ProductoModel();
+        $model->delete($id);
+        if (!$this->usuarioModel->delete($id)) {
+            throw new \Exception('Error al eliminar el usuario');
+        }
+
+
+        // Si es una solicitud AJAX, devolver JSON
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Usuario eliminado correctamente'
+            ]);
+        }
+           return $this->response->setJSON([
+                'success' => true,
+                'message' => 'Usuario eliminado correctamente'
+            ]);
+
+
+    } catch (\Exception $e) {
+        // Si es una solicitud AJAX, devolver error JSON
+     
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'No se puede eliminar el usuario porque tiene relaciones en otras tablas.'
+            ]);
+        }
+        
         $model = new ProductoModel();
         $model->delete($id);
                         // Verificar si hay sesión iniciada y si es administrador (Rol_idRol == 1)
@@ -79,6 +109,6 @@ class Productos extends BaseController
 
     }
 
-}
+
 
 ?>
