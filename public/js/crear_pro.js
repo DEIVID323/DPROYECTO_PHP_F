@@ -96,28 +96,6 @@ function animateShapes() {
         shape.style.animationDuration = duration + 'ms';
         shape.style.animationDelay = delay + 'ms';
     });
-    
-function deleteUser(userId) {
-    fetch(BASE_URL + 'productos/eliminar/' + userId, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-    .then(response => response.json())
-    .then(data => { 
-        if (data.success) {
-        Swal.fire({toast: true,icon: 'success',position: 'top-end',iconColor: '#0dcaf0',title: 'Usuario eliminado',showConfirmButton: false,timer: 9000,timerProgressBar: true,background: '#000',color: '#fff'});
-
-        cargarContenido(window.location.href + '/productos');
-    
-        } else {
-
-        Swal.fire({icon: 'error',title: 'Error De Eliminacion',text: 'Hubo un error al intentar eliminar el usuario.',confirmButtonColor: '#0dcaf0',background: '#000',color: '#fff'});
-        }
-    });
-}
-
 }
 
 
