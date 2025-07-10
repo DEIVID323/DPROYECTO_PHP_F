@@ -83,7 +83,7 @@ const products = [
         name: "Cadena Metálica Dorada",
         category: "cordones",
         price: 45000,
-        image:  "./imagenes/Cadena Metálica Dorada",
+        image:  "./imagenes/cadena.jpg",
         description: "Cadena elegante de aleación dorada para ocasiones especiales"
     },
     {
@@ -145,15 +145,16 @@ const products = [
         name: "Soporte Nasal Silicona",
         category: "accesorios",
         price: 8000,
-        image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=300&fit=crop",
+        image: "./imagenes/Soporte Nasal Silicona.jpg",
         description: "Almohadillas nasales de silicona hipoalergénica"
     },
     {
         id: 18,
         name: "Tornillos Repuesto Set",
+        
         category: "accesorios",
         price: 15000,
-        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop",
+        image: "./imagenes/tuerquero.jpg",
         description: "Set completo de tornillos de repuesto en diferentes tamaños"
     },
     
@@ -161,17 +162,19 @@ const products = [
     {
         id: 19,
         name: "Kit Reparación Completo",
+        
         category: "reparacion",
         price: 55000,
-        image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=300&fit=crop",
+        image: "./imagenes/Kit Reparación Completo.png",
         description: "Kit completo con herramientas y repuestos para reparaciones básicas"
     },
     {
         id: 20,
         name: "Kit Reparación Profesional",
+        
         category: "reparacion",
         price: 85000,
-        image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=300&fit=crop",
+        image: "./imagenes/Kit Reparación Profesional.jpg",
         description: "Kit profesional con herramientas de precisión y manual técnico"
     }
 ];
