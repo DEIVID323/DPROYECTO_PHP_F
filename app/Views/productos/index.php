@@ -16,10 +16,10 @@
                             <p class="mb-0 opacity-75">Administra todos los productos del sistema</p>
                         </div>
                         <div class="d-flex align-items-center flex-wrap gap-2">
-                            <span class="badge bg-light text-primary fs-6">
-                                <i class="bi bi-box me-1"></i>
-                                <?= count($productos) ?> productos
-                            </span>
+                            <span class="badge bg-light text-primary fs-6" data-product-count>
+    <i class="bi bi-box me-1"></i>
+    <?= count($productos) ?> productos
+</span>
                             <a href="<?= base_url('productos/crear') ?>" 
                                class="btn btn-light btn-lg shadow-sm">
                                 <i class="bi bi-plus-circle-fill me-2"></i>
@@ -145,8 +145,8 @@
                             Lista de Productos
                         </h5>
                         <small class="text-muted">
-                            Total: <strong><?= count($productos) ?></strong> productos
-                        </small>
+    Total: <strong data-product-count><?= count($productos) ?></strong> productos
+</small>
                     </div>
                 </div>
                 
@@ -454,43 +454,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Función para confirmar eliminación de producto
 function confirmDelete(productId, productName) {
-    console.log('confirmDelete llamado con:', productId, productName);
+    document.getElementById('deleteProductName').textContent = productName;
     
-    // Verificar que el elemento existe
-    const deleteProductNameEl = document.getElementById('deleteProductName');
-    if (!deleteProductNameEl) {
-        console.error('Elemento deleteProductName no encontrado');
-        return;
-    }
-    
-    deleteProductNameEl.textContent = productName;
-    
-    // Verificar que el modal existe
     const modalElement = document.getElementById('deleteModal');
-    if (!modalElement) {
-        console.error('Modal deleteModal no encontrado');
-        return;
-    }
+    const deleteModal = new bootstrap.Modal(modalElement, {
+        backdrop: true,
+        keyboard: true
+    });
+    deleteModal.show();
     
-    try {
-        const deleteModal = new bootstrap.Modal(modalElement, {
-            backdrop: false,
-            keyboard: true
-        });
-        deleteModal.show();
-        console.log('Modal mostrado correctamente');
-        
-        // Configurar el botón de confirmación para usar AJAX
-        const confirmBtn = document.getElementById('confirmDeleteBtn');
-        if (confirmBtn) {
-            confirmBtn.onclick = function() {
-                deleteProduct(productId);
-            };
-        }
-    } catch (error) {
-        console.error('Error al mostrar el modal:', error);
-        alert('Error al mostrar el modal: ' + error.message);
-    }
+    // Configurar el botón de confirmación
+    document.getElementById('confirmDeleteBtn').onclick = function() {
+        deleteProduct(productId);
+    };
 }
 
 // Función para eliminar producto usando AJAX
