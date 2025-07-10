@@ -29,10 +29,11 @@ const products = [
     // Estuches y Fundas
     {
         id: 4,
+      
         name: "Estuche Rojo Premium",
         category: "estuches",
         price: 35000,
-        image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=300&fit=crop",
+        image:  "./imagenes/Estuche Rojo C.png",
         description: "Estuche rígido de alta calidad con cierre magnético"
     },
     {
@@ -40,7 +41,7 @@ const products = [
         name: "Estuche Negro Elegante",
         category: "estuches",
         price: 40000,
-        image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=300&fit=crop",
+        image: "./imagenes/Estuche F Negro_.png",
         description: "Estuche elegante con forro suave y diseño ejecutivo"
     },
     {
