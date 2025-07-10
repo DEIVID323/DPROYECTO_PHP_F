@@ -6,7 +6,7 @@ const products = [
         name: "Líquido Limpiador Verde",
         category: "limpieza",
         price: 25000,
-        image: "imagenes/Líquido Verde .png",
+        image: "./imagenes/Líquido Verde .png",
         description: "Líquido especializado para limpieza de lentes con fórmula anti-empañante"
     },
     {
