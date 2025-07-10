@@ -591,8 +591,9 @@ nav li a:hover {
         }
         
         .product-image {
-            width: 100%;
+            width: 50%;
             height: 250px;
+            justify-content: center;
             object-fit: cover;
             transition: transform 0.3s;
         }

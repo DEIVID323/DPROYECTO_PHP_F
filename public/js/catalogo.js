@@ -14,15 +14,15 @@ const products = [
         name: "Spray Limpiador Premium",
         category: "limpieza",
         price: 32000,
-        image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=300&fit=crop",
+        image: "./imagenes/Spray Limpiador Premium.jpg",
         description: "Spray de limpieza profesional para todo tipo de lentes"
     },
     {
         id: 3,
-        name: "Toallitas Húmedas (50 ud)",
+        name: "Paños Microfibra",
         category: "limpieza",
         price: 18000,
-        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop",
+        image:  "./imagenes/ paños.jpg",
         description: "Toallitas desechables para limpieza rápida y efectiva"
     },
     
