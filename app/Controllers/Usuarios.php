@@ -152,7 +152,7 @@ public function exportarExcel()
     }
 
         $writer = new Xlsx($excel);
-        $filename = 'empleados_' . date('Ymd_His') . '.xlsx';
+        $filename = 'Usuarios' . date('Ymd_His') . '.xlsx';
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header("Content-Disposition: attachment; filename=\"$filename\"");
