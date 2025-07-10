@@ -280,7 +280,7 @@
         <div class="footer-content">
             <div class="footer-top">
                 <div class="footer-logo">
-                    <div class="logo"><i class="fa-solid fa-glasses"></i> DMC VISVARD</div>
+                    <div class="logo"><i class="fa-solid fa-glasses"></i> DISTRIBUCIONES JV </div>
                 </div>
                 <div class="footer-links">
                     <div class="footer-link-section">
