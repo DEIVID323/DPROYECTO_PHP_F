@@ -591,12 +591,20 @@ nav li a:hover {
         }
         
         .product-image {
-            width: 50%;
+            width: 100%;
             height: 250px;
-            justify-content: center;
             object-fit: cover;
             transition: transform 0.3s;
         }
+        .product-card img.product-image {
+            width: 50%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+
         
         .product-card:hover .product-image {
             transform: scale(1.1);

@@ -22,7 +22,7 @@ const products = [
         name: "Paños Microfibra",
         category: "limpieza",
         price: 18000,
-        image:  "./imagenes/ paños.jpg",
+        image:  "./imagenes/paños.jpg",
         description: "Toallitas desechables para limpieza rápida y efectiva"
     },
     
