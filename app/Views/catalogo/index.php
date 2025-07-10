@@ -84,13 +84,13 @@
             </div>
             
             <div class="slider-images">
-                <img class="slider-image" src="<?php echo base_url ('imagenes/Líquido Verde.png') ?>"  alt="Líquido limpiador verde">
-                <img class="slider-image" src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=500&fit=crop" alt="Cordón azul">
-                <img class="slider-image" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=500&fit=crop" alt="Montura de sol">
-                <img class="slider-image" src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=500&fit=crop" alt="Estuche rojo">
-                <img class="slider-image" src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=500&fit=crop" alt="Estuche negro">
-                <img class="slider-image" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=500&fit=crop" alt="Cordón rojo">
-                <img class="slider-image" src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=500&fit=crop" alt="Estuche café">
+                <img class="slider-image" src="<?php echo base_url ('imagenes/Líquido Verde .png') ?>"  alt="Líquido limpiador verde">
+                <img class="slider-image" src="<?php echo base_url ('imagenes/C azul_.png') ?>" alt="Cordón azul">
+                <img class="slider-image" src="<?php echo base_url ('imagenes/Montura sol.png') ?>" alt="Montura de sol">
+                <img class="slider-image" src="<?php echo base_url ('imagenes/Estuche Rojo C.png') ?>" alt="Estuche rojo">
+                <img class="slider-image" src="<?php echo base_url ('imagenes/Estuche F Negro_.png') ?>" alt="Estuche negro">
+                <img class="slider-image" src="<?php echo base_url ('imagenes/C Rojo_.png') ?>" alt="Cordón rojo">
+                <img class="slider-image" src="<?php echo base_url ('imagenes/Estuche Cafe C.png') ?>" alt="Estuche café">
             </div>
         </div>
     </section>
