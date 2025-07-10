@@ -440,6 +440,8 @@
 
 <script>// Script de productos mejorado con funcionalidad AJAX similar al de usuarios
 
+// Script de productos mejorado con funcionalidad AJAX y recarga automática
+
 // Verificar que Bootstrap esté disponible
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize tooltips
@@ -450,23 +452,92 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize checkbox functionality
     initializeCheckboxes();
+    initializeViewToggle();
+    initializeSearch();
 });
+
+// Función para cargar contenido de productos via AJAX
+function cargarContenido(url) {
+    // Obtener la URL base desde el HTML o usar la actual
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.getAttribute('content') || window.location.origin;
+    const fullUrl = url || (baseUrl + '/productos');
+    
+    fetch(fullUrl, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.text())
+    .then(html => {
+        // Crear un parser temporal para extraer el contenido
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newContent = doc.querySelector('.container-fluid');
+        
+        if (newContent) {
+            // Reemplazar el contenido actual
+            document.querySelector('.container-fluid').innerHTML = newContent.innerHTML;
+            
+            // Reinicializar todas las funcionalidades
+            initializeTooltips();
+            initializeCheckboxes();
+            initializeViewToggle();
+            initializeSearch();
+        }
+    })
+    .catch(error => {
+        console.error('Error al cargar contenido:', error);
+    });
+}
+
+// Función para inicializar tooltips
+function initializeTooltips() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+}
 
 // Función para confirmar eliminación de producto
 function confirmDelete(productId, productName) {
-    document.getElementById('deleteProductName').textContent = productName;
+    console.log('confirmDelete llamado con:', productId, productName);
     
+    // Verificar que el elemento exists
+    const deleteProductNameEl = document.getElementById('deleteProductName');
+    if (!deleteProductNameEl) {
+        console.error('Elemento deleteProductName no encontrado');
+        return;
+    }
+    
+    deleteProductNameEl.textContent = productName;
+    
+    // Verificar que el modal existe
     const modalElement = document.getElementById('deleteModal');
-    const deleteModal = new bootstrap.Modal(modalElement, {
-        backdrop: true,
-        keyboard: true
-    });
-    deleteModal.show();
+    if (!modalElement) {
+        console.error('Modal deleteModal no encontrado');
+        return;
+    }
     
-    // Configurar el botón de confirmación
-    document.getElementById('confirmDeleteBtn').onclick = function() {
-        deleteProduct(productId);
-    };
+    try {
+        const deleteModal = new bootstrap.Modal(modalElement, {
+            backdrop: false,
+            keyboard: true
+        });
+        deleteModal.show();
+        console.log('Modal mostrado correctamente');
+        
+        // Configurar el botón de confirmación para usar AJAX
+        const confirmBtn = document.getElementById('confirmDeleteBtn');
+        if (confirmBtn) {
+            confirmBtn.onclick = function() {
+                deleteProduct(productId);
+            };
+        }
+    } catch (error) {
+        console.error('Error al mostrar el modal:', error);
+        alert('Error al mostrar el modal: ' + error.message);
+    }
 }
 
 // Función para eliminar producto usando AJAX
@@ -478,11 +549,15 @@ function deleteProduct(productId) {
         deleteModal.hide();
     }
     
+    // Obtener la URL base desde el HTML
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.getAttribute('content') || window.location.origin;
+    
     // Realizar la solicitud AJAX
-    fetch('<?= base_url('productos/eliminar/') ?>' + productId, {
+    fetch(baseUrl + '/productos/eliminar/' + productId, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
         }
     })
     .then(response => response.json())
@@ -502,15 +577,15 @@ function deleteProduct(productId) {
                 color: '#fff'
             });
 
-            // Recargar el contenido de la página o eliminar la fila
-            removeProductRow(productId);
+            // Recargar el contenido de la página
+            cargarContenido(window.location.href);
             
         } else {
             // Mostrar mensaje de error
             Swal.fire({
                 icon: 'error',
                 title: 'Error de Eliminación',
-                text: 'Hubo un error al intentar eliminar el producto.',
+                text: data.message || 'Hubo un error al intentar eliminar el producto.',
                 confirmButtonColor: '#0dcaf0',
                 background: '#000',
                 color: '#fff'
@@ -527,39 +602,6 @@ function deleteProduct(productId) {
             background: '#000',
             color: '#fff'
         });
-    });
-}
-
-// Función para eliminar la fila del producto de la tabla
-function removeProductRow(productId) {
-    // Eliminar de la vista de tabla
-    const tableRows = document.querySelectorAll('#productsTable tbody tr');
-    tableRows.forEach(row => {
-        const checkbox = row.querySelector('.product-checkbox');
-        if (checkbox && checkbox.value == productId) {
-            row.remove();
-        }
-    });
-    
-    // Eliminar de la vista de grilla
-    const gridCards = document.querySelectorAll('#gridView .col-xl-3');
-    gridCards.forEach(card => {
-        const deleteBtn = card.querySelector('[onclick*="' + productId + '"]');
-        if (deleteBtn) {
-            card.remove();
-        }
-    });
-    
-    // Actualizar contador
-    updateProductCount();
-}
-
-// Función para actualizar el contador de productos
-function updateProductCount() {
-    const remainingRows = document.querySelectorAll('#productsTable tbody tr').length;
-    const countElements = document.querySelectorAll('[data-product-count]');
-    countElements.forEach(element => {
-        element.textContent = remainingRows;
     });
 }
 
@@ -581,12 +623,72 @@ function viewProduct(productId) {
         </div>
     `;
     
-    // Aquí puedes hacer una llamada AJAX para obtener los detalles del producto
-    // fetch('<?= base_url('productos/detalles/') ?>' + productId)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         // Mostrar los detalles del producto
-    //     });
+    // Obtener la URL base
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.getAttribute('content') || window.location.origin;
+    
+    // Cargar detalles del producto
+    fetch(baseUrl + '/productos/detalles/' + productId, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('productDetailsContent').innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <strong>ID:</strong> #${data.producto.idProducto}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Nombre:</strong> ${data.producto.Nombre}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Referencia:</strong> ${data.producto.Referencia}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Precio:</strong> $${parseFloat(data.producto.Precio).toFixed(2)}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <strong>Cantidad:</strong> ${data.producto.Cantidad}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Stock:</strong> ${data.producto.Stock}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Categoría:</strong> ${data.producto.Categoria}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Estado:</strong> 
+                            <span class="badge ${data.producto.Stock > 10 ? 'bg-success' : (data.producto.Stock > 0 ? 'bg-warning text-dark' : 'bg-danger')}">
+                                ${data.producto.Stock > 10 ? 'En stock' : (data.producto.Stock > 0 ? 'Stock bajo' : 'Agotado')}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            document.getElementById('productDetailsContent').innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    Error al cargar los detalles del producto.
+                </div>
+            `;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('productDetailsContent').innerHTML = `
+            <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                Error de conexión al cargar los detalles.
+            </div>
+        `;
+    });
 }
 
 // Función para limpiar filtros
@@ -610,75 +712,98 @@ function bulkDelete() {
         return;
     }
 
-    if (confirm(`¿Estás seguro de eliminar ${selectedCheckboxes.length} productos seleccionados?`)) {
-        const productIds = Array.from(selectedCheckboxes).map(cb => cb.value);
-        
-        // Realizar eliminación masiva via AJAX
-        fetch('<?= base_url('productos/eliminar_masivo') ?>', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ ids: productIds })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                Swal.fire({
-                    toast: true,
-                    icon: 'success',
-                    position: 'top-end',
-                    title: 'Productos eliminados',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    background: '#000',
-                    color: '#fff'
-                });
-                
-                // Eliminar las filas seleccionadas
-                productIds.forEach(id => removeProductRow(id));
-                updateBulkActions();
-            } else {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: `¿Eliminar ${selectedCheckboxes.length} productos seleccionados?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        background: '#000',
+        color: '#fff'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const productIds = Array.from(selectedCheckboxes).map(cb => cb.value);
+            
+            // Realizar eliminación masiva via AJAX
+            const baseUrl = document.querySelector('meta[name="base-url"]')?.getAttribute('content') || window.location.origin;
+            
+            fetch(baseUrl + '/productos/eliminar_masivo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({ ids: productIds })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        position: 'top-end',
+                        title: 'Productos eliminados',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        background: '#000',
+                        color: '#fff'
+                    });
+                    
+                    // Recargar el contenido de la página
+                    cargarContenido(window.location.href);
+                    
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.message || 'Error al eliminar los productos seleccionados.',
+                        confirmButtonColor: '#0dcaf0',
+                        background: '#000',
+                        color: '#fff'
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error',
-                    text: 'Error al eliminar los productos seleccionados.',
+                    title: 'Error de Conexión',
+                    text: 'No se pudo conectar con el servidor.',
                     confirmButtonColor: '#0dcaf0',
                     background: '#000',
                     color: '#fff'
                 });
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error de Conexión',
-                text: 'No se pudo conectar con el servidor.',
-                confirmButtonColor: '#0dcaf0',
-                background: '#000',
-                color: '#fff'
             });
-        });
-    }
+        }
+    });
 }
 
 // Función para alternar entre vista de tabla y grilla
 function initializeViewToggle() {
-    document.getElementById('viewTable').addEventListener('click', function() {
-        document.getElementById('tableView').classList.remove('d-none');
-        document.getElementById('gridView').classList.add('d-none');
-        this.classList.add('active');
-        document.getElementById('viewGrid').classList.remove('active');
-    });
+    const viewTableBtn = document.getElementById('viewTable');
+    const viewGridBtn = document.getElementById('viewGrid');
+    
+    if (viewTableBtn) {
+        viewTableBtn.addEventListener('click', function() {
+            document.getElementById('tableView').classList.remove('d-none');
+            document.getElementById('gridView').classList.add('d-none');
+            this.classList.add('active');
+            document.getElementById('viewGrid').classList.remove('active');
+        });
+    }
 
-    document.getElementById('viewGrid').addEventListener('click', function() {
-        document.getElementById('gridView').classList.remove('d-none');
-        document.getElementById('tableView').classList.add('d-none');
-        this.classList.add('active');
-        document.getElementById('viewTable').classList.remove('active');
-    });
+    if (viewGridBtn) {
+        viewGridBtn.addEventListener('click', function() {
+            document.getElementById('gridView').classList.remove('d-none');
+            document.getElementById('tableView').classList.add('d-none');
+            this.classList.add('active');
+            document.getElementById('viewTable').classList.remove('active');
+        });
+    }
 }
 
 // Función para inicializar checkboxes
@@ -717,15 +842,18 @@ function updateBulkActions() {
 
 // Función para búsqueda en tiempo real
 function initializeSearch() {
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        const searchTerm = this.value.toLowerCase();
-        const rows = document.querySelectorAll('#productsTable tbody tr');
-        
-        rows.forEach(row => {
-            const text = row.textContent.toLowerCase();
-            row.style.display = text.includes(searchTerm) ? '' : 'none';
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#productsTable tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
         });
-    });
+    }
 }
 
 // Función de emergencia para desbloquear la página
@@ -754,12 +882,6 @@ function emergencyUnlock() {
     
     console.log("Página desbloqueada completamente");
 }
-
-// Inicializar todas las funcionalidades cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-    initializeViewToggle();
-    initializeSearch();
-});
 </script>
 
 
