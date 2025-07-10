@@ -16,10 +16,10 @@
                             <p class="mb-0 opacity-75">Administra todos los productos del sistema</p>
                         </div>
                         <div class="d-flex align-items-center flex-wrap gap-2">
-                            <span class="badge bg-light text-primary fs-6" data-product-count>
-    <i class="bi bi-box me-1"></i>
-    <?= count($productos) ?> productos
-</span>
+                            <span class="badge bg-light text-primary fs-6">
+                                <i class="bi bi-box me-1"></i>
+                                <?= count($productos) ?> productos
+                            </span>
                             <a href="<?= base_url('productos/crear') ?>" 
                                class="btn btn-light btn-lg shadow-sm">
                                 <i class="bi bi-plus-circle-fill me-2"></i>
@@ -145,8 +145,8 @@
                             Lista de Productos
                         </h5>
                         <small class="text-muted">
-    Total: <strong data-product-count><?= count($productos) ?></strong> productos
-</small>
+                            Total: <strong><?= count($productos) ?></strong> productos
+                        </small>
                     </div>
                 </div>
                 
@@ -438,72 +438,15 @@
     </div>
 </div>
 
-<script>// Script de productos mejorado con funcionalidad AJAX similar al de usuarios
-
-// Script de productos mejorado con funcionalidad AJAX y recarga automática
-
+<script>
 // Verificar que Bootstrap esté disponible
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
 
-    // Initialize checkbox functionality
-    initializeCheckboxes();
-    initializeViewToggle();
-    initializeSearch();
-});
 
-// Función para cargar contenido de productos via AJAX
-function cargarContenido(url) {
-    // Obtener la URL base desde el HTML o usar la actual
-    const baseUrl = document.querySelector('meta[name="base-url"]')?.getAttribute('content') || window.location.origin;
-    const fullUrl = url || (baseUrl + '/productos');
-    
-    fetch(fullUrl, {
-        method: 'GET',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
-    .then(response => response.text())
-    .then(html => {
-        // Crear un parser temporal para extraer el contenido
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const newContent = doc.querySelector('.container-fluid');
-        
-        if (newContent) {
-            // Reemplazar el contenido actual
-            document.querySelector('.container-fluid').innerHTML = newContent.innerHTML;
-            
-            // Reinicializar todas las funcionalidades
-            initializeTooltips();
-            initializeCheckboxes();
-            initializeViewToggle();
-            initializeSearch();
-        }
-    })
-    .catch(error => {
-        console.error('Error al cargar contenido:', error);
-    });
-}
-
-// Función para inicializar tooltips
-function initializeTooltips() {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-}
-
-// Función para confirmar eliminación de producto
+// JavaScript functions
 function confirmDelete(productId, productName) {
     console.log('confirmDelete llamado con:', productId, productName);
     
-    // Verificar que el elemento exists
+    // Verificar que el elemento existe
     const deleteProductNameEl = document.getElementById('deleteProductName');
     if (!deleteProductNameEl) {
         console.error('Elemento deleteProductName no encontrado');
@@ -511,6 +454,18 @@ function confirmDelete(productId, productName) {
     }
     
     deleteProductNameEl.textContent = productName;
+    
+    // Configurar el botón de confirmación correctamente
+    const confirmBtn = document.getElementById('confirmDeleteBtn');
+    if (!confirmBtn) {
+        console.error('Elemento confirmDeleteBtn no encontrado');
+        return;
+    }
+    
+    confirmBtn.onclick = function() {
+        console.log('Botón eliminar clickeado, redirigiendo a:', '<?= base_url('productos/eliminar/') ?>' + productId);
+        window.location.href = '<?= base_url('productos/eliminar/') ?>' + productId;
+    };
     
     // Verificar que el modal existe
     const modalElement = document.getElementById('deleteModal');
@@ -521,312 +476,82 @@ function confirmDelete(productId, productName) {
     
     try {
         const deleteModal = new bootstrap.Modal(modalElement, {
-            backdrop: false,
+            backdrop: false, // Eliminar backdrop
             keyboard: true
         });
         deleteModal.show();
         console.log('Modal mostrado correctamente');
-        
-        // Configurar el botón de confirmación para usar AJAX
-        const confirmBtn = document.getElementById('confirmDeleteBtn');
-        if (confirmBtn) {
-            confirmBtn.onclick = function() {
-                deleteProduct(productId);
-            };
-        }
     } catch (error) {
         console.error('Error al mostrar el modal:', error);
         alert('Error al mostrar el modal: ' + error.message);
     }
 }
 
-// Función para eliminar producto usando AJAX
-function deleteProduct(productId) {
-    // Cerrar el modal primero
-    const modalElement = document.getElementById('deleteModal');
-    const deleteModal = bootstrap.Modal.getInstance(modalElement);
-    if (deleteModal) {
-        deleteModal.hide();
-    }
-    
-    // Obtener la URL base desde el HTML
-    const baseUrl = document.querySelector('meta[name="base-url"]')?.getAttribute('content') || window.location.origin;
-    
-    // Realizar la solicitud AJAX
-    fetch(baseUrl + '/productos/eliminar/' + productId, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
-    .then(response => response.json())
-    .then(data => { 
-        if (data.success) {
-            // Mostrar mensaje de éxito
-            Swal.fire({
-                toast: true,
-                icon: 'success',
-                position: 'top-end',
-                iconColor: '#0dcaf0',
-                title: 'Producto eliminado',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                background: '#000',
-                color: '#fff'
-            });
-
-            // Recargar el contenido de la página
-            cargarContenido(window.location.href);
-            
-        } else {
-            // Mostrar mensaje de error
-            Swal.fire({
-                icon: 'error',
-                title: 'Error de Eliminación',
-                text: data.message || 'Hubo un error al intentar eliminar el producto.',
-                confirmButtonColor: '#0dcaf0',
-                background: '#000',
-                color: '#fff'
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error de Conexión',
-            text: 'No se pudo conectar con el servidor.',
-            confirmButtonColor: '#0dcaf0',
-            background: '#000',
-            color: '#fff'
-        });
-    });
-}
-
-// Función para ver detalles del producto
 function viewProduct(productId) {
     const productDetailsModal = new bootstrap.Modal(document.getElementById('productDetailsModal'), {
-        backdrop: false,
+        backdrop: false, // Eliminar backdrop
         keyboard: true
     });
     productDetailsModal.show();
     
-    // Cargar detalles del producto via AJAX
+    // Here you would typically load product details via AJAX
+    // For now, just show a placeholder
     document.getElementById('productDetailsContent').innerHTML = `
         <div class="text-center py-4">
-            <div class="spinner-border text-success" role="status">
-                <span class="visually-hidden">Cargando...</span>
-            </div>
-            <p class="mt-2">Cargando detalles del producto...</p>
+            <p>Cargando detalles del producto ID: ${productId}</p>
         </div>
     `;
-    
-    // Obtener la URL base
-    const baseUrl = document.querySelector('meta[name="base-url"]')?.getAttribute('content') || window.location.origin;
-    
-    // Cargar detalles del producto
-    fetch(baseUrl + '/productos/detalles/' + productId, {
-        method: 'GET',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById('productDetailsContent').innerHTML = `
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <strong>ID:</strong> #${data.producto.idProducto}
-                        </div>
-                        <div class="mb-3">
-                            <strong>Nombre:</strong> ${data.producto.Nombre}
-                        </div>
-                        <div class="mb-3">
-                            <strong>Referencia:</strong> ${data.producto.Referencia}
-                        </div>
-                        <div class="mb-3">
-                            <strong>Precio:</strong> $${parseFloat(data.producto.Precio).toFixed(2)}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <strong>Cantidad:</strong> ${data.producto.Cantidad}
-                        </div>
-                        <div class="mb-3">
-                            <strong>Stock:</strong> ${data.producto.Stock}
-                        </div>
-                        <div class="mb-3">
-                            <strong>Categoría:</strong> ${data.producto.Categoria}
-                        </div>
-                        <div class="mb-3">
-                            <strong>Estado:</strong> 
-                            <span class="badge ${data.producto.Stock > 10 ? 'bg-success' : (data.producto.Stock > 0 ? 'bg-warning text-dark' : 'bg-danger')}">
-                                ${data.producto.Stock > 10 ? 'En stock' : (data.producto.Stock > 0 ? 'Stock bajo' : 'Agotado')}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        } else {
-            document.getElementById('productDetailsContent').innerHTML = `
-                <div class="alert alert-danger">
-                    <i class="bi bi-exclamation-triangle me-2"></i>
-                    Error al cargar los detalles del producto.
-                </div>
-            `;
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('productDetailsContent').innerHTML = `
-            <div class="alert alert-danger">
-                <i class="bi bi-exclamation-triangle me-2"></i>
-                Error de conexión al cargar los detalles.
-            </div>
-        `;
-    });
 }
 
-// Función para limpiar filtros
+
 function clearFilters() {
     document.getElementById('searchInput').value = '';
     document.getElementById('categoryFilter').value = '';
     document.getElementById('stockFilter').value = '';
-    
-    // Mostrar todas las filas
-    const rows = document.querySelectorAll('#productsTable tbody tr');
-    rows.forEach(row => {
-        row.style.display = '';
-    });
 }
 
-// Función para eliminación masiva
 function bulkDelete() {
-    const selectedCheckboxes = document.querySelectorAll('.product-checkbox:checked');
-    if (selectedCheckboxes.length === 0) {
+    const selectedProducts = document.querySelectorAll('.product-checkbox:checked');
+    if (selectedProducts.length === 0) {
         alert('Por favor selecciona al menos un producto');
         return;
     }
 
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: `¿Eliminar ${selectedCheckboxes.length} productos seleccionados?`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar',
-        background: '#000',
-        color: '#fff'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const productIds = Array.from(selectedCheckboxes).map(cb => cb.value);
-            
-            // Realizar eliminación masiva via AJAX
-            const baseUrl = document.querySelector('meta[name="base-url"]')?.getAttribute('content') || window.location.origin;
-            
-            fetch(baseUrl + '/productos/eliminar_masivo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: JSON.stringify({ ids: productIds })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire({
-                        toast: true,
-                        icon: 'success',
-                        position: 'top-end',
-                        title: 'Productos eliminados',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        background: '#000',
-                        color: '#fff'
-                    });
-                    
-                    // Recargar el contenido de la página
-                    cargarContenido(window.location.href);
-                    
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: data.message || 'Error al eliminar los productos seleccionados.',
-                        confirmButtonColor: '#0dcaf0',
-                        background: '#000',
-                        color: '#fff'
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error de Conexión',
-                    text: 'No se pudo conectar con el servidor.',
-                    confirmButtonColor: '#0dcaf0',
-                    background: '#000',
-                    color: '#fff'
-                });
-            });
-        }
+    if (confirm(`¿Está seguro de eliminar ${selectedProducts.length} productos?`)) {
+        // Implement bulk delete logic here
+        console.log('Bulk delete:', selectedProducts);
+    }
+}
+
+// View toggle functionality
+document.getElementById('viewTable').addEventListener('click', function() {
+    document.getElementById('tableView').classList.remove('d-none');
+    document.getElementById('gridView').classList.add('d-none');
+    this.classList.add('active');
+    document.getElementById('viewGrid').classList.remove('active');
+});
+
+document.getElementById('viewGrid').addEventListener('click', function() {
+    document.getElementById('gridView').classList.remove('d-none');
+    document.getElementById('tableView').classList.add('d-none');
+    this.classList.add('active');
+    document.getElementById('viewTable').classList.remove('active');
+});
+
+// Select all functionality
+document.getElementById('selectAll').addEventListener('change', function() {
+    const checkboxes = document.querySelectorAll('.product-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = this.checked;
     });
-}
+    updateBulkActions();
+});
 
-// Función para alternar entre vista de tabla y grilla
-function initializeViewToggle() {
-    const viewTableBtn = document.getElementById('viewTable');
-    const viewGridBtn = document.getElementById('viewGrid');
-    
-    if (viewTableBtn) {
-        viewTableBtn.addEventListener('click', function() {
-            document.getElementById('tableView').classList.remove('d-none');
-            document.getElementById('gridView').classList.add('d-none');
-            this.classList.add('active');
-            document.getElementById('viewGrid').classList.remove('active');
-        });
-    }
+// Individual checkbox functionality
+document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', updateBulkActions);
+});
 
-    if (viewGridBtn) {
-        viewGridBtn.addEventListener('click', function() {
-            document.getElementById('gridView').classList.remove('d-none');
-            document.getElementById('tableView').classList.add('d-none');
-            this.classList.add('active');
-            document.getElementById('viewTable').classList.remove('active');
-        });
-    }
-}
-
-// Función para inicializar checkboxes
-function initializeCheckboxes() {
-    // Select all functionality
-    const selectAllCheckbox = document.getElementById('selectAll');
-    if (selectAllCheckbox) {
-        selectAllCheckbox.addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('.product-checkbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = this.checked;
-            });
-            updateBulkActions();
-        });
-    }
-
-    // Individual checkbox functionality
-    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', updateBulkActions);
-    });
-}
-
-// Función para actualizar acciones masivas
 function updateBulkActions() {
     const selectedCheckboxes = document.querySelectorAll('.product-checkbox:checked');
     const bulkActions = document.getElementById('bulkActions');
@@ -840,23 +565,14 @@ function updateBulkActions() {
     }
 }
 
-// Función para búsqueda en tiempo real
-function initializeSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('keyup', function() {
-            const searchTerm = this.value.toLowerCase();
-            const rows = document.querySelectorAll('#productsTable tbody tr');
-            
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(searchTerm) ? '' : 'none';
-            });
-        });
-    }
-}
+// Initialize tooltips
+document.addEventListener('DOMContentLoaded', function() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
 
-// Función de emergencia para desbloquear la página
 function emergencyUnlock() {
     // Cerrar el modal si está abierto
     const modalElement = document.getElementById('deleteModal');
