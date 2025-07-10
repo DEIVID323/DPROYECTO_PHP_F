@@ -49,7 +49,7 @@ const products = [
         name: "Estuche Café Vintage",
         category: "estuches",
         price: 42000,
-        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop",
+        image: "./imagenes/Estuche N C.png",
         description: "Estuche con diseño vintage y materiales premium"
     },
     {
@@ -57,7 +57,7 @@ const products = [
         name: "Funda Flexible Azul",
         category: "estuches",
         price: 22000,
-        image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=300&fit=crop",
+        image: "./imagenes/funda.jpg",
         description: "Funda flexible resistente al agua con cierre de cremallera"
     },
     
@@ -67,7 +67,7 @@ const products = [
         name: "Cordón Azul Premium",
         category: "cordones",
         price: 15000,
-        image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=300&fit=crop",
+        image: "./imagenes/C azul_.png",
         description: "Cordón resistente y elegante para uso diario"
     },
     {
@@ -75,7 +75,7 @@ const products = [
         name: "Cordón Rojo Deportivo",
         category: "cordones",
         price: 18000,
-        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop",
+        image: "./imagenes/C Rojo_.png",
         description: "Ideal para actividades deportivas con material antideslizante"
     },
     {
@@ -83,7 +83,7 @@ const products = [
         name: "Cadena Metálica Dorada",
         category: "cordones",
         price: 45000,
-        image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=300&fit=crop",
+        image:  "./imagenes/Cadena Metálica Dorada",
         description: "Cadena elegante de aleación dorada para ocasiones especiales"
     },
     {
@@ -91,7 +91,7 @@ const products = [
         name: "Cordón Silicona Negro",
         category: "cordones",
         price: 20000,
-        image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=300&fit=crop",
+        image:  "./imagenes/C Negro.png",
         description: "Cordón de silicona suave, ideal para niños"
     },
     
@@ -101,7 +101,7 @@ const products = [
         name: "Montura Sol Clásica",
         category: "monturas",
         price: 85000,
-        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop",
+        image: "./imagenes/montura clasica.jpg",
         description: "Montura de sol con diseño clásico y protección UV400"
     },
     {
