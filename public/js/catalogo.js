@@ -107,17 +107,19 @@ const products = [
     {
         id: 13,
         name: "Montura Lectura Moderna",
+        
         category: "monturas",
         price: 65000,
-        image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=300&fit=crop",
+        image: "./imagenes/montura moderna.jpg",
         description: "Montura ligera para lectura con diseño moderno"
     },
     {
         id: 14,
         name: "Montura Deportiva Titanio",
+        
         category: "monturas",
         price: 120000,
-        image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&h=300&fit=crop",
+        image: "./imagenes/montura titanium.jpg",
         description: "Montura deportiva ultra-liviana en aleación de titanio"
     },
     {
@@ -125,7 +127,7 @@ const products = [
         name: "Montura Vintage Carey",
         category: "monturas",
         price: 95000,
-        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop",
+        image: "./imagenes/montura carey.jpg",
         description: "Montura vintage con patrón carey y bisagras reforzadas"
     },
     
@@ -135,7 +137,7 @@ const products = [
         name: "Paño Microfibra Premium",
         category: "accesorios",
         price: 12000,
-        image: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&h=300&fit=crop",
+        image: "./imagenes/paños.jpg",
         description: "Paño de microfibra ultra-suave para limpieza delicada"
     },
     {
