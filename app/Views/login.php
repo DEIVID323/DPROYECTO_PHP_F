@@ -6,7 +6,7 @@
         <div class="form-box login">
               <form form action="<?= base_url('inicio/validarLogin') ?>" method="post">
 
-                <h1>INICIAR SESION</h1>
+             
                 <div class="input-box">
                     <input type="text" name="correo" placeholder="INGRESAR USUARIO" required>
                     <i class='bx bxs-user'></i>
