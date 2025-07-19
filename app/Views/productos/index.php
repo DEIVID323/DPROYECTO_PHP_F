@@ -20,8 +20,8 @@
                                 <i class="bi bi-box me-1"></i>
                                 <?= count($productos) ?> productos
                             </span>
-                            <a href="<?= base_url('productos/crear') ?>" 
-                               class="btn btn-light btn-lg shadow-sm">
+                            <a href="<?= base_url('productos/crear') ?>"
+                                class="btn btn-light btn-lg shadow-sm">
                                 <i class="bi bi-plus-circle-fill me-2"></i>
                                 Nuevo Producto
                             </a>
@@ -68,8 +68,8 @@
                                 <span class="input-group-text bg-light border-end-0">
                                     <i class="bi bi-search"></i>
                                 </span>
-                                <input type="text" class="form-control border-start-0" 
-                                       id="searchInput" placeholder="Buscar productos...">
+                                <input type="text" class="form-control border-start-0"
+                                    id="searchInput" placeholder="Buscar productos...">
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6">
@@ -149,7 +149,7 @@
                         </small>
                     </div>
                 </div>
-                
+
                 <div class="card-body p-0">
                     <!-- Table View -->
                     <div id="tableView">
@@ -190,89 +190,89 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($productos as $producto): ?>
-                                    <tr class="product-row">
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input product-checkbox" type="checkbox" 
-                                                       value="<?= $producto['idProducto'] ?>">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-light text-dark fs-6 fw-semibold">
-                                                #<?= str_pad($producto['idProducto'], 3, '0', STR_PAD_LEFT) ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar-sm bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 40px; height: 40px;">
-                                                    <i class="bi bi-box"></i>
+                                        <tr class="product-row">
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input product-checkbox" type="checkbox"
+                                                        value="<?= $producto['idProducto'] ?>">
                                                 </div>
-                                                <div class="min-w-0">
-                                                    <div class="fw-semibold text-dark text-truncate">
-                                                        <?= $producto['Nombre'] ?>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-light text-dark fs-6 fw-semibold">
+                                                    #<?= str_pad($producto['idProducto'], 3, '0', STR_PAD_LEFT) ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-sm bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 40px; height: 40px;">
+                                                        <i class="bi bi-box"></i>
                                                     </div>
-                                                    <small class="text-muted">Producto registrado</small>
+                                                    <div class="min-w-0">
+                                                        <div class="fw-semibold text-dark text-truncate">
+                                                            <?= $producto['Nombre'] ?>
+                                                        </div>
+                                                        <small class="text-muted">Producto registrado</small>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary px-2 py-1">
-                                                <?= $producto['Referencia'] ?>
-                                            </span>
-                                        </td>
-                                        <td class="d-none d-lg-table-cell">
-                                            <span class="badge bg-info bg-opacity-10 text-info border border-info">
-                                                <i class="bi bi-currency-dollar me-1"></i>
-                                                <?= number_format($producto['Precio'], 2) ?>
-                                            </span>
-                                        </td>
-                                        <td class="d-none d-md-table-cell">
-                                            <span class="text-muted fw-medium">
-                                                <?= $producto['Cantidad'] ?>
-                                            </span>
-                                        </td>
-                                        <td class="d-none d-lg-table-cell">
-                                            <?php
-                                            $stockClass = $producto['Stock'] > 10 ? 'bg-success' : ($producto['Stock'] > 0 ? 'bg-warning text-dark' : 'bg-danger');
-                                            $stockText = $producto['Stock'] > 10 ? 'En stock' : ($producto['Stock'] > 0 ? 'Stock bajo' : 'Agotado');
-                                            ?>
-                                            <span class="badge <?= $stockClass ?> px-2 py-1">
-                                                <i class="bi bi-archive me-1"></i>
-                                                <?= $producto['Stock'] ?> - <?= $stockText ?>
-                                            </span>
-                                        </td>
-                                        <td class="d-none d-lg-table-cell">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary">
-                                                <i class="bi bi-tag me-1"></i>
-                                                <?= $producto['Categoria'] ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex justify-content-center gap-1">
-                                                <button class="btn btn-outline-info btn-sm" 
-                                                        data-bs-toggle="tooltip" 
-                                                        data-bs-placement="top" 
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary px-2 py-1">
+                                                    <?= $producto['Referencia'] ?>
+                                                </span>
+                                            </td>
+                                            <td class="d-none d-lg-table-cell">
+                                                <span class="badge bg-info bg-opacity-10 text-info border border-info">
+                                                    <i class="bi bi-currency-dollar me-1"></i>
+                                                    <?= number_format($producto['Precio'], 2) ?>
+                                                </span>
+                                            </td>
+                                            <td class="d-none d-md-table-cell">
+                                                <span class="text-muted fw-medium">
+                                                    <?= $producto['Cantidad'] ?>
+                                                </span>
+                                            </td>
+                                            <td class="d-none d-lg-table-cell">
+                                                <?php
+                                                $stockClass = $producto['Stock'] > 10 ? 'bg-success' : ($producto['Stock'] > 0 ? 'bg-warning text-dark' : 'bg-danger');
+                                                $stockText = $producto['Stock'] > 10 ? 'En stock' : ($producto['Stock'] > 0 ? 'Stock bajo' : 'Agotado');
+                                                ?>
+                                                <span class="badge <?= $stockClass ?> px-2 py-1">
+                                                    <i class="bi bi-archive me-1"></i>
+                                                    <?= $producto['Stock'] ?> - <?= $stockText ?>
+                                                </span>
+                                            </td>
+                                            <td class="d-none d-lg-table-cell">
+                                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary">
+                                                    <i class="bi bi-tag me-1"></i>
+                                                    <?= $producto['Categoria'] ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex justify-content-center gap-1">
+                                                    <button class="btn btn-outline-info btn-sm"
+                                                        data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
                                                         title="Ver detalles"
                                                         onclick="viewProduct(<?= $producto['idProducto'] ?>)">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                                <a href="<?= base_url('productos/editar/' . $producto['idProducto']) ?>"
-                                                   class="btn btn-outline-warning btn-sm"
-                                                   data-bs-toggle="tooltip" 
-                                                   data-bs-placement="top" 
-                                                   title="Editar producto">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                                <button class="btn btn-outline-danger btn-sm"
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <a href="<?= base_url('productos/editar/' . $producto['idProducto']) ?>"
+                                                        class="btn btn-outline-warning btn-sm"
+                                                        data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
+                                                        title="Editar producto">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                    <button class="btn btn-outline-danger btn-sm"
                                                         onclick="confirmDelete(<?= $producto['idProducto'] ?>, '<?= addslashes($producto['Nombre']) ?>')"
-                                                        data-bs-toggle="tooltip" 
-                                                        data-bs-placement="top" 
+                                                        data-bs-toggle="tooltip"
+                                                        data-bs-placement="top"
                                                         title="Eliminar producto">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -283,67 +283,67 @@
                     <div id="gridView" class="d-none">
                         <div class="row g-4 p-4">
                             <?php foreach ($productos as $producto): ?>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="card h-100 border-0 shadow-sm hover-card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <div class="avatar-lg bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 50px; height: 50px;">
-                                                <i class="bi bi-box fs-5"></i>
+                                <div class="col-xl-3 col-lg-4 col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm hover-card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="avatar-lg bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 50px; height: 50px;">
+                                                    <i class="bi bi-box fs-5"></i>
+                                                </div>
+                                                <div class="min-w-0">
+                                                    <h6 class="mb-1 fw-semibold text-truncate">
+                                                        <?= $producto['Nombre'] ?>
+                                                    </h6>
+                                                    <small class="text-muted">ID: #<?= $producto['idProducto'] ?></small>
+                                                </div>
                                             </div>
-                                            <div class="min-w-0">
-                                                <h6 class="mb-1 fw-semibold text-truncate">
-                                                    <?= $producto['Nombre'] ?>
-                                                </h6>
-                                                <small class="text-muted">ID: #<?= $producto['idProducto'] ?></small>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <div class="d-flex align-items-center mb-2">
-                                                <i class="bi bi-upc text-muted me-2 flex-shrink-0"></i>
-                                                <small class="text-muted text-truncate"><?= $producto['Referencia'] ?></small>
-                                            </div>
-                                            <div class="d-flex align-items-center mb-2">
-                                                <i class="bi bi-currency-dollar text-muted me-2 flex-shrink-0"></i>
-                                                <small class="text-muted text-truncate">
-                                                    $<?= number_format($producto['Precio'], 2) ?>
-                                                </small>
-                                            </div>
-                                            <div class="d-flex align-items-center mb-2">
-                                                <i class="bi bi-stack text-muted me-2 flex-shrink-0"></i>
-                                                <small class="text-muted">Cantidad: <?= $producto['Cantidad'] ?></small>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-archive text-muted me-2 flex-shrink-0"></i>
-                                                <small class="text-muted">Stock: <?= $producto['Stock'] ?></small>
-                                            </div>
-                                        </div>
 
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary px-2 py-1">
-                                                <?= $producto['Categoria'] ?>
-                                            </span>
-                                            
-                                            <div class="btn-group" role="group">
-                                                <button class="btn btn-outline-info btn-sm" 
+                                            <div class="mb-3">
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <i class="bi bi-upc text-muted me-2 flex-shrink-0"></i>
+                                                    <small class="text-muted text-truncate"><?= $producto['Referencia'] ?></small>
+                                                </div>
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <i class="bi bi-currency-dollar text-muted me-2 flex-shrink-0"></i>
+                                                    <small class="text-muted text-truncate">
+                                                        $<?= number_format($producto['Precio'], 2) ?>
+                                                    </small>
+                                                </div>
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <i class="bi bi-stack text-muted me-2 flex-shrink-0"></i>
+                                                    <small class="text-muted">Cantidad: <?= $producto['Cantidad'] ?></small>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <i class="bi bi-archive text-muted me-2 flex-shrink-0"></i>
+                                                    <small class="text-muted">Stock: <?= $producto['Stock'] ?></small>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary px-2 py-1">
+                                                    <?= $producto['Categoria'] ?>
+                                                </span>
+
+                                                <div class="btn-group" role="group">
+                                                    <button class="btn btn-outline-info btn-sm"
                                                         title="Ver"
                                                         onclick="viewProduct(<?= $producto['idProducto'] ?>)">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                                <a href="<?= base_url('productos/editar/' . $producto['idProducto']) ?>"
-                                                   class="btn btn-outline-warning btn-sm" title="Editar">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                                <button class="btn btn-outline-danger btn-sm"
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <a href="<?= base_url('productos/editar/' . $producto['idProducto']) ?>"
+                                                        class="btn btn-outline-warning btn-sm" title="Editar">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                    <button class="btn btn-outline-danger btn-sm"
                                                         onclick="confirmDelete(<?= $producto['idProducto'] ?>, '<?= addslashes($producto['Nombre']) ?>')"
                                                         title="Eliminar">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -414,6 +414,12 @@
         </div>
     </div>
 </div>
+<div class="mb-4">
+    <a href="<?= base_url('dashboard') ?>" class="btn btn-dark btn-lg shadow-lg rounded-pill px-1 py-2 fw-bold" style="background: linear-gradient(45deg, #0d6efd, #6610f2);" transition: all 0.3s ease; onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0px)'">
+        <i class="bi bi-arrow-left-circle me-2"></i>
+        Volver a Dashboard
+    </a>
+</div>
 
 <!-- Product Details Modal -->
 <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-labelledby="productDetailsModalLabel" aria-hidden="true">
@@ -439,165 +445,165 @@
 </div>
 
 <script>
-// Verificar que Bootstrap esté disponible
+    // Verificar que Bootstrap esté disponible
 
 
-// JavaScript functions
-function confirmDelete(productId, productName) {
-    console.log('confirmDelete llamado con:', productId, productName);
-    
-    // Verificar que el elemento existe
-    const deleteProductNameEl = document.getElementById('deleteProductName');
-    if (!deleteProductNameEl) {
-        console.error('Elemento deleteProductName no encontrado');
-        return;
+    // JavaScript functions
+    function confirmDelete(productId, productName) {
+        console.log('confirmDelete llamado con:', productId, productName);
+
+        // Verificar que el elemento existe
+        const deleteProductNameEl = document.getElementById('deleteProductName');
+        if (!deleteProductNameEl) {
+            console.error('Elemento deleteProductName no encontrado');
+            return;
+        }
+
+        deleteProductNameEl.textContent = productName;
+
+        // Configurar el botón de confirmación correctamente
+        const confirmBtn = document.getElementById('confirmDeleteBtn');
+        if (!confirmBtn) {
+            console.error('Elemento confirmDeleteBtn no encontrado');
+            return;
+        }
+
+        confirmBtn.onclick = function() {
+            console.log('Botón eliminar clickeado, redirigiendo a:', '<?= base_url('productos/eliminar/') ?>' + productId);
+            window.location.href = '<?= base_url('productos/eliminar/') ?>' + productId;
+        };
+
+        // Verificar que el modal existe
+        const modalElement = document.getElementById('deleteModal');
+        if (!modalElement) {
+            console.error('Modal deleteModal no encontrado');
+            return;
+        }
+
+        try {
+            const deleteModal = new bootstrap.Modal(modalElement, {
+                backdrop: false, // Eliminar backdrop
+                keyboard: true
+            });
+            deleteModal.show();
+            console.log('Modal mostrado correctamente');
+        } catch (error) {
+            console.error('Error al mostrar el modal:', error);
+            alert('Error al mostrar el modal: ' + error.message);
+        }
     }
-    
-    deleteProductNameEl.textContent = productName;
-    
-    // Configurar el botón de confirmación correctamente
-    const confirmBtn = document.getElementById('confirmDeleteBtn');
-    if (!confirmBtn) {
-        console.error('Elemento confirmDeleteBtn no encontrado');
-        return;
-    }
-    
-    confirmBtn.onclick = function() {
-        console.log('Botón eliminar clickeado, redirigiendo a:', '<?= base_url('productos/eliminar/') ?>' + productId);
-        window.location.href = '<?= base_url('productos/eliminar/') ?>' + productId;
-    };
-    
-    // Verificar que el modal existe
-    const modalElement = document.getElementById('deleteModal');
-    if (!modalElement) {
-        console.error('Modal deleteModal no encontrado');
-        return;
-    }
-    
-    try {
-        const deleteModal = new bootstrap.Modal(modalElement, {
+
+    function viewProduct(productId) {
+        const productDetailsModal = new bootstrap.Modal(document.getElementById('productDetailsModal'), {
             backdrop: false, // Eliminar backdrop
             keyboard: true
         });
-        deleteModal.show();
-        console.log('Modal mostrado correctamente');
-    } catch (error) {
-        console.error('Error al mostrar el modal:', error);
-        alert('Error al mostrar el modal: ' + error.message);
-    }
-}
+        productDetailsModal.show();
 
-function viewProduct(productId) {
-    const productDetailsModal = new bootstrap.Modal(document.getElementById('productDetailsModal'), {
-        backdrop: false, // Eliminar backdrop
-        keyboard: true
-    });
-    productDetailsModal.show();
-    
-    // Here you would typically load product details via AJAX
-    // For now, just show a placeholder
-    document.getElementById('productDetailsContent').innerHTML = `
+        // Here you would typically load product details via AJAX
+        // For now, just show a placeholder
+        document.getElementById('productDetailsContent').innerHTML = `
         <div class="text-center py-4">
             <p>Cargando detalles del producto ID: ${productId}</p>
         </div>
     `;
-}
-
-
-function clearFilters() {
-    document.getElementById('searchInput').value = '';
-    document.getElementById('categoryFilter').value = '';
-    document.getElementById('stockFilter').value = '';
-}
-
-function bulkDelete() {
-    const selectedProducts = document.querySelectorAll('.product-checkbox:checked');
-    if (selectedProducts.length === 0) {
-        alert('Por favor selecciona al menos un producto');
-        return;
     }
 
-    if (confirm(`¿Está seguro de eliminar ${selectedProducts.length} productos?`)) {
-        // Implement bulk delete logic here
-        console.log('Bulk delete:', selectedProducts);
+
+    function clearFilters() {
+        document.getElementById('searchInput').value = '';
+        document.getElementById('categoryFilter').value = '';
+        document.getElementById('stockFilter').value = '';
     }
-}
 
-// View toggle functionality
-document.getElementById('viewTable').addEventListener('click', function() {
-    document.getElementById('tableView').classList.remove('d-none');
-    document.getElementById('gridView').classList.add('d-none');
-    this.classList.add('active');
-    document.getElementById('viewGrid').classList.remove('active');
-});
+    function bulkDelete() {
+        const selectedProducts = document.querySelectorAll('.product-checkbox:checked');
+        if (selectedProducts.length === 0) {
+            alert('Por favor selecciona al menos un producto');
+            return;
+        }
 
-document.getElementById('viewGrid').addEventListener('click', function() {
-    document.getElementById('gridView').classList.remove('d-none');
-    document.getElementById('tableView').classList.add('d-none');
-    this.classList.add('active');
-    document.getElementById('viewTable').classList.remove('active');
-});
-
-// Select all functionality
-document.getElementById('selectAll').addEventListener('change', function() {
-    const checkboxes = document.querySelectorAll('.product-checkbox');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = this.checked;
-    });
-    updateBulkActions();
-});
-
-// Individual checkbox functionality
-document.querySelectorAll('.product-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', updateBulkActions);
-});
-
-function updateBulkActions() {
-    const selectedCheckboxes = document.querySelectorAll('.product-checkbox:checked');
-    const bulkActions = document.getElementById('bulkActions');
-    const selectedCount = document.getElementById('selectedCount');
-    
-    if (selectedCheckboxes.length > 0) {
-        bulkActions.classList.remove('d-none');
-        selectedCount.textContent = selectedCheckboxes.length;
-    } else {
-        bulkActions.classList.add('d-none');
-    }
-}
-
-// Initialize tooltips
-document.addEventListener('DOMContentLoaded', function() {
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-});
-
-function emergencyUnlock() {
-    // Cerrar el modal si está abierto
-    const modalElement = document.getElementById('deleteModal');
-    if (modalElement) {
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        if (modal) {
-            modal.hide();
-            console.log("Modal cerrado de emergencia");
+        if (confirm(`¿Está seguro de eliminar ${selectedProducts.length} productos?`)) {
+            // Implement bulk delete logic here
+            console.log('Bulk delete:', selectedProducts);
         }
     }
-    
-    // Remover backdrop si existe
-    const backdrop = document.querySelector('.modal-backdrop');
-    if (backdrop) {
-        backdrop.remove();
-        console.log("Backdrop removido");
+
+    // View toggle functionality
+    document.getElementById('viewTable').addEventListener('click', function() {
+        document.getElementById('tableView').classList.remove('d-none');
+        document.getElementById('gridView').classList.add('d-none');
+        this.classList.add('active');
+        document.getElementById('viewGrid').classList.remove('active');
+    });
+
+    document.getElementById('viewGrid').addEventListener('click', function() {
+        document.getElementById('gridView').classList.remove('d-none');
+        document.getElementById('tableView').classList.add('d-none');
+        this.classList.add('active');
+        document.getElementById('viewTable').classList.remove('active');
+    });
+
+    // Select all functionality
+    document.getElementById('selectAll').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = this.checked;
+        });
+        updateBulkActions();
+    });
+
+    // Individual checkbox functionality
+    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', updateBulkActions);
+    });
+
+    function updateBulkActions() {
+        const selectedCheckboxes = document.querySelectorAll('.product-checkbox:checked');
+        const bulkActions = document.getElementById('bulkActions');
+        const selectedCount = document.getElementById('selectedCount');
+
+        if (selectedCheckboxes.length > 0) {
+            bulkActions.classList.remove('d-none');
+            selectedCount.textContent = selectedCheckboxes.length;
+        } else {
+            bulkActions.classList.add('d-none');
+        }
     }
-    
-    // Remover clase modal-open del body
-    document.body.classList.remove('modal-open');
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
-    
-    console.log("Página desbloqueada completamente");
-}
+
+    // Initialize tooltips
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+
+    function emergencyUnlock() {
+        // Cerrar el modal si está abierto
+        const modalElement = document.getElementById('deleteModal');
+        if (modalElement) {
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+                console.log("Modal cerrado de emergencia");
+            }
+        }
+
+        // Remover backdrop si existe
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) {
+            backdrop.remove();
+            console.log("Backdrop removido");
+        }
+
+        // Remover clase modal-open del body
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+
+        console.log("Página desbloqueada completamente");
+    }
 </script>
 
 

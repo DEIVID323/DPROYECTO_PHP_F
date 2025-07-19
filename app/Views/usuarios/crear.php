@@ -16,8 +16,8 @@
                             <p class="mb-0 opacity-75">Registra un nuevo usuario en el sistema</p>
                         </div>
                         <div class="d-flex align-items-center">
-                            <a href="<?= base_url('usuarios') ?>" 
-                               class="btn btn-light btn-lg shadow-sm">
+                            <a href="<?= base_url('usuarios') ?>"
+                                class="btn btn-light btn-lg shadow-sm">
                                 <i class="bi bi-arrow-left me-2"></i>
                                 Volver a Usuarios
                             </a>
@@ -70,11 +70,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card-body">
                     <form action="<?= base_url('usuarios/guardar') ?>" method="POST" id="userForm">
                         <?= csrf_field() ?>
-                        
+
                         <!-- Basic Information Section -->
                         <div class="row mb-4">
                             <div class="col-12">
@@ -95,12 +95,12 @@
                                     <span class="input-group-text bg-light border-end-0">
                                         <i class="bi bi-person"></i>
                                     </span>
-                                    <input type="text" 
-                                           class="form-control border-start-0" 
-                                           id="nombre" 
-                                           name="nombre" 
-                                           placeholder="Ingrese el nombre"
-                                           required>
+                                    <input type="text"
+                                        class="form-control border-start-0"
+                                        id="nombre"
+                                        name="nombre"
+                                        placeholder="Ingrese el nombre"
+                                        required>
                                 </div>
                                 <small class="text-muted">Nombre descriptivo del usuario</small>
                             </div>
@@ -113,12 +113,12 @@
                                     <span class="input-group-text bg-light border-end-0">
                                         <i class="bi bi-person"></i>
                                     </span>
-                                    <input type="text" 
-                                           class="form-control border-start-0" 
-                                           id="apellido" 
-                                           name="Apellido" 
-                                           placeholder="Ingrese el apellido"
-                                           required>
+                                    <input type="text"
+                                        class="form-control border-start-0"
+                                        id="apellido"
+                                        name="Apellido"
+                                        placeholder="Ingrese el apellido"
+                                        required>
                                 </div>
                                 <small class="text-muted">Apellido del usuario</small>
                             </div>
@@ -138,20 +138,23 @@
                         <div class="row g-3 mb-4">
                             <div class="col-md-6">
                                 <label for="correo" class="form-label fw-semibold">
-                                    <i class="bi bi-envelope me-1"></i>Correo Electrónico *
+                                    <i class="bi bi-envelope me-1"></i>Correo Electrónico
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light border-end-0">
                                         <i class="bi bi-envelope"></i>
                                     </span>
-                                    <input type="email" 
-                                           class="form-control border-start-0" 
-                                           id="correo" 
-                                           name="Correo" 
-                                           placeholder="ejemplo@correo.com"
-                                           required>
+                                    <input type="email"
+                                        class="form-control border-start-0"
+                                        id="correo"
+                                        name="Correo"
+                                        placeholder="ejemplo@correo.com"
+
+                                        required>
                                 </div>
-                                <small class="text-muted">Dirección de correo electrónico válida</small>
+                                <div class="invalid-feedback">
+                                    El correo debe contener un punto después del @. Ejemplo: ejemplo@correo.com
+                                </div>
                             </div>
 
                             <div class="col-md-6">
@@ -162,11 +165,14 @@
                                     <span class="input-group-text bg-light border-end-0">
                                         <i class="bi bi-telephone"></i>
                                     </span>
-                                    <input type="tel" 
-                                           class="form-control border-start-0" 
-                                           id="telefono" 
-                                           name="Telefono" 
-                                           placeholder="(+57) 300 123 4567">
+                                    <input type="tel"
+                                        class="form-control border-start-0"
+                                        id="telefono"
+                                        name="Telefono"
+                                        placeholder="(+57) 300 123 4567"
+                                        pattern="[0-9]{10}"
+                                        maxlength="10"
+                                        required>
                                 </div>
                                 <small class="text-muted">Número de teléfono (opcional)</small>
                             </div>
@@ -181,11 +187,11 @@
                                     <span class="input-group-text bg-light border-end-0">
                                         <i class="bi bi-geo-alt"></i>
                                     </span>
-                                    <input type="text" 
-                                           class="form-control border-start-0" 
-                                           id="direccion" 
-                                           name="Direccion" 
-                                           placeholder="Ingrese la dirección completa">
+                                    <input type="text"
+                                        class="form-control border-start-0"
+                                        id="direccion"
+                                        name="Direccion"
+                                        placeholder="Ingrese la dirección completa">
                                 </div>
                                 <small class="text-muted">Dirección completa del usuario (opcional)</small>
                             </div>
@@ -211,12 +217,12 @@
                                     <span class="input-group-text bg-light border-end-0">
                                         <i class="bi bi-key"></i>
                                     </span>
-                                    <input type="password" 
-                                           class="form-control border-start-0" 
-                                           id="password" 
-                                           name="Controsena" 
-                                           placeholder="Ingrese la contraseña"
-                                           required>
+                                    <input type="password"
+                                        class="form-control border-start-0"
+                                        id="password"
+                                        name="Controsena"
+                                        placeholder="Ingrese la contraseña"
+                                        required>
                                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                         <i class="bi bi-eye"></i>
                                     </button>
@@ -232,12 +238,12 @@
                                     <span class="input-group-text bg-light border-end-0">
                                         <i class="bi bi-key"></i>
                                     </span>
-                                    <input type="password" 
-                                           class="form-control border-start-0" 
-                                           id="confirm_password" 
-                                           name="Contrasena" 
-                                           placeholder="Confirme la contraseña"
-                                           required>
+                                    <input type="password"
+                                        class="form-control border-start-0"
+                                        id="confirm_password"
+                                        name="Contrasena"
+                                        placeholder="Confirme la contraseña"
+                                        required>
                                     <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
                                         <i class="bi bi-eye"></i>
                                     </button>
@@ -320,7 +326,7 @@
                                 <div>
                                     <h6 class="mb-1 fw-semibold">Información Importante</h6>
                                     <p class="mb-0 text-muted">
-                                        Los campos marcados con (*) son obligatorios. 
+                                        Los campos marcados con (*) son obligatorios.
                                         El usuario recibirá un correo de confirmación con sus credenciales.
                                     </p>
                                 </div>
@@ -330,6 +336,7 @@
                             <div class="d-flex align-items-center justify-content-end">
                                 <i class="bi bi-shield-check text-success me-2"></i>
                                 <small class="text-success fw-semibold">Datos Seguros</small>
+                                
                             </div>
                         </div>
                     </div>
@@ -337,123 +344,199 @@
             </div>
         </div>
     </div>
+
 </div>
 
 
 <!-- JavaScript for Form Interactions -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Toggle password visibility
-    const togglePassword = document.getElementById('togglePassword');
-    const password = document.getElementById('password');
-    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-    const confirmPassword = document.getElementById('confirm_password');
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('userForm');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirm_password');
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const correoInput = document.getElementById('correo');
+        const telefonoInput = document.getElementById('telefono');
 
-    togglePassword.addEventListener('click', function() {
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
-    });
+        // Mostrar/Ocultar contraseña
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
 
-    toggleConfirmPassword.addEventListener('click', function() {
-        const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmPassword.setAttribute('type', type);
-        this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
-    });
+        toggleConfirmPassword.addEventListener('click', function() {
+            const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPassword.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
 
-    // Password confirmation validation
-    confirmPassword.addEventListener('input', function() {
-        if (this.value !== password.value) {
-            this.setCustomValidity('Las contraseñas no coinciden');
-            this.classList.add('is-invalid');
-        } else {
-            this.setCustomValidity('');
-            this.classList.remove('is-invalid');
-            this.classList.add('is-valid');
-        }
-    });
+        // Confirmación de contraseña
+        confirmPassword.addEventListener('input', function() {
+            if (this.value !== password.value) {
+                this.setCustomValidity('Las contraseñas no coinciden');
+                this.classList.add('is-invalid');
+                this.classList.remove('is-valid');
+            } else {
+                this.setCustomValidity('');
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            }
+        });
 
-    // Form validation
-    const form = document.getElementById('userForm');
-    form.addEventListener('submit', function(e) {
-        if (!form.checkValidity()) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        form.classList.add('was-validated');
-    });
+        // Validación de correo en tiempo real
+        correoInput.addEventListener('input', function() {
+            const correo = this.value.trim();
+            const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    // Real-time validation feedback
-    const inputs = form.querySelectorAll('input[required], select[required]');
-    inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            if (this.checkValidity()) {
+            if (correo && !regexCorreo.test(correo)) {
+                this.classList.add('is-invalid');
+                this.classList.remove('is-valid');
+            } else if (correo && regexCorreo.test(correo)) {
                 this.classList.remove('is-invalid');
                 this.classList.add('is-valid');
             } else {
+                this.classList.remove('is-invalid');
                 this.classList.remove('is-valid');
+            }
+        });
+
+        // Validación de teléfono en tiempo real
+        telefonoInput.addEventListener('input', function() {
+            const telefono = this.value.trim();
+            const regexTelefono = /^[0-9]{10}$/;
+
+            if (telefono && !regexTelefono.test(telefono)) {
                 this.classList.add('is-invalid');
+                this.classList.remove('is-valid');
+            } else if (telefono && regexTelefono.test(telefono)) {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            } else {
+                this.classList.remove('is-invalid');
+                this.classList.remove('is-valid');
+            }
+        });
+
+        // Validación al enviar formulario
+        form.addEventListener('submit', function(e) {
+            let formValid = true;
+
+            // Validar correo
+            const correo = correoInput.value.trim();
+            const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!regexCorreo.test(correo)) {
+                e.preventDefault();
+                correoInput.classList.add('is-invalid');
+                correoInput.classList.remove('is-valid');
+                if (formValid) correoInput.focus();
+                formValid = false;
+            } else {
+                correoInput.classList.remove('is-invalid');
+                correoInput.classList.add('is-valid');
+            }
+
+            // Validar teléfono
+            const telefono = telefonoInput.value.trim();
+            const regexTelefono = /^[0-9]{10}$/;
+
+            if (telefono && !regexTelefono.test(telefono)) {
+                e.preventDefault();
+                telefonoInput.classList.add('is-invalid');
+                telefonoInput.classList.remove('is-valid');
+                if (formValid) telefonoInput.focus();
+                formValid = false;
+            } else if (telefono) {
+                telefonoInput.classList.remove('is-invalid');
+                telefonoInput.classList.add('is-valid');
+            }
+
+            // Validación general con Bootstrap
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+                formValid = false;
+            }
+
+            form.classList.add('was-validated');
+        });
+
+        // Validación en tiempo real para otros campos
+        const inputs = form.querySelectorAll('input[required], select[required]');
+        inputs.forEach(input => {
+            // Excluir correo y teléfono porque ya tienen validación personalizada
+            if (input.id !== 'correo' && input.id !== 'telefono') {
+                input.addEventListener('blur', function() {
+                    if (this.checkValidity()) {
+                        this.classList.remove('is-invalid');
+                        this.classList.add('is-valid');
+                    } else {
+                        this.classList.remove('is-valid');
+                        this.classList.add('is-invalid');
+                    }
+                });
             }
         });
     });
-});
 </script>
 
 <style>
-.bg-gradient-primary {
-    background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%) !important;
-}
-
-.avatar-sm {
-    width: 40px;
-    height: 40px;
-    font-size: 0.875rem;
-}
-
-.input-group-text {
-    border-color: #dee2e6;
-}
-
-.form-control:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-}
-
-.btn {
-    transition: all 0.2s ease;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-}
-
-.card {
-    transition: all 0.3s ease;
-}
-
-.is-valid {
-    border-color: #28a745;
-}
-
-.is-invalid {
-    border-color: #dc3545;
-}
-
-@media (max-width: 768px) {
-    .d-flex.justify-content-between {
-        flex-direction: column;
-        gap: 1rem;
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%) !important;
     }
-    
-    .btn-group {
-        justify-content: center;
+
+    .avatar-sm {
+        width: 40px;
+        height: 40px;
+        font-size: 0.875rem;
     }
-    
-    .d-flex.justify-content-end {
-        flex-direction: column;
-        gap: 0.5rem;
+
+    .input-group-text {
+        border-color: #dee2e6;
     }
-}
+
+    .form-control:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+    }
+
+    .btn {
+        transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .is-valid {
+        border-color: #28a745;
+    }
+
+    .is-invalid {
+        border-color: #dc3545;
+    }
+
+    @media (max-width: 768px) {
+        .d-flex.justify-content-between {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-group {
+            justify-content: center;
+        }
+
+        .d-flex.justify-content-end {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
 </style>
 
 <?php echo $this->endSection(); ?>

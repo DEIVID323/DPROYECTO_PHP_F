@@ -39,6 +39,14 @@
 .btn:hover {
     transform: translateY(-1px);
 }
+.btn:hover .position-absolute {
+    opacity: 0.1 !important;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
 
 @media (max-width: 768px) {
     .d-flex.justify-content-between {

@@ -20,8 +20,8 @@
                                 <i class="bi bi-person-check me-1"></i>
                                 <?= count($usuarios) ?> usuarios
                             </span>
-                            <a href="<?= base_url('usuarios/crear') ?>" 
-                               class="btn btn-light btn-lg shadow-sm">
+                            <a href="<?= base_url('usuarios/crear') ?>"
+                                class="btn btn-light btn-lg shadow-sm">
                                 <i class="bi bi-person-plus-fill me-2"></i>
                                 Nuevo Usuario
                             </a>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-            <a href="<?php echo base_url('usuarios/exportar'); ?>" class="btn btn-primary float-end">Exportar a excel</a>
+    <a href="<?php echo base_url('usuarios/exportar'); ?>" class="btn btn-primary float-end">Exportar a excel</a>
 
     <!-- Alerts Section -->
     <?php if (session()->has('error')): ?>
@@ -69,8 +69,8 @@
                                 <span class="input-group-text bg-light border-end-0">
                                     <i class="bi bi-search"></i>
                                 </span>
-                                <input type="text" class="form-control border-start-0" 
-                                       id="searchInput" placeholder="Buscar usuarios...">
+                                <input type="text" class="form-control border-start-0"
+                                    id="searchInput" placeholder="Buscar usuarios...">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card-body p-0">
                     <!-- Table View -->
                     <div id="tableView" class="table-responsive">
@@ -160,95 +160,95 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($usuarios as $usuario): ?>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input user-checkbox" type="checkbox" 
-                                                   value="<?= $usuario['idUsuario'] ?>">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-light text-dark fs-6 fw-semibold">
-                                            #<?= str_pad($usuario['idUsuario'], 3, '0', STR_PAD_LEFT) ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-sm bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3">
-                                                <i class="bi bi-person-fill"></i>
+                                    <tr class="user-row">
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input user-checkbox" type="checkbox"
+                                                    value="<?= $usuario['idUsuario'] ?>">
                                             </div>
-                                            <div>
-                                                <div class="fw-semibold text-dark">
-                                                    <?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-light text-dark fs-6 fw-semibold">
+                                                #<?= str_pad($usuario['idUsuario'], 3, '0', STR_PAD_LEFT) ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar-sm bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3">
+                                                    <i class="bi bi-person-fill"></i>
                                                 </div>
-                                                <small class="text-muted">Usuario registrado</small>
+                                                <div>
+                                                    <div class="fw-semibold text-dark">
+                                                        <?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>
+                                                    </div>
+                                                    <small class="text-muted">Usuario registrado</small>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="text-primary fw-medium"><?= $usuario['Correo'] ?></span>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted">
-                                            <?= !empty($usuario['Direccion']) ? $usuario['Direccion'] : '<em>No especificada</em>' ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="text-muted">
-                                            <?= !empty($usuario['Telefono']) ? $usuario['Telefono'] : '<em>No registrado</em>' ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-info bg-opacity-10 text-info border border-info">
-                                            <i class="bi bi-calendar-event me-1"></i>
-                                            <?= date('d/m/Y', strtotime($usuario['Fecha_registro'])) ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <?php
-                                        $roleClass = match($usuario['Rol_idRol']) {
-                                            '1' => 'bg-danger',
-                                            '2' => 'bg-primary',
-                                            '3' => 'bg-warning text-dark',
-                                            default => 'bg-secondary'
-                                        };
-                                        $roleName = match($usuario['Rol_idRol']) {
-                                            '1' => 'Admin',
-                                            '2' => 'Usuario',
-                                            '3' => 'Moderador',
-                                            default => 'Sin rol'
-                                        };
-                                        ?>
-                                        <span class="badge <?= $roleClass ?> px-3 py-2">
-                                            <i class="bi bi-shield-fill me-1"></i>
-                                            <?= $roleName ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex justify-content-center gap-1">
-                                            <button class="btn btn-outline-info btn-sm" 
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
+                                        </td>
+                                        <td>
+                                            <span class="text-primary fw-medium"><?= $usuario['Correo'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted">
+                                                <?= !empty($usuario['Direccion']) ? $usuario['Direccion'] : '<em>No especificada</em>' ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted">
+                                                <?= !empty($usuario['Telefono']) ? $usuario['Telefono'] : '<em>No registrado</em>' ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info bg-opacity-10 text-info border border-info">
+                                                <i class="bi bi-calendar-event me-1"></i>
+                                                <?= date('d/m/Y', strtotime($usuario['Fecha_registro'])) ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            $roleClass = match ($usuario['Rol_idRol']) {
+                                                '1' => 'bg-danger',
+                                                '2' => 'bg-primary',
+                                                '3' => 'bg-warning text-dark',
+                                                default => 'bg-secondary'
+                                            };
+                                            $roleName = match ($usuario['Rol_idRol']) {
+                                                '1' => 'Admin',
+                                                '2' => 'Usuario',
+                                                '3' => 'Moderador',
+                                                default => 'Sin rol'
+                                            };
+                                            ?>
+                                            <span class="badge <?= $roleClass ?> px-3 py-2">
+                                                <i class="bi bi-shield-fill me-1"></i>
+                                                <?= $roleName ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <button class="btn btn-outline-info btn-sm"
+                                                    data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
                                                     title="Ver detalles">
-                                                <i class="bi bi-eye"></i>
-                                            </button>
-                                            <a href="<?= base_url('usuarios/editar/' . $usuario['idUsuario']) ?>"
-                                               class="btn btn-outline-primary btn-sm"
-                                               data-bs-toggle="tooltip" 
-                                               data-bs-placement="top" 
-                                               title="Editar usuario">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                            <button class="btn btn-outline-danger btn-sm"
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <a href="<?= base_url('usuarios/editar/' . $usuario['idUsuario']) ?>"
+                                                    class="btn btn-outline-primary btn-sm"
+                                                    data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
+                                                    title="Editar usuario">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <button class="btn btn-outline-danger btn-sm"
                                                     onclick="confirmDelete(<?= $usuario['idUsuario'] ?>, '<?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>')"
-                                                    data-bs-toggle="tooltip" 
-                                                    data-bs-placement="top" 
+                                                    data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
                                                     title="Eliminar usuario">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -258,76 +258,76 @@
                     <div id="gridView" class="d-none">
                         <div class="row g-4 p-4">
                             <?php foreach ($usuarios as $usuario): ?>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="card h-100 border-0 shadow-sm hover-card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <div class="avatar-lg bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3">
-                                                <i class="bi bi-person-fill fs-4"></i>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 border-0 shadow-sm hover-card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="avatar-lg bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3">
+                                                    <i class="bi bi-person-fill fs-4"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-1 fw-semibold">
+                                                        <?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>
+                                                    </h6>
+                                                    <small class="text-muted">ID: #<?= $usuario['idUsuario'] ?></small>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h6 class="mb-1 fw-semibold">
-                                                    <?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>
-                                                </h6>
-                                                <small class="text-muted">ID: #<?= $usuario['idUsuario'] ?></small>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <div class="d-flex align-items-center mb-2">
-                                                <i class="bi bi-envelope text-muted me-2"></i>
-                                                <small class="text-muted"><?= $usuario['Correo'] ?></small>
-                                            </div>
-                                            <div class="d-flex align-items-center mb-2">
-                                                <i class="bi bi-telephone text-muted me-2"></i>
-                                                <small class="text-muted">
-                                                    <?= !empty($usuario['Telefono']) ? $usuario['Telefono'] : 'No registrado' ?>
-                                                </small>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-calendar text-muted me-2"></i>
-                                                <small class="text-muted"><?= date('d/m/Y', strtotime($usuario['Fecha_registro'])) ?></small>
-                                            </div>
-                                        </div>
 
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <?php
-                                            $roleClass = match($usuario['Rol_idRol']) {
-                                                '1' => 'bg-danger',
-                                                '2' => 'bg-primary',
-                                                '3' => 'bg-warning text-dark',
-                                                default => 'bg-secondary'
-                                            };
-                                            $roleName = match($usuario['Rol_idRol']) {
-                                                '1' => 'Admin',
-                                                '2' => 'Usuario',
-                                                '3' => 'Moderador',
-                                                default => 'Sin rol'
-                                            };
-                                            ?>
-                                            <span class="badge <?= $roleClass ?> px-2 py-1">
-                                                <?= $roleName ?>
-                                            </span>
-                                            
-                                            <div class="btn-group" role="group">
-                                                <button class="btn btn-outline-info btn-sm" title="Ver">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                                <a href="<?= base_url('usuarios/editar/' . $usuario['idUsuario']) ?>"
-                                                   class="btn btn-outline-primary btn-sm" title="Editar">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                                <button class="btn btn-outline-danger btn-sm"
-                                                    onclick="confirmDelete(<?= $usuario['idUsuario'] ?>, '<?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>')"
-                                                    title="Eliminar">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
+                                            <div class="mb-3">
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <i class="bi bi-envelope text-muted me-2"></i>
+                                                    <small class="text-muted"><?= $usuario['Correo'] ?></small>
+                                                </div>
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <i class="bi bi-telephone text-muted me-2"></i>
+                                                    <small class="text-muted">
+                                                        <?= !empty($usuario['Telefono']) ? $usuario['Telefono'] : 'No registrado' ?>
+                                                    </small>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <i class="bi bi-calendar text-muted me-2"></i>
+                                                    <small class="text-muted"><?= date('d/m/Y', strtotime($usuario['Fecha_registro'])) ?></small>
+                                                </div>
+                                            </div>
 
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <?php
+                                                $roleClass = match ($usuario['Rol_idRol']) {
+                                                    '1' => 'bg-danger',
+                                                    '2' => 'bg-primary',
+                                                    '3' => 'bg-warning text-dark',
+                                                    default => 'bg-secondary'
+                                                };
+                                                $roleName = match ($usuario['Rol_idRol']) {
+                                                    '1' => 'Admin',
+                                                    '2' => 'Usuario',
+                                                    '3' => 'Moderador',
+                                                    default => 'Sin rol'
+                                                };
+                                                ?>
+                                                <span class="badge <?= $roleClass ?> px-2 py-1">
+                                                    <?= $roleName ?>
+                                                </span>
+
+                                                <div class="btn-group" role="group">
+                                                    <button class="btn btn-outline-info btn-sm" title="Ver">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <a href="<?= base_url('usuarios/editar/' . $usuario['idUsuario']) ?>"
+                                                        class="btn btn-outline-primary btn-sm" title="Editar">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                    <button class="btn btn-outline-danger btn-sm"
+                                                        onclick="confirmDelete(<?= $usuario['idUsuario'] ?>, '<?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?>')"
+                                                        title="Eliminar">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -363,7 +363,12 @@
             </div>
         </div>
     </div>
-
+    <div class="mb-4">
+        <a href="<?= base_url('dashboard') ?>" class="btn btn-primary btn-lg shadow-lg rounded-pill px-0 py-1 fw-bold" style="background: linear-gradient(45deg, #0d6efd, #6610f2);">
+            <i class="bi bi-arrow-left-circle me-2"></i>
+            Volver a Dashboard
+        </a>
+    </div>
     <!-- Bulk Actions (Hidden by default) -->
     <div id="bulkActions" class="row mt-3 d-none">
         <div class="col-12">
@@ -391,25 +396,25 @@
 
 <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body text-center">
-        <i class="bi bi-person-x fs-1 text-danger"></i>
-        <p class="mt-3">¿Estás seguro de eliminar este usuario?</p>
-        <h5 id="deleteUserName"></h5>
-        <small class="text-muted">Esta acción no se puede deshacer.</small>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <a id="confirmDeleteBtn" class="btn btn-danger">Eliminar Usuario</a>
-        <a href="<?php echo base_url('usuarios/exportar'); ?>" class="btn btn-primary float-end">Exportar a excel</a>
-      </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-person-x fs-1 text-danger"></i>
+                <p class="mt-3">¿Estás seguro de eliminar este usuario?</p>
+                <h5 id="deleteUserName"></h5>
+                <small class="text-muted">Esta acción no se puede deshacer.</small>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a id="confirmDeleteBtn" class="btn btn-danger">Eliminar Usuario</a>
+                <a href="<?php echo base_url('usuarios/exportar'); ?>" class="btn btn-primary float-end">Exportar a excel</a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <?php echo $this->endSection(); ?>

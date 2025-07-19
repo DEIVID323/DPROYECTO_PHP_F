@@ -28,17 +28,17 @@
     </div>
 
     <?php if (session()->has('error')): ?>
-    <div class="alert alert-danger alert-dismissible fade show shadow-sm">
-        <strong>Error:</strong> <?= session('error') ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm">
+            <strong>Error:</strong> <?= session('error') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
     <?php endif; ?>
 
     <?php if (session()->has('success')): ?>
-    <div class="alert alert-success alert-dismissible fade show shadow-sm">
-        <strong>Éxito:</strong> <?= session('success') ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
+        <div class="alert alert-success alert-dismissible fade show shadow-sm">
+            <strong>Éxito:</strong> <?= session('success') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
     <?php endif; ?>
 
     <div class="card border-0 shadow-sm mb-4 bg-light">
@@ -50,7 +50,7 @@
                 <div>
                     <h5 class="mb-1 fw-semibold"><?= $usuario['Nombre'] ?> <?= $usuario['Apellido'] ?></h5>
                     <p class="mb-0 text-muted">
-                        <i class="bi bi-envelope me-1"></i><?= $usuario['Correo'] ?> 
+                        <i class="bi bi-envelope me-1"></i><?= $usuario['Correo'] ?>
                         <span class="mx-2">•</span>
                         <i class="bi bi-calendar me-1"></i>Registrado: <?= date('d/m/Y', strtotime($usuario['Fecha_registro'])) ?>
                     </p>
@@ -82,7 +82,9 @@
 
             <div class="col-md-6">
                 <label for="telefono" class="form-label fw-semibold">Teléfono</label>
-                <input type="tel" class="form-control" id="telefono" name="Telefono" value="<?= $usuario['Telefono'] ?>">
+                <input type="tel" class="form-control" id="telefono" name="Telefono"
+                    pattern="[0-9]{10}"
+                    maxlength="10" value="<?= $usuario['Telefono'] ?>">
             </div>
         </div>
 
@@ -141,204 +143,284 @@
 
 <!-- JavaScript for Form Interactions -->
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('editUserForm');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirm_password');
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const correoInput = document.getElementById('correo');
+        const telefonoInput = document.getElementById('telefono');
 
-    // Toggle password visibility
-    const togglePassword = document.getElementById('togglePassword');
-    const password = document.getElementById('password');
-    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-    const confirmPassword = document.getElementById('confirm_password');
-
-    togglePassword.addEventListener('click', function() {
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
-    });
-
-    toggleConfirmPassword.addEventListener('click', function() {
-        const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmPassword.setAttribute('type', type);
-        this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
-    });
-
-    // Password confirmation validation
-    confirmPassword.addEventListener('input', function() {
-        if (password.value !== '' && this.value !== password.value) {
-            this.setCustomValidity('Las contraseñas no coinciden');
-            this.classList.add('is-invalid');
-        } else {
-            this.setCustomValidity('');
-            this.classList.remove('is-invalid');
-            if (this.value !== '') {
-                this.classList.add('is-valid');
-            }
+        // Mostrar/Ocultar contraseña
+        if (togglePassword) {
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+            });
         }
-    });
 
-    // Password field validation
-    password.addEventListener('input', function() {
-        if (this.value !== '' && confirmPassword.value !== '' && this.value !== confirmPassword.value) {
-            confirmPassword.setCustomValidity('Las contraseñas no coinciden');
-            confirmPassword.classList.add('is-invalid');
-        } else if (this.value === confirmPassword.value) {
-            confirmPassword.setCustomValidity('');
-            confirmPassword.classList.remove('is-invalid');
-            if (confirmPassword.value !== '') {
-                confirmPassword.classList.add('is-valid');
-            }
+        if (toggleConfirmPassword) {
+            toggleConfirmPassword.addEventListener('click', function() {
+                const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPassword.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+            });
         }
-    });
 
-    // Form validation
-    const form = document.getElementById('editUserForm');
-    form.addEventListener('submit', function(e) {
-        if (!form.checkValidity()) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        form.classList.add('was-validated');
-    });
+        // Validación de correo en tiempo real
+        correoInput.addEventListener('input', function() {
+            const correo = this.value.trim();
+            const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    // Real-time validation feedback
-    const inputs = form.querySelectorAll('input[required], select[required]');
-    inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            if (this.checkValidity()) {
+            if (correo && !regexCorreo.test(correo)) {
+                this.classList.add('is-invalid');
+                this.classList.remove('is-valid');
+            } else if (correo && regexCorreo.test(correo)) {
                 this.classList.remove('is-invalid');
                 this.classList.add('is-valid');
             } else {
+                this.classList.remove('is-invalid');
                 this.classList.remove('is-valid');
-                this.classList.add('is-invalid');
             }
         });
-    });
 
+        // Validación de teléfono en tiempo real
+        telefonoInput.addEventListener('input', function() {
+            const telefono = this.value.trim();
+            const regexTelefono = /^[0-9]{10}$/;
 
-    // Check for changes and show warning
-    let hasChanges = false;
-    
-    form.addEventListener('input', function() {
-        hasChanges = true;
-    });
-    
-    form.addEventListener('change', function() {
-        hasChanges = true;
-    });
-    
-    window.addEventListener('beforeunload', function(e) {
-        if (hasChanges) {
-            e.preventDefault();
-            e.returnValue = '';
-        }
-    });
-    
-    // Remove warning when form is submitted
-    form.addEventListener('submit', function() {
-        hasChanges = false;
+            if (telefono && !regexTelefono.test(telefono)) {
+                this.classList.add('is-invalid');
+                this.classList.remove('is-valid');
+            } else if (telefono && regexTelefono.test(telefono)) {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            } else {
+                this.classList.remove('is-invalid');
+                this.classList.remove('is-valid');
+            }
+        });
+
+        // Validación de confirmación de contraseña
+        confirmPassword.addEventListener('input', function() {
+            if (password.value !== '' && this.value !== password.value) {
+                this.setCustomValidity('Las contraseñas no coinciden');
+                this.classList.add('is-invalid');
+                this.classList.remove('is-valid');
+            } else {
+                this.setCustomValidity('');
+                this.classList.remove('is-invalid');
+                if (this.value !== '') {
+                    this.classList.add('is-valid');
+                }
+            }
+        });
+
+        // Validación del campo de contraseña
+        password.addEventListener('input', function() {
+            if (this.value !== '' && confirmPassword.value !== '' && this.value !== confirmPassword.value) {
+                confirmPassword.setCustomValidity('Las contraseñas no coinciden');
+                confirmPassword.classList.add('is-invalid');
+                confirmPassword.classList.remove('is-valid');
+            } else if (this.value === confirmPassword.value) {
+                confirmPassword.setCustomValidity('');
+                confirmPassword.classList.remove('is-invalid');
+                if (confirmPassword.value !== '') {
+                    confirmPassword.classList.add('is-valid');
+                }
+            }
+        });
+
+        // Validación al enviar formulario
+        form.addEventListener('submit', function(e) {
+            let formValid = true;
+
+            // Validar correo
+            const correo = correoInput.value.trim();
+            const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!regexCorreo.test(correo)) {
+                e.preventDefault();
+                correoInput.classList.add('is-invalid');
+                correoInput.classList.remove('is-valid');
+                if (formValid) correoInput.focus();
+                formValid = false;
+            } else {
+                correoInput.classList.remove('is-invalid');
+                correoInput.classList.add('is-valid');
+            }
+
+            // Validar teléfono (solo si no está vacío)
+            const telefono = telefonoInput.value.trim();
+            const regexTelefono = /^[0-9]{10}$/;
+
+            if (telefono && !regexTelefono.test(telefono)) {
+                e.preventDefault();
+                telefonoInput.classList.add('is-invalid');
+                telefonoInput.classList.remove('is-valid');
+                if (formValid) telefonoInput.focus();
+                formValid = false;
+            } else if (telefono) {
+                telefonoInput.classList.remove('is-invalid');
+                telefonoInput.classList.add('is-valid');
+            }
+
+            // Validación general con Bootstrap
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+                formValid = false;
+            }
+
+            form.classList.add('was-validated');
+        });
+
+        // Validación en tiempo real para otros campos
+        const inputs = form.querySelectorAll('input[required], select[required]');
+        inputs.forEach(input => {
+            // Excluir correo, teléfono y contraseñas porque ya tienen validación personalizada
+            if (input.id !== 'correo' && input.id !== 'telefono' && input.id !== 'password' && input.id !== 'confirm_password') {
+                input.addEventListener('blur', function() {
+                    if (this.checkValidity()) {
+                        this.classList.remove('is-invalid');
+                        this.classList.add('is-valid');
+                    } else {
+                        this.classList.remove('is-valid');
+                        this.classList.add('is-invalid');
+                    }
+                });
+            }
+        });
+
+        // Detectar cambios en el formulario
+        let hasChanges = false;
+
+        form.addEventListener('input', function() {
+            hasChanges = true;
+        });
+
+        form.addEventListener('change', function() {
+            hasChanges = true;
+        });
+
+        window.addEventListener('beforeunload', function(e) {
+            if (hasChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Remover advertencia cuando el formulario es enviado
+        form.addEventListener('submit', function() {
+            hasChanges = false;
+        });
     });
 </script>
 
 <style>
-.bg-gradient-primary {
-    background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%) !important;
-}
-
-.avatar-sm {
-    width: 40px;
-    height: 40px;
-    font-size: 0.875rem;
-}
-
-.avatar-lg {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-}
-
-.input-group-text {
-    border-color: #dee2e6;
-}
-
-.form-control:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-}
-
-.btn {
-    transition: all 0.2s ease;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-}
-
-.card {
-    transition: all 0.3s ease;
-}
-
-.is-valid {
-    border-color: #28a745;
-}
-
-.is-invalid {
-    border-color: #dc3545;
-}
-
-.timeline {
-    position: relative;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 10px;
-    width: 2px;
-    height: 100%;
-    background: #dee2e6;
-}
-
-.timeline-item {
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 1.5rem;
-}
-
-.timeline-marker {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    box-shadow: 0 0 0 2px #dee2e6;
-}
-
-.timeline-content h6 {
-    margin-bottom: 0.25rem;
-    color: #495057;
-}
-
-.timeline-content p {
-    font-size: 0.875rem;
-    margin-bottom: 0;
-}
-
-@media (max-width: 768px) {
-    .d-flex.justify-content-between {
-        flex-direction: column;
-        gap: 1rem;
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%) !important;
     }
-    
-    .btn-group {
-        justify-content: center;
+
+    .avatar-sm {
+        width: 40px;
+        height: 40px;
+        font-size: 0.875rem;
     }
-    
-    .d-flex.justify-content-end {
-        flex-direction: column;
-        gap: 0.5rem;
+
+    .avatar-lg {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
     }
-}
+
+    .input-group-text {
+        border-color: #dee2e6;
+    }
+
+    .form-control:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+    }
+
+    .btn {
+        transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .is-valid {
+        border-color: #28a745;
+    }
+
+    .is-invalid {
+        border-color: #dc3545;
+    }
+
+    .timeline {
+        position: relative;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 10px;
+        width: 2px;
+        height: 100%;
+        background: #dee2e6;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 1.5rem;
+    }
+
+    .timeline-marker {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 2px #dee2e6;
+    }
+
+    .timeline-content h6 {
+        margin-bottom: 0.25rem;
+        color: #495057;
+    }
+
+    .timeline-content p {
+        font-size: 0.875rem;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+        .d-flex.justify-content-between {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-group {
+            justify-content: center;
+        }
+
+        .d-flex.justify-content-end {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
 </style>
 
 <?php echo $this->endSection(); ?>
